@@ -16,3 +16,18 @@ jobs:
           node-version: 12.x
       - name: Build
         run: npm install && npm run dist
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v2.2.0
+        with:
+          name: distribution
+          path: majordomo.tar.gz
+  release: 
+    if: ${{ github.event_name == 'release' }}
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+     - name: Download a Build Artifact
+       uses: actions/download-artifact@v2.0.5
+       with:
+         name: distribution
+         path: majordomo.tar.gz
