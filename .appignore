@@ -1,0 +1,11 @@
+.git
+.github
+node_modules
+babel.config.js
+webpack.*
+package.json
+.gitignore
+.appignore
+Dockerfile
+
+majordomo.tar.gz

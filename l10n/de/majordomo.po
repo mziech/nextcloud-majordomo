@@ -1,0 +1,314 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the ownCloud Apps package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ownCloud Apps 8.0.0\n"
+"Report-Msgid-Bugs-To: translations@owncloud.org\n"
+"POT-Creation-Date: 2020-10-17 00:17+0200\n"
+"PO-Revision-Date: 2020-10-17 00:33+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: \n"
+"Language: de\n"
+
+#: appinfo/app.php:28
+msgid "Majordomo"
+msgstr "Majordomo"
+
+#: js/majordomo.js:4605
+msgid "checkbox"
+msgid_plural "checkbox action-checkbox__checkbox"
+msgstr[0] "checkbox"
+msgstr[1] "checkbox action-checkbox__checkbox"
+
+#: js/majordomo.js:4605
+msgid "label"
+msgid_plural "action-checkbox__label"
+msgstr[0] "label"
+msgstr[1] "action-checkbox__label"
+
+#: js/majordomo.js:4681
+msgid "action-input__icon"
+msgstr "action-input__icon"
+
+#: js/majordomo.js:4681
+msgid "action-input__submit"
+msgstr "action-input__submit"
+
+#: js/majordomo.js:4681
+msgid "form"
+msgstr "form"
+
+#: js/majordomo.js:4681
+msgid "action-input"
+msgstr "action-input"
+
+#: js/majordomo.js:4681
+msgid "action--disabled"
+msgstr "action--disabled"
+
+#: js/majordomo.js:4909
+msgid "aria-expanded"
+msgstr "aria-expanded"
+
+#: js/majordomo.js:4909
+msgid "no-snapper"
+msgstr "no-snapper"
+
+#: js/majordomo.js:5035
+msgid "settings-button"
+msgstr "settings-button"
+
+#: js/majordomo.js:5035
+msgid "app-settings-header"
+msgstr "app-settings-header"
+
+#: js/majordomo.js:5035
+msgid "slide-up"
+msgstr "slide-up"
+
+#: js/majordomo.js:5599
+msgid "app-navigation-entry-link"
+msgid_plural "#"
+msgstr[0] "app-navigation-entry-link"
+msgstr[1] "#"
+
+#: js/majordomo.js:5599
+msgid "icon-confirm"
+msgid_plural "submit"
+msgstr[0] "icon-confirm"
+msgstr[1] "submit"
+
+#: js/majordomo.js:5599
+msgid "icon-close"
+msgid_plural "reset"
+msgstr[0] "icon-close"
+msgstr[1] "reset"
+
+#: js/majordomo.js:6325
+msgid "An error occurred while loading the mailing list."
+msgstr "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten."
+
+#: js/majordomo.js:6668
+msgid "IMAP settings successfully updated"
+msgstr "IMAP Einsatellungen erfolgreich aktualisiert"
+
+#: js/majordomo.js:6671
+msgid "Failed to store IMAP settings!"
+msgstr "Fehler beim Speichern der IMAP Einstellungen!"
+
+#: js/majordomo.js:6685
+msgid "Failed to test IMAP settings!"
+msgstr "Fehler beim Überprüfen der IMAP Einstellungen!"
+
+#: js/majordomo.js:35800 js/majordomo.js:35813
+msgid "Some text"
+msgstr "Irgendein Text"
+
+#: js/majordomo.js:35827 js/majordomo.js:35842
+msgid "One thing"
+msgid_plural "Many things"
+msgstr[0] "One thing"
+msgstr[1] "Many things"
+
+#: js/majordomo.js:47238
+msgid "New Mailinglist"
+msgstr "Neuer E-Mail Verteiler"
+
+#: js/majordomo.js:47260 js/majordomo.js:47323 js/majordomo.js:48228
+msgid "Loading ..."
+msgstr "Wird geladen ..."
+
+#: js/majordomo.js:47283
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: js/majordomo.js:47341
+msgid "Current list members"
+msgstr "Aktuelle Mitglieder"
+
+#: js/majordomo.js:47367
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: js/majordomo.js:47400
+msgid "Member needs to be added"
+msgstr "Mitglied muss hinzugefügt werden"
+
+#: js/majordomo.js:47412
+msgid "Member needs to be removed"
+msgstr "Mitglied muss entfernt werden"
+
+#: js/majordomo.js:47432
+#, python-brace-format
+msgid "Edit Mailinglist: {title}"
+msgstr "Verteiler bearbeiten: {title}"
+
+#: js/majordomo.js:47442
+msgid "Create Mailinglist"
+msgstr "Erstelle E-Mail Verteiler"
+
+#: js/majordomo.js:47460
+msgid "Mailing list title"
+msgstr "Verteiler Titel"
+
+#: js/majordomo.js:47490
+msgid "List manager email address"
+msgstr "E-Mail zur Verteiler Konfiguration"
+
+#: js/majordomo.js:47521
+msgid "List name for management"
+msgstr "Verteiler Name für Konfiguration"
+
+#: js/majordomo.js:47551
+msgid "List manager password"
+msgstr "Passwort für Konfiguration"
+
+#: js/majordomo.js:47634
+msgid "Enable automatic synchronization of list members"
+msgstr "Aktiviere automatische Synchronisierung  der Verteiler Mitglieder"
+
+#: js/majordomo.js:47644 js/majordomo.js:48417
+msgid "Save"
+msgstr "Speichern"
+
+#: js/majordomo.js:47667
+msgid "Retrieve current status from list manager"
+msgstr "Aktuellen Status aus Verteiler Konfiguration abrufen"
+
+#: js/majordomo.js:47697
+msgid "Retrieve current status from list manager AND apply to settings"
+msgstr "Aktuellen Status abrufen UND Änderungen anwenden"
+
+#: js/majordomo.js:47727
+msgid "Write desired changes to list manager"
+msgstr "Gewünschte Änderungen an die Verteiler Konfiguration übertragen"
+
+#: js/majordomo.js:47740
+msgid "Member Policy"
+msgstr "Mitgliedschaftsregeln"
+
+#: js/majordomo.js:47777 js/majordomo.js:47944
+msgid "Members of group"
+msgstr "Mitglieder der Gruppe"
+
+#: js/majordomo.js:47781 js/majordomo.js:47953
+msgid "E-Mail of user"
+msgstr "E-Mail des Benutzers"
+
+#: js/majordomo.js:47785 js/majordomo.js:47962
+msgid "Additional E-Mail"
+msgstr "Zusätzliche E-Mail"
+
+#: js/majordomo.js:47790 js/majordomo.js:47974
+msgid "Except members of group"
+msgstr "Außer Mitglieder der Gruppe"
+
+#: js/majordomo.js:47796 js/majordomo.js:47987
+msgid "Except E-Mail of user"
+msgstr "Außer E-Mail des Benutzers"
+
+#: js/majordomo.js:47801 js/majordomo.js:47997
+msgid "Exclude E-Mail"
+msgstr "E-Mail ausschließen"
+
+#: js/majordomo.js:47837
+msgid "- Please select -"
+msgstr "- Bitte wählen -"
+
+#: js/majordomo.js:47901
+msgid "Add policy"
+msgstr "Regel hinzufügen"
+
+#: js/majordomo.js:48096
+msgid "Apply pending changes"
+msgstr "Ausstehende Änderungen anwenden"
+
+#: js/majordomo.js:48104
+msgid "Please acknowledge to apply the following pending changes:"
+msgstr "Bitte bestätigen Sie, dass folgende Änderungen angewendet werden:"
+
+#: js/majordomo.js:48121
+#, python-brace-format
+msgid "Unsubscribe: {email}"
+msgstr "Entfernen: {email}"
+
+#: js/majordomo.js:48136
+#, python-brace-format
+msgid "Subscribe: {email}"
+msgstr "Hinzufügen: {email}"
+
+#: js/majordomo.js:48163
+msgid "Acknowledge"
+msgstr "Bestätigen"
+
+#: js/majordomo.js:48183
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: js/majordomo.js:48222
+msgid "Global Settings"
+msgstr "Allgemeine Einstellungen"
+
+#: js/majordomo.js:48247
+msgid "IMAP Server Address"
+msgstr "IMAP Server Adresse"
+
+#: js/majordomo.js:48274
+msgid "IMAP Username"
+msgstr "IMAP Benutzername"
+
+#: js/majordomo.js:48301
+msgid "IMAP Password"
+msgstr "IMAP Passwort"
+
+#: js/majordomo.js:48329
+msgid "IMAP Inbox folder name"
+msgstr "IMAP Ordner für den Posteingang"
+
+#: js/majordomo.js:48358
+msgid "IMAP Archive folder name"
+msgstr "IMAP Ordner für das Archiv"
+
+#: js/majordomo.js:48387
+msgid "IMAP Errors folder name"
+msgstr "IMAP Ordner für Fehlermeldungen"
+
+#: js/majordomo.js:48435
+msgid "Test IMAP Connection"
+msgstr "IMAP Verbindung überprüfen"
+
+#: js/majordomo.js:48463
+msgid "Process incoming mails now"
+msgstr "Empfangene E-Mails jetzt verarbeiten"
+
+#: js/majordomo.js:48601
+msgid "multiselect__tag-icon"
+msgid_plural "aria-hidden"
+msgstr[0] "multiselect__tag-icon"
+msgstr[1] "aria-hidden"
+
+#: js/majordomo.js:48601
+msgid "search"
+msgid_plural "multiselect__input"
+msgstr[0] "search"
+msgstr[1] "multiselect__input"
+
+#: js/majordomo.js:48601
+msgid "tags"
+msgid_plural "multiselect__tags"
+msgstr[0] "tags"
+msgstr[1] "multiselect__tags"
+
+#: js/majordomo.js:48601
+msgid "multiselect"
+msgid_plural "multiselect--active"
+msgstr[0] "multiselect"
+msgstr[1] "multiselect--active"
