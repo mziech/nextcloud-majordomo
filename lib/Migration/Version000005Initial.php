@@ -140,8 +140,8 @@ class Version000005Initial extends SimpleMigrationStep {
 			$table->addUniqueIndex(['list_id', 'type', 'reference'], 'UQ_members');
 		}
 
-		if (!$schema->hasTable('majordomo_current_emails')) {
-			$table = $schema->createTable('majordomo_current_emails');
+		if (!$schema->hasTable('majordomo_who')) {
+			$table = $schema->createTable('majordomo_who');
 			$table->addColumn('id', 'bigint', [
 				'autoincrement' => true,
 				'notnull' => true,

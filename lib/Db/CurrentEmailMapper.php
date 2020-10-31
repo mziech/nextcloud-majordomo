@@ -26,7 +26,7 @@ use OCP\IDBConnection;
 class CurrentEmailMapper extends \OCP\AppFramework\Db\QBMapper {
 
     public function __construct(IDBConnection $db) {
-        parent::__construct($db, 'majordomo_current_emails');
+        parent::__construct($db, 'majordomo_who');
     }
 
     /**
@@ -36,7 +36,7 @@ class CurrentEmailMapper extends \OCP\AppFramework\Db\QBMapper {
     public function findAllByListId($id) {
         $qb = $this->db->getQueryBuilder();
         return $this->findEntities($qb->select("*")
-            ->from("majordomo_current_emails")
+            ->from("majordomo_who")
             ->andWhere($qb->expr()->eq("list_id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))));
     }
 
@@ -57,7 +57,7 @@ class CurrentEmailMapper extends \OCP\AppFramework\Db\QBMapper {
 
     public function deleteByListIdAndEmail($listId, $email) {
         $qb = $this->db->getQueryBuilder();
-        return $qb->delete("majordomo_current_emails")
+        return $qb->delete("majordomo_who")
             ->andWhere($qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
             ->andWhere($qb->expr()->eq("email", $qb->createNamedParameter(strtolower($email), IQueryBuilder::PARAM_STR)))
             ->execute();
@@ -65,7 +65,7 @@ class CurrentEmailMapper extends \OCP\AppFramework\Db\QBMapper {
 
     public function deleteByListId($listId) {
         $qb = $this->db->getQueryBuilder();
-        return $qb->delete("majordomo_current_emails")
+        return $qb->delete("majordomo_who")
             ->andWhere($qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
             ->execute();
     }
