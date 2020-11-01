@@ -30,6 +30,10 @@
                 <input id="server" v-model="settings.imap.server"/>
             </p>
             <p class="centered-input">
+                <label for="from">{{ t('majordomo', 'E-Mail address') }}:</label>
+                <input id="from" v-model="settings.imap.from"/>
+            </p>
+            <p class="centered-input">
                 <label for="user">{{ t('majordomo', 'IMAP Username') }}:</label>
                 <input id="user" v-model="settings.imap.user"/>
             </p>

@@ -114,6 +114,10 @@ class ApiController extends Controller {
     }
 
     public function getListStatus($id) {
+        if ($id == "new") {
+            return new JSONResponse([]);
+        }
+
         return new JSONResponse($this->mailingListService->getListStatus($id));
     }
 

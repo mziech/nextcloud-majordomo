@@ -34,7 +34,7 @@
 			<AppNavigationItem icon="icon-settings" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>
 		</AppNavigation>
 		<AppContent>
-			<router-view/>
+			<router-view @saved="load()"/>
 		</AppContent>
 	</Content>
 </template>
@@ -45,7 +45,6 @@ import { AppNavigationItem } from '@nextcloud/vue';
 import Content from '@nextcloud/vue/dist/Components/Content';
 import AppContent from '@nextcloud/vue/dist/Components/AppContent';
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation';
-//import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem';
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew';
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter';
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings';
@@ -64,48 +63,53 @@ import MailingList from "./MailingList";
 import Settings from "./Settings";
 
 const router = new VueRouter({
-	mode: 'hash',
-	base: oc_appswebroots['majordomo'] + '/',
-	routes: [
-		{ path: "/", component: { template: "" } },
-		{ path: "/settings", name: 'settings', component: Settings },
-		{ path: "/lists/:id", name: 'list', component: MailingList }
-	]
+  mode: 'hash',
+  base: oc_appswebroots['majordomo'] + '/',
+  routes: [
+    {path: "/", component: {template: ""}},
+    {path: "/settings", name: 'settings', component: Settings},
+    {path: "/lists/:id", name: 'list', component: MailingList}
+  ]
 });
 
 export default {
-	name: 'App',
-	components: {
-		Content,
-		AppContent,
-		AppNavigation,
-		AppNavigationItem,
-		AppNavigationNew,
-		AppNavigationCounter,
-		AppNavigationSettings,
-		ActionButton,
-		ActionLink,
-		AppNavigationIconBullet,
-		ActionCheckbox,
-		ActionInput,
-		ActionRouter,
-		ActionText,
-		ActionTextEditable,
-		MailingList,
-	},
-	data: function() {
-		return {
-			loading: false,
-			lists: [],
-		}
-	},
-	mounted: function () {
-		this.loading = true;
-		api.get("/lists").then(data => {
-			this.loading = false;
-			this.lists = data;
-		});
-	},
-	router
+  name: 'App',
+  components: {
+    Content,
+    AppContent,
+    AppNavigation,
+    AppNavigationItem,
+    AppNavigationNew,
+    AppNavigationCounter,
+    AppNavigationSettings,
+    ActionButton,
+    ActionLink,
+    AppNavigationIconBullet,
+    ActionCheckbox,
+    ActionInput,
+    ActionRouter,
+    ActionText,
+    ActionTextEditable,
+    MailingList,
+  },
+  data: function () {
+    return {
+      loading: false,
+      lists: [],
+    }
+  },
+  methods: {
+    load() {
+      this.loading = true;
+      api.get("/lists").then(data => {
+        this.loading = false;
+        this.lists = data;
+      });
+    }
+  },
+  mounted: function () {
+    this.load();
+  },
+  router
 };
 </script>

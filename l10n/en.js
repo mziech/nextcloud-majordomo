@@ -18,6 +18,8 @@ OC.L10N.register(
     "_icon-confirm_::_submit_" : ["icon-confirm","submit"],
     "_icon-close_::_reset_" : ["icon-close","reset"],
     "An error occurred while loading the mailing list." : "An error occurred while loading the mailing list.",
+    "Mailing list saved." : "Mailing list saved.",
+    "Failed to save mailing list." : "Failed to save mailing list.",
     "IMAP settings successfully updated" : "IMAP settings successfully updated",
     "Failed to store IMAP settings!" : "Failed to store IMAP settings!",
     "Failed to test IMAP settings!" : "Failed to test IMAP settings!",
@@ -58,6 +60,7 @@ OC.L10N.register(
     "Cancel" : "Cancel",
     "Global Settings" : "Global Settings",
     "IMAP Server Address" : "IMAP Server Address",
+    "E-Mail address" : "E-Mail address",
     "IMAP Username" : "IMAP Username",
     "IMAP Password" : "IMAP Password",
     "IMAP Inbox folder name" : "IMAP Inbox folder name",
@@ -68,6 +71,14 @@ OC.L10N.register(
     "_multiselect__tag-icon_::_aria-hidden_" : ["multiselect__tag-icon","aria-hidden"],
     "_search_::_multiselect__input_" : ["search","multiselect__input"],
     "_tags_::_multiselect__tags_" : ["tags","multiselect__tags"],
-    "_multiselect_::_multiselect--active_" : ["multiselect","multiselect--active"]
+    "_multiselect_::_multiselect--active_" : ["multiselect","multiselect--active"],
+    "_radio_::_radio action-radio__radio_" : ["",""],
+    "slide" : "slide-up",
+    "_focusable_::_#_" : ["",""],
+    "_o2-1_::_o2-2_" : ["",""],
+    "transform" : "form",
+    "expand" : "aria-expanded",
+    "_trigger_::_trigger_" : ["",""],
+    "_resize-observer_::_-1_" : ["",""]
 },
-"nplurals=2; plural=(n != 1);\nX-Generator: Poedit 2.3\nLast-Translator: ");
+"nplurals=2; plural=(n != 1);");

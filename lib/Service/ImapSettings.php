@@ -23,6 +23,7 @@ namespace OCA\Majordomo\Service;
 
 class ImapSettings {
     public $server;
+    public $from;
     public $user;
     public $password;
     public $inbox;

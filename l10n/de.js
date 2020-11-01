@@ -18,6 +18,8 @@ OC.L10N.register(
     "_icon-confirm_::_submit_" : ["icon-confirm","submit"],
     "_icon-close_::_reset_" : ["icon-close","reset"],
     "An error occurred while loading the mailing list." : "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten.",
+    "Mailing list saved." : "Verteiler Konfiguration gespeichert.",
+    "Failed to save mailing list." : "Speichern der Verteiler Konfiguration fehlgeschlagen.",
     "IMAP settings successfully updated" : "IMAP Einsatellungen erfolgreich aktualisiert",
     "Failed to store IMAP settings!" : "Fehler beim Speichern der IMAP Einstellungen!",
     "Failed to test IMAP settings!" : "Fehler beim Überprüfen der IMAP Einstellungen!",
@@ -58,6 +60,7 @@ OC.L10N.register(
     "Cancel" : "Abbrechen",
     "Global Settings" : "Allgemeine Einstellungen",
     "IMAP Server Address" : "IMAP Server Adresse",
+    "E-Mail address" : "E-Mail Adresse",
     "IMAP Username" : "IMAP Benutzername",
     "IMAP Password" : "IMAP Passwort",
     "IMAP Inbox folder name" : "IMAP Ordner für den Posteingang",
@@ -68,6 +71,11 @@ OC.L10N.register(
     "_multiselect__tag-icon_::_aria-hidden_" : ["multiselect__tag-icon","aria-hidden"],
     "_search_::_multiselect__input_" : ["search","multiselect__input"],
     "_tags_::_multiselect__tags_" : ["tags","multiselect__tags"],
-    "_multiselect_::_multiselect--active_" : ["multiselect","multiselect--active"]
+    "_multiselect_::_multiselect--active_" : ["multiselect","multiselect--active"],
+    "_radio_::_radio action-radio__radio_" : ["",""],
+    "_focusable_::_#_" : ["",""],
+    "_o2-1_::_o2-2_" : ["",""],
+    "_trigger_::_trigger_" : ["",""],
+    "_resize-observer_::_-1_" : ["",""]
 },
-"nplurals=2; plural=(n != 1);\nX-Generator: Poedit 2.3\nLast-Translator: ");
+"nplurals=2; plural=(n != 1);");

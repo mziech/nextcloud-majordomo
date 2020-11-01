@@ -39,11 +39,16 @@ class MajordomoCommands {
     private $mailer;
 
     private $requestId;
+    /**
+     * @var Settings
+     */
+    private $settings;
 
-    public function __construct($requestId, MailingList $ml, IMailer $mailer) {
+    public function __construct($requestId, MailingList $ml, IMailer $mailer, Settings $settings) {
         $this->ml = $ml;
         $this->mailer = $mailer;
         $this->requestId = $requestId;
+        $this->settings = $settings;
     }
 
     function subscribe($email) {
@@ -97,8 +102,12 @@ class MajordomoCommands {
         $this->commands[] = '';
         $subject = self::MAGIC . " " . $this->requestId;
         $body = implode("\r\n", $this->commands);
+        $from = $this->settings->getImapSettings()->from;
 
         $message = new Message(new \Swift_Message(), true);
+        if ($from) {
+            $message->setFrom([ $from ]);
+        }
         $message->setTo([ $this->ml->manager ]);
         $message->setPlainBody($body);
         $message->setSubject($subject);

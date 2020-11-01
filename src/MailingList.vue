@@ -189,7 +189,13 @@
                 });
             },
             save() {
-                api.post(`/lists/${this.$route.params.id}`, this.list);
+                api.post(`/lists/${this.$route.params.id}`, this.list).then(list => {
+                    OC.Notification.showTemporary(t("majordomo", "Mailing list saved."));
+                    this.$router.replace({ name: 'list', params: { id: list.id }});
+                    this.$emit("saved");
+                }).catch(() => {
+                    OC.Notification.showTemporary(t("majordomo", "Failed to save mailing list."), {type: "error"});
+                });
             },
             addMember() {
                 const memberToAdd = {

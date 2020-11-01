@@ -22,6 +22,7 @@ namespace OCA\Majordomo\Service;
 
 
 use OCA\Majordomo\Db\CurrentEmailMapper;
+use OCA\Majordomo\Db\MailingList;
 use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\Request;
 use OCA\Majordomo\Db\RequestMapper;
@@ -45,6 +46,10 @@ class OutboundService {
      */
     private $mailer;
     /**
+     * @var Settings
+     */
+    private $settings;
+    /**
      * @var MailingListMapper
      */
     private $mailingListMapper;
@@ -66,6 +71,7 @@ class OutboundService {
         ILogger $logger,
         IDBConnection $db,
         IMailer $mailer,
+        Settings $settings,
         MailingListMapper $mailingListMapper,
         MemberResolver $memberResolver,
         CurrentEmailMapper $currentEmailMapper,
@@ -75,6 +81,7 @@ class OutboundService {
         $this->logger = $logger;
         $this->db = $db;
         $this->mailer = $mailer;
+        $this->settings = $settings;
         $this->mailingListMapper = $mailingListMapper;
         $this->memberResolver = $memberResolver;
         $this->currentEmailMapper = $currentEmailMapper;
@@ -92,7 +99,7 @@ class OutboundService {
         $request = Request::create($ml, $importMembers ? Request::PURPOSE_IMPORT : Request::PURPOSE_CHECK);
         $request = $this->requestMapper->insert($request);
 
-        (new MajordomoCommands($request->getRequestId(), $ml, $this->mailer))
+        $this->commands($request, $ml)
             ->who()
             ->apply();
 
@@ -129,7 +136,7 @@ class OutboundService {
         $request = Request::create($ml, Request::PURPOSE_UPDATE);
         $request = $this->requestMapper->insert($request);
 
-        (new MajordomoCommands($request->getRequestId(), $ml, $this->mailer))
+        $this->commands($request, $ml)
             ->subscribeList($pending['toAdd'])
             ->unsubscribeList($pending['toDelete'])
             ->who()
@@ -159,6 +166,10 @@ class OutboundService {
             "toAdd" => $toAdd,
             "toDelete" => $toDelete,
         ];
+    }
+
+    private function commands(Request $request, MailingList $ml): MajordomoCommands {
+        return (new MajordomoCommands($request->getRequestId(), $ml, $this->mailer, $this->settings));
     }
 
 }
