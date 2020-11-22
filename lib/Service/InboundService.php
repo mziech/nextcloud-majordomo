@@ -25,10 +25,12 @@ use OCA\Majordomo\Db\CurrentEmailMapper;
 use OCA\Majordomo\Db\MailingList;
 use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\Member;
+use OCA\Majordomo\Db\MemberMapper;
 use OCA\Majordomo\Db\Request;
 use OCA\Majordomo\Db\RequestMapper;
 use OCP\IDBConnection;
 use OCP\ILogger;
+use OCP\IUserManager;
 
 class InboundService {
 
@@ -57,22 +59,34 @@ class InboundService {
      * @var MemberResolver
      */
     private $memberResolver;
+    /**
+     * @var IUserManager
+     */
+    private $userManager;
+    /**
+     * @var MemberMapper
+     */
+    private $memberMapper;
 
     public function __construct(
         $AppName,
         ILogger $logger,
         IDBConnection $db,
+        IUserManager $userManager,
         MailingListMapper $mailingListMapper,
         CurrentEmailMapper $currentEmailMapper,
         RequestMapper $requestMapper,
+        MemberMapper $memberMapper,
         MemberResolver $memberResolver
     ) {
         $this->AppName = $AppName;
         $this->logger = $logger;
+        $this->userManager = $userManager;
         $this->mailingListMapper = $mailingListMapper;
         $this->currentEmailMapper = $currentEmailMapper;
         $this->db = $db;
         $this->requestMapper = $requestMapper;
+        $this->memberMapper = $memberMapper;
         $this->memberResolver = $memberResolver;
     }
 
@@ -148,10 +162,6 @@ class InboundService {
         }
     }
 
-    /**
-     * @param MailingList $mailingList
-     * @param string $email
-     */
     private function addListMember(MailingList $mailingList, string $email, bool $exclude) : void {
         $member = new Member();
         $member->setListId($mailingList->getId());
