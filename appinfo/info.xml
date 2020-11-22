@@ -22,4 +22,14 @@
         <job>OCA\Majordomo\Job\WritePendingChangesJob</job>
         <job>OCA\Majordomo\Job\ProcessInboxJob</job>
     </background-jobs>
+    <navigations>
+        <navigation>
+            <id>majordomo</id>
+            <name>Majordomo</name>
+            <route>majordomo.page.index</route>
+            <icon>app.svg</icon>
+            <order>10</order>
+            <type>settings</type>
+        </navigation>
+    </navigations>
 </info>
