@@ -21,7 +21,7 @@
 namespace OCA\Majordomo\Service;
 
 use DateTime;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 
 class ImapLoader {
 
@@ -35,7 +35,7 @@ class ImapLoader {
      */
     var $date;
     /**
-     * @var ILogger
+     * @var LoggerInterface
      */
     private $logger;
     /**
@@ -43,7 +43,7 @@ class ImapLoader {
      */
     private $inboundService;
 
-    function __construct($AppName, Settings $settings, InboundService $inboundService, ILogger $logger) {
+    function __construct($AppName, Settings $settings, InboundService $inboundService, LoggerInterface $logger) {
         $this->imapSettings = $settings->getImapSettings();
         $this->logger = $logger;
         $this->inboundService = $inboundService;
@@ -145,9 +145,9 @@ class ImapLoader {
                     imap_mail_move($imap, $mail->msgno, $this->imapSettings->archive);
                     $this->logger->info("Processed mail {$mail->msgno} '{$mail->subject}' from {$mail->from}", [ "app" => $this->AppName ]);
                 } catch (\Exception $e) {
-                    $this->logger->logException($e, [
-                        "message" => "Failed to process mail {$mail->msgno} '{$mail->subject}' from {$mail->from}",
-                        "app" => $this->AppName
+                    $this->logger->error("Failed to process mail {$mail->msgno} '{$mail->subject}' from {$mail->from}", [
+                        "app" => $this->AppName,
+                        "exception" => $e
                     ]);
                     imap_mail_move($imap, $mail->msgno, $this->imapSettings->errors);
                 }

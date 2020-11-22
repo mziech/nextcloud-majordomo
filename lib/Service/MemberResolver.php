@@ -26,6 +26,7 @@ use OCA\Majordomo\Db\MemberMapper;
 use OCP\IGroupManager;
 use OCP\IUser;
 use OCP\IUserManager;
+use Psr\Log\LoggerInterface;
 
 class MemberResolver {
 
@@ -42,14 +43,20 @@ class MemberResolver {
      * @var MemberMapper
      */
     private $memberMapper;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     public function __construct(
         $AppName,
+        LoggerInterface $logger,
         IUserManager $userManager,
         IGroupManager $groupManager,
         MemberMapper $memberMapper
     ) {
         $this->AppName = $AppName;
+        $this->logger = $logger;
         $this->userManager = $userManager;
         $this->groupManager = $groupManager;
         $this->memberMapper = $memberMapper;

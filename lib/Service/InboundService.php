@@ -29,14 +29,14 @@ use OCA\Majordomo\Db\MemberMapper;
 use OCA\Majordomo\Db\Request;
 use OCA\Majordomo\Db\RequestMapper;
 use OCP\IDBConnection;
-use OCP\ILogger;
 use OCP\IUserManager;
+use Psr\Log\LoggerInterface;
 
 class InboundService {
 
     private $AppName;
     /**
-     * @var ILogger
+     * @var LoggerInterface
      */
     private $logger;
     /**
@@ -70,7 +70,7 @@ class InboundService {
 
     public function __construct(
         $AppName,
-        ILogger $logger,
+        LoggerInterface $logger,
         IDBConnection $db,
         IUserManager $userManager,
         MailingListMapper $mailingListMapper,

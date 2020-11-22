@@ -24,16 +24,16 @@ use OCP\AppFramework\Db\DoesNotExistException;
 use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 
 class RequestMapper extends \OCP\AppFramework\Db\QBMapper {
 
     /**
-     * @var ILogger
+     * @var LoggerInterface
      */
     private $logger;
 
-    public function __construct(IDBConnection $db, ILogger $logger) {
+    public function __construct(IDBConnection $db, LoggerInterface $logger) {
         parent::__construct($db, 'majordomo_requests');
         $this->logger = $logger;
     }

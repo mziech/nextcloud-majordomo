@@ -26,7 +26,7 @@ use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Service\OutboundService;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\TimedJob;
-use OCP\ILogger;
+use Psr\Log\LoggerInterface;
 
 class WritePendingChangesJob extends TimedJob {
 
@@ -39,12 +39,12 @@ class WritePendingChangesJob extends TimedJob {
      */
     private $outboundService;
     /**
-     * @var ILogger
+     * @var LoggerInterface
      */
     private $logger;
     private $AppName;
 
-    public function __construct(ITimeFactory $time, MailingListMapper $mailingListMapper, OutboundService $outboundService, ILogger $logger, $AppName) {
+    public function __construct(ITimeFactory $time, MailingListMapper $mailingListMapper, OutboundService $outboundService, LoggerInterface $logger, $AppName) {
         parent::__construct($time);
 
         // Run once an hour

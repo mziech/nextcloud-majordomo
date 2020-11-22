@@ -27,14 +27,14 @@ use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\Request;
 use OCA\Majordomo\Db\RequestMapper;
 use OCP\IDBConnection;
-use OCP\ILogger;
 use OCP\Mail\IMailer;
+use Psr\Log\LoggerInterface;
 
 class OutboundService {
 
     private $AppName;
     /**
-     * @var ILogger
+     * @var LoggerInterface
      */
     private $logger;
     /**
@@ -72,7 +72,7 @@ class OutboundService {
 
     public function __construct(
         $AppName,
-        ILogger $logger,
+        LoggerInterface $logger,
         IDBConnection $db,
         IMailer $mailer,
         Settings $settings,
