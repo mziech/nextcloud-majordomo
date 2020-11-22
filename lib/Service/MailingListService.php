@@ -115,7 +115,7 @@ class MailingListService {
         $toDelete = array_diff($actual, $expected);
 
         $status = [];
-        foreach (array_merge(array_values($expected), array_values($actual)) as $email) {
+        foreach (array_unique(array_merge(array_values($expected), array_values($actual))) as $email) {
             $users = $this->userManager->getByEmail($email);
             $status[] = [
                 'uid' => count($users) == 1 ? $users[0]->getUID() : null,

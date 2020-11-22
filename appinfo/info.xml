@@ -20,5 +20,6 @@
     <background-jobs>
         <job>OCA\Majordomo\Job\ReadCurrentListMembersJob</job>
         <job>OCA\Majordomo\Job\WritePendingChangesJob</job>
+        <job>OCA\Majordomo\Job\ProcessInboxJob</job>
     </background-jobs>
 </info>

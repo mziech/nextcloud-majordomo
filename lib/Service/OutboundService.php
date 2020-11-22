@@ -65,6 +65,10 @@ class OutboundService {
      * @var RequestMapper
      */
     private $requestMapper;
+    /**
+     * @var ImapLoader
+     */
+    private $imapLoader;
 
     public function __construct(
         $AppName,
@@ -75,7 +79,8 @@ class OutboundService {
         MailingListMapper $mailingListMapper,
         MemberResolver $memberResolver,
         CurrentEmailMapper $currentEmailMapper,
-        RequestMapper $requestMapper
+        RequestMapper $requestMapper,
+        ImapLoader $imapLoader
     ) {
         $this->AppName = $AppName;
         $this->logger = $logger;
@@ -86,6 +91,7 @@ class OutboundService {
         $this->memberResolver = $memberResolver;
         $this->currentEmailMapper = $currentEmailMapper;
         $this->requestMapper = $requestMapper;
+        $this->imapLoader = $imapLoader;
     }
 
     public function retrieveCurrentMembers($id, $importMembers) {
@@ -150,6 +156,7 @@ class OutboundService {
     }
 
     public function getRequestStatus($id) {
+        $this->imapLoader->processMails();
         $request = $this->requestMapper->find($id);
         return [
             "id" => $request->getId(),
