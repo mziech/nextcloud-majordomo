@@ -20,6 +20,8 @@
  */
 namespace OCA\Majordomo\Db;
 
+use OCP\AppFramework\Db\DoesNotExistException;
+use OCP\AppFramework\Db\MultipleObjectsReturnedException;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
 use OCP\ILogger;
@@ -38,18 +40,30 @@ class RequestMapper extends \OCP\AppFramework\Db\QBMapper {
 
     public function find($id) : ?Request {
         $qb = $this->db->getQueryBuilder();
-        return $this->findEntity($qb->select("*")
-            ->from("majordomo_requests")
-            ->andWhere($qb->expr()
-                ->eq("id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))));
+        try {
+            return $this->findEntity($qb->select("*")
+                ->from("majordomo_requests")
+                ->andWhere($qb->expr()
+                    ->eq("id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))));
+        } catch (DoesNotExistException $e) {
+            return null;
+        } catch (MultipleObjectsReturnedException $e) {
+            throw new \RuntimeException("Error while resolving request: {$id}", $e);
+        }
     }
 
     public function findByRequestId($requestId) : ?Request {
         $qb = $this->db->getQueryBuilder();
-        return $this->findEntity($qb->select("*")
-            ->from("majordomo_requests")
-            ->andWhere($qb->expr()
-                ->eq("request_id", $qb->createNamedParameter($requestId, IQueryBuilder::PARAM_STR))));
+        try {
+            return $this->findEntity($qb->select("*")
+                ->from("majordomo_requests")
+                ->andWhere($qb->expr()
+                    ->eq("request_id", $qb->createNamedParameter($requestId, IQueryBuilder::PARAM_STR))));
+        } catch (DoesNotExistException $e) {
+            return null;
+        } catch (MultipleObjectsReturnedException $e) {
+            throw new \RuntimeException("Error while resolving requestId: {$requestId}", $e);
+        }
     }
 
     public function deleteExpired() {
