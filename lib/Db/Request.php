@@ -40,7 +40,7 @@ class Request extends \OCP\AppFramework\Db\Entity {
         $r = new Request();
         $r->setListId($ml->id);
         $r->setCreated(date("Y-m-d H:i:s"));
-        $r->setRequestId(uniqid("", true) . '-' . base64_encode(random_bytes(16)));
+        $r->setRequestId(base64_encode(random_bytes(16)));
         $r->setDone(false);
         $r->setPurpose($purpose);
         return $r;
