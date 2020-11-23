@@ -89,9 +89,11 @@ class MemberResolver {
     private function resolveEmailsForMember(Member $member): array {
         switch ($member->getType()) {
             case Member::TYPE_EXTRA:
+            case Member::TYPE_EXCLUDE:
                 return [ strtolower($member->getReference()) ];
                 break;
             case Member::TYPE_USER:
+            case Member::TYPE_EXCLUDE_USER:
                 $user = $this->userManager->get($member->getReference());
                 if ($user !== null) {
                     return [ strtolower($user->getEMailAddress()) ];
@@ -100,6 +102,7 @@ class MemberResolver {
                 }
                 break;
             case Member::TYPE_GROUP:
+            case Member::TYPE_EXCLUDE_GROUP:
                 $group = $this->groupManager->get($member->getReference());
                 if ($group !== null) {
                     return array_values(array_map(function (IUser $user) {

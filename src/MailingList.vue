@@ -76,18 +76,18 @@
                 <p class="centered-input">
                     <button class="primary">{{ t('majordomo', 'Save') }}</button>
                 </p>
-                <p class="centered-input">
-                    <RequestButton :disabled="isNew" :list-id="list.id" action="check">
+                <p class="centered-input" v-if="!isNew">
+                    <RequestButton :list-id="list.id" action="check" @success="reload()">
                         {{ t('majordomo', 'Retrieve current status from list manager') }}
                     </RequestButton>
                 </p>
-                <p class="centered-input">
-                    <RequestButton :disabled="isNew" :list-id="list.id" action="import">
+                <p class="centered-input" v-if="!isNew">
+                    <RequestButton :list-id="list.id" action="import" @success="reload()">
                         {{ t('majordomo', 'Retrieve current status from list manager AND apply to settings') }}
                     </RequestButton>
                 </p>
-                <p class="centered-input">
-                    <RequestButton :disabled="isNew" :list-id="list.id" action="sync">
+                <p class="centered-input" v-if="!isNew">
+                    <RequestButton :list-id="list.id" action="sync" @success="reload()">
                         {{ t('majordomo', 'Write desired changes to list manager') }}
                     </RequestButton>
                 </p>
@@ -188,6 +188,9 @@
                     this.loading = false;
                 });
             },
+            reload() {
+                this.load(this.$route.params.id);
+            },
             save() {
                 api.post(`/lists/${this.$route.params.id}`, this.list).then(list => {
                     OC.Notification.showTemporary(t("majordomo", "Mailing list saved."));
@@ -203,13 +206,18 @@
                     reference: this.addMemberReference
                 };
                 this.removeMember(memberToAdd);
-                this.list.members.push(memberToAdd);
+                this.list = {
+                    ...this.list,
+                    members: !this.list.members ? [ memberToAdd ] : [ ...this.list.members, memberToAdd ]
+                }
                 this.addMemberReference = '';
             },
             removeMember(memberToRemove) {
-                this.list.members = this.list.members.filter(member =>
-                    member.type !== memberToRemove.type || member.reference !== memberToRemove.reference
-                );
+                if (this.list.members) {
+                    this.list = { ...this.list, members: [ ...this.list.members.filter(member =>
+                        member.type !== memberToRemove.type || member.reference !== memberToRemove.reference
+                    )]};
+                }
             },
         },
     }

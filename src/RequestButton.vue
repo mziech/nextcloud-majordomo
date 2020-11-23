@@ -104,6 +104,7 @@
                     setTimeout(this.checkRequest.bind(this), 2000);
                 } catch (e) {
                     this.outboundIcon = 'icon-error-color';
+                    this.$emit('error');
                     console.error(`Error while triggering request ${this.action} for list id ${this.listId}`, e);
                 }
             },
@@ -112,8 +113,10 @@
                     const data = await api.get(`/requests/${this.requestId}`);
                     if (data.done) {
                         this.inboundIcon = 'icon-checkmark-color';
+                        this.$emit('success');
                     } else if (data.error) {
                         this.inboundIcon = 'icon-error-color';
+                        this.$emit('error');
                     }
                 } catch(e) {
                     console.error(`Error while checking request ${this.action} for list id ${this.listId}`, e);
