@@ -22,9 +22,10 @@
         <job>OCA\Majordomo\Job\ProcessInboxJob</job>
     </background-jobs>
     <navigations>
-        <navigation>
+        <navigation role="admin">
             <name>Majordomo</name>
             <route>majordomo.page.index</route>
+            <icon>app-dark.svg</icon>
             <type>settings</type>
         </navigation>
     </navigations>
