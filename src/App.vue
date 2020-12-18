@@ -41,10 +41,10 @@
 
 <script>
 
-import { AppNavigationItem } from '@nextcloud/vue';
 import Content from '@nextcloud/vue/dist/Components/Content';
 import AppContent from '@nextcloud/vue/dist/Components/AppContent';
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation';
+import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem';
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew';
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter';
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings';
@@ -61,10 +61,11 @@ import VueRouter from "vue-router";
 import api from "./api";
 import MailingList from "./MailingList";
 import Settings from "./Settings";
+import {linkTo} from "@nextcloud/router";
 
 const router = new VueRouter({
   mode: 'hash',
-  base: oc_appswebroots['majordomo'] + '/',
+  base: linkTo('majordomo', ''),
   routes: [
     {path: "/", component: {template: ""}},
     {path: "/settings", name: 'settings', component: Settings},

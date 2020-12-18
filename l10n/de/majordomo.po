@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: translations@owncloud.org\n"
-"POT-Creation-Date: 2020-11-01 01:28+0100\n"
-"PO-Revision-Date: 2020-11-01 01:39+0100\n"
+"POT-Creation-Date: 2020-12-18 00:51+0100\n"
+"PO-Revision-Date: 2020-12-18 00:58+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,603 +16,427 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3\n"
+"X-Generator: Poedit 2.4.1\n"
 
-#: appinfo/app.php:28
-msgid "Majordomo"
-msgstr "Majordomo"
-
-#: js/majordomo.js:4605
-#: node_modules/@nextcloud/vue/dist/Components/ActionCheckbox.js:22
-msgid "checkbox"
-msgid_plural "checkbox action-checkbox__checkbox"
-msgstr[0] "checkbox"
-msgstr[1] "checkbox action-checkbox__checkbox"
-
-#: js/majordomo.js:4605
-#: node_modules/@nextcloud/vue/dist/Components/ActionCheckbox.js:22
-#: node_modules/@nextcloud/vue/dist/Components/ActionRadio.js:22
-msgid "label"
-msgid_plural "action-checkbox__label"
-msgstr[0] "label"
-msgstr[1] "action-checkbox__label"
-
-#: js/majordomo.js:4681
-#: node_modules/@nextcloud/vue/dist/Components/ActionInput.js:44
-msgid "action-input__icon"
-msgstr "action-input__icon"
-
-#: js/majordomo.js:4681
-#: node_modules/@nextcloud/vue/dist/Components/ActionInput.js:44
-msgid "action-input__submit"
-msgstr "action-input__submit"
-
-#: js/majordomo.js:4681
-#: node_modules/@nextcloud/vue/dist/Components/ActionInput.js:44
+#: js/majordomo.js:5819 js/majordomo.js:6018
+#, fuzzy
+#| msgid "form"
 msgid "form"
-msgstr "form"
+msgid_plural "action-input__form"
+msgstr[0] "form"
+msgstr[1] "form"
 
-#: js/majordomo.js:4681
-#: node_modules/@nextcloud/vue/dist/Components/ActionInput.js:44
+#: js/majordomo.js:5819
+#, fuzzy
+#| msgid "action-input"
 msgid "action-input"
-msgstr "action-input"
-
-#: js/majordomo.js:4681
-#: node_modules/@nextcloud/vue/dist/Components/ActionInput.js:44
-msgid "action--disabled"
-msgstr "action--disabled"
-
-#: js/majordomo.js:4909
-#: node_modules/@nextcloud/vue/dist/Components/AppContent.js:1
-msgid "aria-expanded"
-msgstr "aria-expanded"
-
-#: js/majordomo.js:4909
-#: node_modules/@nextcloud/vue/dist/Components/AppContent.js:1
-msgid "no-snapper"
-msgstr "no-snapper"
-
-#: js/majordomo.js:5035
-#: node_modules/@nextcloud/vue/dist/Components/AppNavigationSettings.js:1
-msgid "settings-button"
-msgstr "settings-button"
-
-#: js/majordomo.js:5035
-#: node_modules/@nextcloud/vue/dist/Components/AppNavigationSettings.js:1
-msgid "app-settings-header"
-msgstr "app-settings-header"
-
-#: js/majordomo.js:5035
-#: node_modules/@nextcloud/vue/dist/Components/AppNavigationSettings.js:1
-msgid "slide-up"
-msgstr "slide-up"
-
-#: js/majordomo.js:5599
-#: node_modules/@nextcloud/vue/dist/Components/AppNavigationItem.js:45
-#: node_modules/@nextcloud/vue/dist/ncvuecomponents.js:280
-msgid "app-navigation-entry-link"
-msgid_plural "#"
-msgstr[0] "app-navigation-entry-link"
-msgstr[1] "#"
-
-#: js/majordomo.js:5599
-#: node_modules/@nextcloud/vue/dist/Components/AppNavigationItem.js:45
-#: node_modules/@nextcloud/vue/dist/Components/PopoverMenu.js:1
-#: node_modules/@nextcloud/vue/dist/ncvuecomponents.js:280
-msgid "icon-confirm"
-msgid_plural "submit"
-msgstr[0] "icon-confirm"
-msgstr[1] "submit"
-
-#: js/majordomo.js:5599
-#: node_modules/@nextcloud/vue/dist/Components/AppNavigationItem.js:45
-#: node_modules/@nextcloud/vue/dist/ncvuecomponents.js:280
-msgid "icon-close"
-msgid_plural "reset"
-msgstr[0] "icon-close"
-msgstr[1] "reset"
-
-#: js/majordomo.js:6325
-msgid "An error occurred while loading the mailing list."
-msgstr "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten."
-
-#: js/majordomo.js:6334
-msgid "Mailing list saved."
-msgstr "Verteiler Konfiguration gespeichert."
-
-#: js/majordomo.js:6343
-msgid "Failed to save mailing list."
-msgstr "Speichern der Verteiler Konfiguration fehlgeschlagen."
-
-#: js/majordomo.js:6687
-msgid "IMAP settings successfully updated"
-msgstr "IMAP Einsatellungen erfolgreich aktualisiert"
-
-#: js/majordomo.js:6690
-msgid "Failed to store IMAP settings!"
-msgstr "Fehler beim Speichern der IMAP Einstellungen!"
-
-#: js/majordomo.js:6704
-msgid "Failed to test IMAP settings!"
-msgstr "Fehler beim Überprüfen der IMAP Einstellungen!"
-
-#: js/majordomo.js:35819 js/majordomo.js:35832
-#: node_modules/node-gettext/lib/gettext.js:177
-#: node_modules/node-gettext/lib/gettext.js:190
-msgid "Some text"
-msgstr "Irgendein Text"
-
-#: js/majordomo.js:35846 js/majordomo.js:35861
-#: node_modules/node-gettext/lib/gettext.js:204
-#: node_modules/node-gettext/lib/gettext.js:219
-msgid "One thing"
-msgid_plural "Many things"
-msgstr[0] "One thing"
-msgstr[1] "Many things"
-
-#: js/majordomo.js:47257
-msgid "New Mailinglist"
-msgstr "Neuer E-Mail Verteiler"
-
-#: js/majordomo.js:47279 js/majordomo.js:47342 js/majordomo.js:48247
-msgid "Loading ..."
-msgstr "Wird geladen ..."
-
-#: js/majordomo.js:47302
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: js/majordomo.js:47360
-msgid "Current list members"
-msgstr "Aktuelle Mitglieder"
-
-#: js/majordomo.js:47386
-msgid "E-Mail"
-msgstr "E-Mail"
-
-#: js/majordomo.js:47419
-msgid "Member needs to be added"
-msgstr "Mitglied muss hinzugefügt werden"
-
-#: js/majordomo.js:47431
-msgid "Member needs to be removed"
-msgstr "Mitglied muss entfernt werden"
-
-#: js/majordomo.js:47451
-#, python-brace-format
-msgid "Edit Mailinglist: {title}"
-msgstr "Verteiler bearbeiten: {title}"
-
-#: js/majordomo.js:47461
-msgid "Create Mailinglist"
-msgstr "Erstelle E-Mail Verteiler"
-
-#: js/majordomo.js:47479
-msgid "Mailing list title"
-msgstr "Verteiler Titel"
-
-#: js/majordomo.js:47509
-msgid "List manager email address"
-msgstr "E-Mail zur Verteiler Konfiguration"
-
-#: js/majordomo.js:47540
-msgid "List name for management"
-msgstr "Verteiler Name für Konfiguration"
-
-#: js/majordomo.js:47570
-msgid "List manager password"
-msgstr "Passwort für Konfiguration"
-
-#: js/majordomo.js:47653
-msgid "Enable automatic synchronization of list members"
-msgstr "Aktiviere automatische Synchronisierung  der Verteiler Mitglieder"
-
-#: js/majordomo.js:47663 js/majordomo.js:48463
-msgid "Save"
-msgstr "Speichern"
-
-#: js/majordomo.js:47686
-msgid "Retrieve current status from list manager"
-msgstr "Aktuellen Status aus Verteiler Konfiguration abrufen"
-
-#: js/majordomo.js:47716
-msgid "Retrieve current status from list manager AND apply to settings"
-msgstr "Aktuellen Status abrufen UND Änderungen anwenden"
-
-#: js/majordomo.js:47746
-msgid "Write desired changes to list manager"
-msgstr "Gewünschte Änderungen an die Verteiler Konfiguration übertragen"
-
-#: js/majordomo.js:47759
-msgid "Member Policy"
-msgstr "Mitgliedschaftsregeln"
-
-#: js/majordomo.js:47796 js/majordomo.js:47963
-msgid "Members of group"
-msgstr "Mitglieder der Gruppe"
-
-#: js/majordomo.js:47800 js/majordomo.js:47972
-msgid "E-Mail of user"
-msgstr "E-Mail des Benutzers"
-
-#: js/majordomo.js:47804 js/majordomo.js:47981
-msgid "Additional E-Mail"
-msgstr "Zusätzliche E-Mail"
-
-#: js/majordomo.js:47809 js/majordomo.js:47993
-msgid "Except members of group"
-msgstr "Außer Mitglieder der Gruppe"
-
-#: js/majordomo.js:47815 js/majordomo.js:48006
-msgid "Except E-Mail of user"
-msgstr "Außer E-Mail des Benutzers"
-
-#: js/majordomo.js:47820 js/majordomo.js:48016
-msgid "Exclude E-Mail"
-msgstr "E-Mail ausschließen"
-
-#: js/majordomo.js:47856
-msgid "- Please select -"
-msgstr "- Bitte wählen -"
-
-#: js/majordomo.js:47920
-msgid "Add policy"
-msgstr "Regel hinzufügen"
-
-#: js/majordomo.js:48115
-msgid "Apply pending changes"
-msgstr "Ausstehende Änderungen anwenden"
-
-#: js/majordomo.js:48123
-msgid "Please acknowledge to apply the following pending changes:"
-msgstr "Bitte bestätigen Sie, dass folgende Änderungen angewendet werden:"
-
-#: js/majordomo.js:48140
-#, python-brace-format
-msgid "Unsubscribe: {email}"
-msgstr "Entfernen: {email}"
-
-#: js/majordomo.js:48155
-#, python-brace-format
-msgid "Subscribe: {email}"
-msgstr "Hinzufügen: {email}"
-
-#: js/majordomo.js:48182
-msgid "Acknowledge"
-msgstr "Bestätigen"
-
-#: js/majordomo.js:48202
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: js/majordomo.js:48241
-msgid "Global Settings"
-msgstr "Allgemeine Einstellungen"
-
-#: js/majordomo.js:48266
-msgid "IMAP Server Address"
-msgstr "IMAP Server Adresse"
-
-#: js/majordomo.js:48293
-msgid "E-Mail address"
-msgstr "E-Mail Adresse"
-
-#: js/majordomo.js:48320
-msgid "IMAP Username"
-msgstr "IMAP Benutzername"
-
-#: js/majordomo.js:48347
-msgid "IMAP Password"
-msgstr "IMAP Passwort"
-
-#: js/majordomo.js:48375
-msgid "IMAP Inbox folder name"
-msgstr "IMAP Ordner für den Posteingang"
-
-#: js/majordomo.js:48404
-msgid "IMAP Archive folder name"
-msgstr "IMAP Ordner für das Archiv"
-
-#: js/majordomo.js:48433
-msgid "IMAP Errors folder name"
-msgstr "IMAP Ordner für Fehlermeldungen"
-
-#: js/majordomo.js:48481
-msgid "Test IMAP Connection"
-msgstr "IMAP Verbindung überprüfen"
-
-#: js/majordomo.js:48509
-msgid "Process incoming mails now"
-msgstr "Empfangene E-Mails jetzt verarbeiten"
-
-#: js/majordomo.js:48647
-#: node_modules/vue-multiselect/dist/vue-multiselect.min.js:1
-msgid "multiselect__tag-icon"
-msgid_plural "aria-hidden"
-msgstr[0] "multiselect__tag-icon"
-msgstr[1] "aria-hidden"
-
-#: js/majordomo.js:48647
-#: node_modules/vue-multiselect/dist/vue-multiselect.min.js:1
-msgid "search"
-msgid_plural "multiselect__input"
-msgstr[0] "search"
-msgstr[1] "multiselect__input"
-
-#: js/majordomo.js:48647
-#: node_modules/vue-multiselect/dist/vue-multiselect.min.js:1
-msgid "tags"
-msgid_plural "multiselect__tags"
-msgstr[0] "tags"
-msgstr[1] "multiselect__tags"
-
-#: js/majordomo.js:48647
-#: node_modules/vue-multiselect/dist/vue-multiselect.min.js:1
-msgid "multiselect"
-msgid_plural "multiselect--active"
-msgstr[0] "multiselect"
-msgstr[1] "multiselect--active"
-
-#: node_modules/@nextcloud/vue/dist/Components/ActionRadio.js:22
-msgid "radio"
-msgid_plural "radio action-radio__radio"
-msgstr[0] ""
-msgstr[1] ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker-simple"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker-advanced"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "slide"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker-navigation-button back"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker-navigation-button more-settings"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker-navigation-button confirm"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker-navigation"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/ColorPicker.js:1
-msgid "color-picker"
-msgstr ""
-
-#: node_modules/@nextcloud/vue/dist/Components/Popover.js:1
-#: node_modules/@nextcloud/vue/dist/Components/UserBubble.js:88
+msgid_plural "action-input--picker"
+msgstr[0] "action-input"
+msgstr[1] "action-input"
+
+#: js/majordomo.js:5819 js/majordomo.js:6018 js/majordomo.js:6278
+#: js/majordomo.js:6780
+#, fuzzy
+#| msgid "action-input"
+msgid "action"
+msgid_plural "action--disabled"
+msgstr[0] "action-input"
+msgstr[1] "action-input"
+
+#: js/majordomo.js:6112
+#, fuzzy
+#| msgid "app-navigation-entry-link"
+#| msgid_plural "#"
+msgid "app-navigation__list"
+msgstr "app-navigation-entry-link"
+
+#: js/majordomo.js:6112
+#, fuzzy
+#| msgid "app-navigation-entry-link"
+#| msgid_plural "#"
+msgid "app-navigation"
+msgstr "app-navigation-entry-link"
+
+#: js/majordomo.js:6257 js/majordomo.js:6717
 msgid "popover"
 msgstr ""
 
-#: node_modules/@nextcloud/vue/dist/Components/PopoverMenu.js:1
+#: js/majordomo.js:6312
+#, fuzzy
+#| msgid "app-navigation-entry-link"
+#| msgid_plural "#"
+msgid "app-navigation-new"
+msgstr "app-navigation-entry-link"
+
+#: js/majordomo.js:6325
+msgid "settings-button"
+msgstr "settings-button"
+
+#: js/majordomo.js:6325
+msgid "app-settings-header"
+msgstr "app-settings-header"
+
+#: js/majordomo.js:6325
+msgid "slide-up"
+msgstr "slide-up"
+
+#: js/majordomo.js:6367
+#, fuzzy
+#| msgid "action-input__icon"
+msgid "mention-bubble__icon"
+msgstr "action-input__icon"
+
+#: js/majordomo.js:6367 js/majordomo.js:6487
+msgid "mention-bubble__title"
+msgid_plural "heading"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:6367
+msgid "mention-bubble__content"
+msgstr ""
+
+#: js/majordomo.js:6367 js/majordomo.js:6487
+msgid "mention-bubble__select"
+msgid_plural "none"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:6367
+msgid "mention-bubble__wrapper"
+msgstr ""
+
+#: js/majordomo.js:6367 js/majordomo.js:6487
+msgid "mention-bubble"
+msgid_plural "mention-bubble--primary"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:6551
 msgid "focusable"
 msgid_plural "#"
 msgstr[0] ""
 msgstr[1] ""
 
-#: node_modules/circular-json/build/circular-json.js:2
-msgid "g"
-msgstr ""
+#: js/majordomo.js:6551
+msgid "icon-confirm"
+msgid_plural "submit"
+msgstr[0] "icon-confirm"
+msgstr[1] "submit"
 
-#: node_modules/eslint/node_modules/lodash/core.js:1792
-#: node_modules/eslint/node_modules/lodash/lodash.js:8785
-#: node_modules/eslint/node_modules/lodash/thru.js:15
-#: node_modules/inquirer/node_modules/lodash/core.js:1792
-#: node_modules/inquirer/node_modules/lodash/lodash.js:8785
-#: node_modules/inquirer/node_modules/lodash/thru.js:15
-#: node_modules/lodash/core.js:1792 node_modules/lodash/lodash.js:8785
-#: node_modules/lodash/thru.js:15
-#: node_modules/table/node_modules/lodash/core.js:1792
-#: node_modules/table/node_modules/lodash/lodash.js:8785
-#: node_modules/table/node_modules/lodash/thru.js:15
-#: node_modules/vue-eslint-parser/node_modules/lodash/core.js:1792
-#: node_modules/vue-eslint-parser/node_modules/lodash/lodash.js:8785
-#: node_modules/vue-eslint-parser/node_modules/lodash/thru.js:15
-#: node_modules/webpack-merge/node_modules/lodash/core.js:1792
-#: node_modules/webpack-merge/node_modules/lodash/lodash.js:8785
-#: node_modules/webpack-merge/node_modules/lodash/thru.js:15
-msgid "  abc  "
-msgstr ""
-
-#: node_modules/eslint/node_modules/lodash/core.js:3555
-#: node_modules/eslint/node_modules/lodash/core.js:3559
-#: node_modules/eslint/node_modules/lodash/lodash.js:15685
-#: node_modules/eslint/node_modules/lodash/lodash.js:15689
-#: node_modules/eslint/node_modules/lodash/mixin.js:38
-#: node_modules/eslint/node_modules/lodash/mixin.js:42
-#: node_modules/hammerjs/tests/unit/assets/lodash.compat.js:6237
-#: node_modules/hammerjs/tests/unit/assets/lodash.compat.js:6241
-#: node_modules/inquirer/node_modules/lodash/core.js:3555
-#: node_modules/inquirer/node_modules/lodash/core.js:3559
-#: node_modules/inquirer/node_modules/lodash/lodash.js:15685
-#: node_modules/inquirer/node_modules/lodash/lodash.js:15689
-#: node_modules/inquirer/node_modules/lodash/mixin.js:38
-#: node_modules/inquirer/node_modules/lodash/mixin.js:42
-#: node_modules/lodash/core.js:3555 node_modules/lodash/core.js:3559
-#: node_modules/lodash/lodash.js:15685 node_modules/lodash/lodash.js:15689
-#: node_modules/lodash/mixin.js:38 node_modules/lodash/mixin.js:42
-#: node_modules/table/node_modules/lodash/core.js:3555
-#: node_modules/table/node_modules/lodash/core.js:3559
-#: node_modules/table/node_modules/lodash/lodash.js:15685
-#: node_modules/table/node_modules/lodash/lodash.js:15689
-#: node_modules/table/node_modules/lodash/mixin.js:38
-#: node_modules/table/node_modules/lodash/mixin.js:42
-#: node_modules/vue-eslint-parser/node_modules/lodash/core.js:3555
-#: node_modules/vue-eslint-parser/node_modules/lodash/core.js:3559
-#: node_modules/vue-eslint-parser/node_modules/lodash/lodash.js:15685
-#: node_modules/vue-eslint-parser/node_modules/lodash/lodash.js:15689
-#: node_modules/vue-eslint-parser/node_modules/lodash/mixin.js:38
-#: node_modules/vue-eslint-parser/node_modules/lodash/mixin.js:42
-#: node_modules/webpack-merge/node_modules/lodash/core.js:3555
-#: node_modules/webpack-merge/node_modules/lodash/core.js:3559
-#: node_modules/webpack-merge/node_modules/lodash/lodash.js:15685
-#: node_modules/webpack-merge/node_modules/lodash/lodash.js:15689
-#: node_modules/webpack-merge/node_modules/lodash/mixin.js:38
-#: node_modules/webpack-merge/node_modules/lodash/mixin.js:42
-msgid "fred"
-msgstr ""
-
-#: node_modules/hammerjs/hammer.min.js:6
-msgid "identifier"
-msgstr ""
-
-#: node_modules/node-gettext/test/gettext-test.js:168
-#: node_modules/node-gettext/test/gettext-test.js:174
-#: node_modules/node-gettext/test/gettext-test.js:180
-#: node_modules/node-gettext/test/gettext-test.js:186
-#: node_modules/node-gettext/test/gettext-test.js:270
-#: node_modules/node-gettext/test/gettext-test.js:273
-#: node_modules/node-gettext/test/gettext-test.js:287
-msgid "o2-1"
-msgid_plural "o2-2"
+#: js/majordomo.js:6572
+msgid "avatardiv__user-status"
+msgid_plural "avatardiv__user-status--"
 msgstr[0] ""
 msgstr[1] ""
 
-#: node_modules/node-gettext/test/gettext-test.js:227
-msgid "unknown phrase"
-msgstr ""
-
-#: node_modules/node-gettext/test/gettext-test.js:280
-#: node_modules/node-gettext/test/gettext-test.js:296
-msgid "This message is not translated"
-msgstr ""
-
-#: node_modules/popper.js/dist/umd/popper.min.js:4
-msgid "position"
-msgstr ""
-
-#: node_modules/popper.js/dist/umd/popper.min.js:4
-msgid "transform"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "big_int"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "num"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "string"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "template_head"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "comment2"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "regexp"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "operator"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "eof"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "expand"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "punc"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "arrow"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "name"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "atom"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "keyword"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "("
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid ")"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid ":"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid ";"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid ","
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "]"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "}"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "{"
-msgstr ""
-
-#: node_modules/terser/dist/bundle.min.js:1
-msgid "["
-msgstr ""
-
-#: node_modules/v-tooltip/dist/v-tooltip.min.js:1
-msgid "trigger"
-msgid_plural "trigger"
+#: js/majordomo.js:6572
+msgid "#"
+msgid_plural "M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
 msgstr[0] ""
 msgstr[1] ""
 
-#: node_modules/vue/dist/vue.runtime.common.prod.js:6
-#: node_modules/vue/dist/vue.runtime.min.js:6
-#: node_modules/vue-color/example-dist/static/js/vendor.91183cbc3bc26bdb697b.js:6
-msgid "_"
-msgstr ""
-
-#: node_modules/vue/dist/vue.runtime.common.prod.js:6
-#: node_modules/vue/dist/vue.runtime.min.js:6
-msgid "$attrs"
-msgstr ""
-
-#: node_modules/vue/dist/vue.runtime.common.prod.js:6
-#: node_modules/vue/dist/vue.runtime.min.js:6
-msgid "$listeners"
-msgstr ""
-
-#: node_modules/vue-resize/docs/js/app.afb5acee.js:1
-msgid "resize-observer"
-msgid_plural "-1"
+#: js/majordomo.js:6572
+msgid "http://www.w3.org/2000/svg"
+msgid_plural "12"
 msgstr[0] ""
 msgstr[1] ""
+
+#: js/majordomo.js:6572
+msgid "avatardiv__status"
+msgid_plural "avatardiv__status--"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:6639
+msgid "empty-content__icon"
+msgstr ""
+
+#: js/majordomo.js:6639
+msgid "empty-content__title"
+msgstr ""
+
+#: js/majordomo.js:6639
+msgid "empty-content"
+msgstr ""
+
+#: js/majordomo.js:6823
+msgid "progress-ring__circle"
+msgid_plural "white"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:6823
+msgid "progress-ring"
+msgid_plural "50"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:6823
+msgid "mask"
+msgid_plural "modal-mask"
+msgstr[0] ""
+msgstr[1] ""
+
+#: js/majordomo.js:15695
+msgid "An error occurred while loading the mailing list."
+msgstr "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten."
+
+#: js/majordomo.js:15707
+msgid "Mailing list saved."
+msgstr "Verteiler Konfiguration gespeichert."
+
+#: js/majordomo.js:15718
+msgid "Failed to save mailing list."
+msgstr "Speichern der Verteiler Konfiguration fehlgeschlagen."
+
+#: js/majordomo.js:16108
+msgid "IMAP settings successfully updated"
+msgstr "IMAP Einsatellungen erfolgreich aktualisiert"
+
+#: js/majordomo.js:16111
+msgid "Failed to store IMAP settings!"
+msgstr "Fehler beim Speichern der IMAP Einstellungen!"
+
+#: js/majordomo.js:16125
+msgid "Failed to test IMAP settings!"
+msgstr "Fehler beim Überprüfen der IMAP Einstellungen!"
+
+#: js/majordomo.js:29329 js/majordomo.js:29342
+msgid "Some text"
+msgstr "Irgendein Text"
+
+#: js/majordomo.js:29356 js/majordomo.js:29371
+msgid "One thing"
+msgid_plural "Many things"
+msgstr[0] "One thing"
+msgstr[1] "Many things"
+
+#: js/majordomo.js:41312
+msgid "New Mailinglist"
+msgstr "Neuer E-Mail Verteiler"
+
+#: js/majordomo.js:41334 js/majordomo.js:41412 js/majordomo.js:42354
+msgid "Loading ..."
+msgstr "Wird geladen ..."
+
+#: js/majordomo.js:41357
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: js/majordomo.js:41428
+msgid "Current list members"
+msgstr "Aktuelle Mitglieder"
+
+#: js/majordomo.js:41454
+msgid "E-Mail"
+msgstr "E-Mail"
+
+#: js/majordomo.js:41487
+msgid "Member needs to be added"
+msgstr "Mitglied muss hinzugefügt werden"
+
+#: js/majordomo.js:41499
+msgid "Member needs to be removed"
+msgstr "Mitglied muss entfernt werden"
+
+#: js/majordomo.js:41519
+#, python-brace-format
+msgid "Edit Mailinglist: {title}"
+msgstr "Verteiler bearbeiten: {title}"
+
+#: js/majordomo.js:41529
+msgid "Create Mailinglist"
+msgstr "Erstelle E-Mail Verteiler"
+
+#: js/majordomo.js:41547
+msgid "Mailing list title"
+msgstr "Verteiler Titel"
+
+#: js/majordomo.js:41577
+msgid "List manager email address"
+msgstr "E-Mail zur Verteiler Konfiguration"
+
+#: js/majordomo.js:41608
+msgid "List name for management"
+msgstr "Verteiler Name für Konfiguration"
+
+#: js/majordomo.js:41638
+msgid "List manager password"
+msgstr "Passwort für Konfiguration"
+
+#: js/majordomo.js:41721
+msgid "Enable automatic synchronization of list members"
+msgstr "Aktiviere automatische Synchronisierung  der Verteiler Mitglieder"
+
+#: js/majordomo.js:41731 js/majordomo.js:42569
+msgid "Save"
+msgstr "Speichern"
+
+#: js/majordomo.js:41759
+msgid "Retrieve current status from list manager"
+msgstr "Aktuellen Status aus Verteiler Konfiguration abrufen"
+
+#: js/majordomo.js:41795
+msgid "Retrieve current status from list manager AND apply to settings"
+msgstr "Aktuellen Status abrufen UND Änderungen anwenden"
+
+#: js/majordomo.js:41831
+msgid "Write desired changes to list manager"
+msgstr "Gewünschte Änderungen an die Verteiler Konfiguration übertragen"
+
+#: js/majordomo.js:41845
+msgid "Member Policy"
+msgstr "Mitgliedschaftsregeln"
+
+#: js/majordomo.js:41882 js/majordomo.js:42049
+msgid "Members of group"
+msgstr "Mitglieder der Gruppe"
+
+#: js/majordomo.js:41886 js/majordomo.js:42058
+msgid "E-Mail of user"
+msgstr "E-Mail des Benutzers"
+
+#: js/majordomo.js:41890 js/majordomo.js:42067
+msgid "Additional E-Mail"
+msgstr "Zusätzliche E-Mail"
+
+#: js/majordomo.js:41895 js/majordomo.js:42079
+msgid "Except members of group"
+msgstr "Außer Mitglieder der Gruppe"
+
+#: js/majordomo.js:41901 js/majordomo.js:42092
+msgid "Except E-Mail of user"
+msgstr "Außer E-Mail des Benutzers"
+
+#: js/majordomo.js:41906 js/majordomo.js:42102
+msgid "Exclude E-Mail"
+msgstr "E-Mail ausschließen"
+
+#: js/majordomo.js:41942
+msgid "- Please select -"
+msgstr "- Bitte wählen -"
+
+#: js/majordomo.js:42006
+msgid "Add policy"
+msgstr "Regel hinzufügen"
+
+#: js/majordomo.js:42214
+msgid "Apply pending changes"
+msgstr "Ausstehende Änderungen anwenden"
+
+#: js/majordomo.js:42223
+msgid "There are currently no pending changes."
+msgstr "Im Moment müssen keine Änderungen vorgenommen werden."
+
+#: js/majordomo.js:42233
+msgid "Please acknowledge to apply the following pending changes:"
+msgstr "Bitte bestätigen Sie, dass folgende Änderungen angewendet werden:"
+
+#: js/majordomo.js:42247
+#, python-brace-format
+msgid "Unsubscribe: {email}"
+msgstr "Entfernen: {email}"
+
+#: js/majordomo.js:42261
+#, python-brace-format
+msgid "Subscribe: {email}"
+msgstr "Hinzufügen: {email}"
+
+#: js/majordomo.js:42289
+msgid "Acknowledge"
+msgstr "Bestätigen"
+
+#: js/majordomo.js:42309
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: js/majordomo.js:42357
+msgid "Global Settings"
+msgstr "Allgemeine Einstellungen"
+
+#: js/majordomo.js:42372
+msgid "IMAP Server Address"
+msgstr "IMAP Server Adresse"
+
+#: js/majordomo.js:42399
+msgid "E-Mail address"
+msgstr "E-Mail Adresse"
+
+#: js/majordomo.js:42426
+msgid "IMAP Username"
+msgstr "IMAP Benutzername"
+
+#: js/majordomo.js:42453
+msgid "IMAP Password"
+msgstr "IMAP Passwort"
+
+#: js/majordomo.js:42481
+msgid "IMAP Inbox folder name"
+msgstr "IMAP Ordner für den Posteingang"
+
+#: js/majordomo.js:42510
+msgid "IMAP Archive folder name"
+msgstr "IMAP Ordner für das Archiv"
+
+#: js/majordomo.js:42539
+msgid "IMAP Errors folder name"
+msgstr "IMAP Ordner für Fehlermeldungen"
+
+#: js/majordomo.js:42587
+msgid "Test IMAP Connection"
+msgstr "IMAP Verbindung überprüfen"
+
+#: js/majordomo.js:42614
+msgid "Process incoming mails now"
+msgstr "Empfangene E-Mails jetzt verarbeiten"
+
+#~ msgid "Majordomo"
+#~ msgstr "Majordomo"
+
+#~ msgid "checkbox"
+#~ msgid_plural "checkbox action-checkbox__checkbox"
+#~ msgstr[0] "checkbox"
+#~ msgstr[1] "checkbox action-checkbox__checkbox"
+
+#~ msgid "label"
+#~ msgid_plural "action-checkbox__label"
+#~ msgstr[0] "label"
+#~ msgstr[1] "action-checkbox__label"
+
+#~ msgid "action-input__submit"
+#~ msgstr "action-input__submit"
+
+#~ msgid "action--disabled"
+#~ msgstr "action--disabled"
+
+#~ msgid "aria-expanded"
+#~ msgstr "aria-expanded"
+
+#~ msgid "no-snapper"
+#~ msgstr "no-snapper"
+
+#~ msgid "icon-close"
+#~ msgid_plural "reset"
+#~ msgstr[0] "icon-close"
+#~ msgstr[1] "reset"
+
+#~ msgid "multiselect__tag-icon"
+#~ msgid_plural "aria-hidden"
+#~ msgstr[0] "multiselect__tag-icon"
+#~ msgstr[1] "aria-hidden"
+
+#~ msgid "search"
+#~ msgid_plural "multiselect__input"
+#~ msgstr[0] "search"
+#~ msgstr[1] "multiselect__input"
+
+#~ msgid "tags"
+#~ msgid_plural "multiselect__tags"
+#~ msgstr[0] "tags"
+#~ msgstr[1] "multiselect__tags"
+
+#~ msgid "multiselect"
+#~ msgid_plural "multiselect--active"
+#~ msgstr[0] "multiselect"
+#~ msgstr[1] "multiselect--active"

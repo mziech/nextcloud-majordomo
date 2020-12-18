@@ -18,29 +18,16 @@
  *
  */
 
-const basename = oc_appswebroots['majordomo'] + '/';
+import { getRootUrl } from "@nextcloud/router";
+import axios from "@nextcloud/axios";
 
-export default new class {
-    request(method, path, extra = {}) {
-        return new Promise((resolve, reject) => {
-            $.ajax(Object.assign({
-                url: basename + "api" + path,
-                method: method,
-                headers: {
-                    requesttoken: OC.requestToken
-                }
-            }, extra)).done(resolve).fail(reject);
-        });
-    }
-
+const basepath = getRootUrl() + '/apps/majordomo/api';
+export default new class Api {
     get(path) {
-        return this.request("GET", path);
+        return axios.get(basepath + path).then(response => response.data);
     }
 
     post(path, data) {
-        return this.request("POST", path, {
-            contentType: "application/json",
-            data: JSON.stringify(data)
-        });
+        return axios.post(basepath + path, data).then(response => response.data);
     }
 };

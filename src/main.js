@@ -26,7 +26,6 @@ import VueRouter from 'vue-router';
 import { translate, translatePlural } from '@nextcloud/l10n';
 
 import App from './App';
-import css from "./main.scss";
 
 Vue.prototype.t = translate;
 Vue.prototype.n = translatePlural;

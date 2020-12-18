@@ -111,6 +111,7 @@ class MajordomoCommands {
         $message->setTo([ $this->ml->manager ]);
         $message->setPlainBody($body);
         $message->setSubject($subject);
+        $message->getSwiftMessage()->setMaxLineLength(0);  // disable word-wrap
         $failedReceipients = $this->mailer->send($message);
         if (in_array($this->ml->manager, $failedReceipients)) {
             throw new OutboundException("Failed to send Majordomo command for MailingList {$this->ml->id} to " . implode(", ", $failedReceipients));

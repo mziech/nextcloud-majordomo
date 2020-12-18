@@ -17,14 +17,14 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
   -->
+
 <template>
-    <div>
+    <EmptyContent v-if="loading" icon="icon-loading">
+        {{ t('majordomo', 'Loading ...') }}
+    </EmptyContent>
+    <div v-else>
         <h2>{{ t('majordomo', 'Global Settings') }}</h2>
-        <div v-if="loading" class="centered-loading">
-            <span class="icon-loading"></span>
-            {{ t('majordomo', 'Loading ...') }}
-        </div>
-        <form v-if="!loading" v-on:submit.prevent="save()">
+        <form v-on:submit.prevent="save()">
             <p class="centered-input">
                 <label for="server">{{ t('majordomo', 'IMAP Server Address') }}:</label>
                 <input id="server" v-model="settings.imap.server"/>
@@ -74,9 +74,13 @@
 </template>
 
 <script>
+    import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent';
     import api from "./api";
 
     export default {
+        components: {
+            EmptyContent,
+        },
         name: "Settings",
         data() {
             return {
@@ -129,3 +133,21 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+
+.centered-input {
+  label {
+    display: inline-block;
+    min-width: 250px;
+    text-align: right;
+  }
+  input {
+    min-width: 250px;
+  }
+  button {
+    margin-left: 250px;
+  }
+}
+
+</style>

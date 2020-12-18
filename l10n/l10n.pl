@@ -39,6 +39,7 @@ sub crawlFiles{
 	foreach my $i ( @files ){
 		next if substr( $i, 0, 1 ) eq '.';
 		next if $i eq 'l10n';
+		next if $i eq 'node_modules';
 
 		if( -d $dir.'/'.$i ){
 			push( @found, crawlFiles( $dir.'/'.$i ));
@@ -118,7 +119,7 @@ if( $task eq 'read' ){
 				$keywords = '--keyword=t --keyword=n:1,2';
 			}
 			my $language = ( $file =~ /\.js$/ ? 'Python' : 'PHP');
-			my $joinexisting = ( -e $output ? '--join-existing' : '');
+		    my $joinexisting = ( -e $output ? '--join-existing' : '');
 			print "    Reading $file\n";
 			`xgettext --output="$output" $joinexisting $keywords --language=$language "$file" --add-comments=TRANSLATORS --from-code=UTF-8 --package-version="8.0.0" --package-name="ownCloud Apps" --msgid-bugs-address="translations\@owncloud.org"`;
 		}

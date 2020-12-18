@@ -24,10 +24,11 @@
         </button>
         <span v-if="outboundIcon" :class="outboundIcon + ' inlineblock'"></span>
         <span v-if="inboundIcon" :class="inboundIcon + ' inlineblock'"></span>
-        <Modal  v-if="pendingChanges" :can-close="true" @close="pendingChanges = null">
+        <Modal v-show="showModal" :canClose="true" @close="showModal = false">
             <div class="pending-changes-content">
                 <h3>{{ t('majordomo', 'Apply pending changes') }}</h3>
-                <p>{{ t('majordomo', 'Please acknowledge to apply the following pending changes:') }}</p>
+                <p v-if="noPendingChanges">{{ t('majordomo', 'There are currently no pending changes.') }}</p>
+                <p v-else>{{ t('majordomo', 'Please acknowledge to apply the following pending changes:') }}</p>
                 <ul>
                     <li v-for="email in pendingChanges.toDelete" class="pending-change-delete">
                         {{ t('majordomo', 'Unsubscribe: {email}', { email }) }}
@@ -37,10 +38,11 @@
                     </li>
                 </ul>
                 <center>
-                    <button class="primary" type="button" @click="startRequest(true)">
+                    <button class="primary" type="button" :disabled="noPendingChanges"
+                            @click="startRequest(true); showModal = false">
                         {{ t('majordomo', 'Acknowledge') }}
                     </button>
-                    <button class="secondary" type="button" @click="pendingChanges = null">
+                    <button class="secondary" type="button" @click="showModal = false">
                         {{ t('majordomo', 'Cancel') }}
                     </button>
                 </center>
@@ -64,7 +66,7 @@
 
 <script>
     import api from "./api";
-    import { Modal } from '@nextcloud/vue/dist/Components/Modal'
+    import Modal from '@nextcloud/vue/dist/Components/Modal';
 
     export default {
         name: "RequestButton",
@@ -81,23 +83,33 @@
                 outboundIcon: null,
                 inboundIcon: null,
                 requestId: null,
-                pendingChanges: null,
+                pendingChanges: { toDelete: [], toAdd: [] },
+                showModal: false,
             };
+        },
+        computed: {
+            noPendingChanges() {
+                return this.pendingChanges.toAdd.length === 0 && this.pendingChanges.toDelete.length === 0;
+            }
         },
         methods: {
             async startRequest(ack=false) {
                 this.outboundIcon = 'icon-loading-small';
                 this.inboundIcon = null;
-                this.pendingChanges = null;
 
                 if (this.action === 'sync' && !ack) {
                     this.pendingChanges = await api.get(`/lists/${this.listId}/pending`);
                     this.outboundIcon = null;
+                    this.showModal = true;
                     return;
                 }
 
                 try {
                     const data = await api.post(`/lists/${this.listId}/requests/${this.action}`);
+                    if (!data.id) {
+                        this.outboundIcon = 'icon-error-color';
+                        return;
+                    }
                     this.outboundIcon = 'icon-checkmark-color';
                     this.inboundIcon = 'icon-loading-small';
                     this.requestId = data.id;

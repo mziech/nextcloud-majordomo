@@ -18,18 +18,13 @@
   -
   -->
 <template>
-    <div v-if="loading" class="page-centered">
-        <div>
-            <span class="icon-loading"></span>
-            {{ t('majordomo', 'Loading ...') }}
-        </div>
-    </div>
-    <div v-else-if="loadingError" class="page-centered">
-        <div>
-            {{ loadingError }}
-        </div>
-    </div>
-    <div v-else id="app-content-wrapper">
+    <EmptyContent v-if="loading" icon="icon-loading">
+        {{ t('majordomo', 'Loading ...') }}
+    </EmptyContent>
+    <EmptyContent v-else-if="loadingError" icon="icon-error">
+        {{ loadingError }}
+    </EmptyContent>
+    <div v-else style="display: flex">
         <AppContentList v-if="!loading" :showDetails="true">
             <h2>{{ t('majordomo', 'Current list members') }}</h2>
             <div class="app-content-list-item" v-for="item in status">
@@ -139,6 +134,7 @@
     import AppContentList from '@nextcloud/vue/dist/Components/AppContentList';
     import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails';
     import Avatar from '@nextcloud/vue/dist/Components/Avatar';
+    import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent';
     import api from "./api";
     import RequestButton from "./RequestButton";
 
@@ -148,6 +144,7 @@
             AppContentList,
             AppContentDetails,
             Avatar,
+            EmptyContent,
         },
         data() {
             return {
@@ -222,3 +219,53 @@
         },
     }
 </script>
+
+<style lang="scss" scoped>
+
+.mailing-list-policies {
+  .mailing-list-policy {
+    border-top: 1px solid var(--color-border);
+    clear: left;
+
+    .avatardiv {
+      float: left;
+      margin: 5px;
+
+      .avatar-class-icon {
+        height: 32px;
+      }
+    }
+
+    .mailing-list-policy--text {
+      float: left;
+      width: 320px;
+      height: 32px;
+    }
+
+    .mailing-list-policy--reference {
+      color: var(--color-text-lighter);
+    }
+
+    & > button {
+      width: 32px;
+      height: 32px;
+      margin: 5px;
+    }
+  }
+}
+
+.centered-input {
+  label {
+    display: inline-block;
+    min-width: 300px;
+    text-align: right;
+  }
+  input {
+    min-width: 200px;
+  }
+  button {
+    margin-left: 300px;
+  }
+}
+
+</style>
