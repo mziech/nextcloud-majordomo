@@ -29,7 +29,7 @@
       />
       <ul>
         <AppNavigationItem :title="t('majordomo', 'Loading ...')" :loading="true" v-if="loading"/>
-        <AppNavigationItem :key="list.id" :title="list.title" icon="icon-group"
+        <AppNavigationItem :key="list.id" :title="list.title" :icon="list.syncActive ? 'icon-play' : 'icon-pause'"
                            :to="{ name: 'list', params: { id: list.id }}" v-for="list in lists"/>
       </ul>
       <AppNavigationItem icon="icon-settings" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>

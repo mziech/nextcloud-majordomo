@@ -95,9 +95,9 @@ class MemberResolver {
             case Member::TYPE_USER:
             case Member::TYPE_EXCLUDE_USER:
                 $user = $this->userManager->get($member->getReference());
-                if ($user !== null) {
+                if ($user !== null && $user->isEnabled()) {
                     return [ strtolower($user->getEMailAddress()) ];
-                } else {
+                } else if ($user === null) {
                     $this->logger->error("Unknown user {$member->getReference()} for member id {$member->getId()}", ["app" => $this->AppName]);
                 }
                 break;

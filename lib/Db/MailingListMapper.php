@@ -52,7 +52,7 @@ class MailingListMapper extends \OCP\AppFramework\Db\QBMapper {
         $qb = $this->db->getQueryBuilder();
         return $this->findEntities($qb->select("id")
             ->from("majordomo_lists")
-            ->where($qb->expr()->eq("syncActive", $qb->createNamedParameter(true, IQueryBuilder::PARAM_BOOL))));
+            ->where($qb->expr()->eq("sync_active", $qb->createNamedParameter(true, IQueryBuilder::PARAM_BOOL))));
     }
 
 }
