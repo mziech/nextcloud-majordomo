@@ -18,7 +18,7 @@
  *
  */
 
-import { getRootUrl } from "@nextcloud/router";
+import {getRootUrl} from "@nextcloud/router";
 import axios from "@nextcloud/axios";
 
 const basepath = getRootUrl() + '/apps/majordomo/api';

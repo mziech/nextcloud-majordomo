@@ -18,25 +18,26 @@
   -
   -->
 <template>
-	<Content app-name="majordomo">
-		<AppNavigation>
-			<AppNavigationNew v-if="true"
-							  :text="t('majordomo', 'New Mailinglist')"
-							  :disabled="false"
-							  button-id="new-mailinglist-button"
-							  button-class="icon-add"
-							  v-on:click="$router.push({ name: 'list', params: { id: 'new' }})"
-			/>
-			<ul>
-				<AppNavigationItem :title="t('majordomo', 'Loading ...')" :loading="true" v-if="loading" />
-				<AppNavigationItem :key="list.id" :title="list.title" icon="icon-group" :to="{ name: 'list', params: { id: list.id }}" v-for="list in lists"/>
-			</ul>
-			<AppNavigationItem icon="icon-settings" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>
-		</AppNavigation>
-		<AppContent>
-			<router-view @saved="load()"/>
-		</AppContent>
-	</Content>
+  <Content app-name="majordomo">
+    <AppNavigation>
+      <AppNavigationNew v-if="true"
+                        :text="t('majordomo', 'New Mailinglist')"
+                        :disabled="false"
+                        button-id="new-mailinglist-button"
+                        button-class="icon-add"
+                        v-on:click="$router.push({ name: 'list', params: { id: 'new' }})"
+      />
+      <ul>
+        <AppNavigationItem :title="t('majordomo', 'Loading ...')" :loading="true" v-if="loading"/>
+        <AppNavigationItem :key="list.id" :title="list.title" icon="icon-group"
+                           :to="{ name: 'list', params: { id: list.id }}" v-for="list in lists"/>
+      </ul>
+      <AppNavigationItem icon="icon-settings" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>
+    </AppNavigation>
+    <AppContent>
+      <router-view @saved="load()"/>
+    </AppContent>
+  </Content>
 </template>
 
 <script>

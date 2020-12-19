@@ -23,7 +23,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import { translate, translatePlural } from '@nextcloud/l10n';
+import {translate, translatePlural} from '@nextcloud/l10n';
 
 import App from './App';
 
@@ -34,6 +34,6 @@ Vue.prototype.OCA = window.OCA;
 Vue.use(VueRouter);
 
 export default new Vue({
-	el: '#content',
-	render: h => h(App),
-})
+    el: '#content',
+    render: h => h(App),
+});

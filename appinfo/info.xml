@@ -5,10 +5,9 @@
     <name>Majordomo</name>
     <summary>Synchronize users and groups with the Majordomo mailing list manager</summary>
     <description><![CDATA[{{ app.description }}]]></description>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <licence>agpl</licence>
     <author mail="marco+nc@ziech.net" homepage="https://github.com/mziech">Marco Ziech</author>
-    <namespace>Majordomo</namespace>
     <category>integration</category>
     <website>https://github.com/mziech/nextcloud-majordomo</website>
     <discussion>https://github.com/mziech/nextcloud-majordomo/pulls</discussion>
