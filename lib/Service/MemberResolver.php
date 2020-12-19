@@ -107,7 +107,9 @@ class MemberResolver {
                 if ($group !== null) {
                     return array_values(array_map(function (IUser $user) {
                         return strtolower($user->getEMailAddress());
-                    }, $group->getUsers()));
+                    }, array_filter($group->getUsers(), function (IUser $user) {
+                        return $user->isEnabled();
+                    })));
                 } else {
                     $this->logger->error("Unknown group {$member->getReference()} for member id {$member->getId()}", ["app" => $this->AppName]);
                 }
