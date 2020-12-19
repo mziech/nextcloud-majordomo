@@ -111,6 +111,7 @@ class MajordomoCommands {
         $message->setTo([ $this->ml->manager ]);
         $message->setPlainBody($body);
         $message->setSubject($subject);
+        $message->getSwiftMessage()->setEncoder(new \Swift_Mime_ContentEncoder_RawContentEncoder());  // disable quoted-printable encoding
         $message->getSwiftMessage()->setMaxLineLength(0);  // disable word-wrap
         $failedReceipients = $this->mailer->send($message);
         if (in_array($this->ml->manager, $failedReceipients)) {
