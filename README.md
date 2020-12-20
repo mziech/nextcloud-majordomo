@@ -1,3 +1,5 @@
+![.github/workflows/release.yml](https://github.com/mziech/nextcloud-majordomo/workflows/.github/workflows/release.yml/badge.svg)
+
 # Nextcloud Majordomo App
 
 NextCloud app to synchronize user and group information with the Majordomo mailing list manager.
