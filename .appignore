@@ -7,5 +7,6 @@ package.json
 .gitignore
 .appignore
 Dockerfile
+src
 
 majordomo.tar.gz
