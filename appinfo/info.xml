@@ -5,7 +5,7 @@
     <name>Majordomo</name>
     <summary>Synchronize users and groups with the Majordomo mailing list manager</summary>
     <description><![CDATA[{{ app.description }}]]></description>
-    <version>0.0.8</version>
+    <version>1.0.0</version>
     <licence>agpl</licence>
     <author mail="marco+nc@ziech.net" homepage="https://github.com/mziech">Marco Ziech</author>
     <category>integration</category>
@@ -13,7 +13,7 @@
     <discussion>https://github.com/mziech/nextcloud-majordomo/pulls</discussion>
     <bugs>https://github.com/mziech/nextcloud-majordomo/issues</bugs>
     <dependencies>
-        <nextcloud min-version="19" max-version="20"/>
+        <nextcloud min-version="19" max-version="21"/>
     </dependencies>
     <background-jobs>
         <job>OCA\Majordomo\Job\ReadCurrentListMembersJob</job>
