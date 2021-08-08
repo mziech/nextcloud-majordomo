@@ -57,7 +57,7 @@ class Settings {
         return $this->arrayToObject($arr, $obj);
     }
 
-    private function arrayToObject($arr, &$obj) {
+    private function arrayToObject($arr, $obj) {
         $fields = get_class_vars(get_class($obj));
         foreach ($arr as $k => $v) {
             if (array_key_exists($k, $fields)) {

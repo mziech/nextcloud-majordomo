@@ -72,8 +72,8 @@ class Version000005Initial extends SimpleMigrationStep {
 				'length' => 1000000,
 			]);
 			$table->addColumn('done', 'boolean', [
-				'notnull' => true,
-				'default' => false,
+				'notnull' => false,
+				'default' => 0,
 			]);
 			$table->addColumn('created', 'datetime', [
 				'notnull' => true,
@@ -107,8 +107,8 @@ class Version000005Initial extends SimpleMigrationStep {
 				'length' => 255,
 			]);
 			$table->addColumn('sync_active', 'boolean', [
-				'notnull' => true,
-				'default' => false,
+				'notnull' => false,
+				'default' => 0,
 			]);
 			$table->setPrimaryKey(['id']);
 			$table->addUniqueIndex(['manager', 'listname'], 'UQ_manager_list');
