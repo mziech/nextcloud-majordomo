@@ -21,8 +21,8 @@ This app requires the PHP `imap` module and a dedicated IMAP mailbox to function
     <website>https://github.com/mziech/nextcloud-majordomo</website>
     <discussion>https://github.com/mziech/nextcloud-majordomo/pulls</discussion>
     <bugs>https://github.com/mziech/nextcloud-majordomo/issues</bugs>
-    <screenshot>https://raw.githubusercontent.com/mziech/nextcloud-majordomo/master/img/screenshot1.jpg</screenshot>
-    <screenshot>https://raw.githubusercontent.com/mziech/nextcloud-majordomo/master/img/screenshot2.jpg</screenshot>
+    <screenshot>https://raw.githubusercontent.com/mziech/nextcloud-majordomo/main/img/screenshot1.jpg</screenshot>
+    <screenshot>https://raw.githubusercontent.com/mziech/nextcloud-majordomo/main/img/screenshot2.jpg</screenshot>
     <dependencies>
         <nextcloud min-version="19" max-version="22"/>
     </dependencies>
