@@ -59,6 +59,7 @@ jobs:
           body: ${{ steps.changelog_reader.outputs.changes }}
           files: ${{ env.APP_NAME }}.tar.gz
           prerelease: ${{ contains(github.ref, '-') }}  # following semver spec
+          target_commitish: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
