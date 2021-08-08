@@ -8,5 +8,6 @@ package.json
 .appignore
 Dockerfile
 src
+img/screenshot*
 
 majordomo.tar.gz

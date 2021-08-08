@@ -4,16 +4,27 @@
     <id>majordomo</id>
     <name>Majordomo</name>
     <summary>Synchronize users and groups with the Majordomo mailing list manager</summary>
-    <description><![CDATA[{{ app.description }}]]></description>
-    <version>1.0.0</version>
+    <description>
+Using this app you can automatically synchronize your user's to a
+[Majordomo mailing list manager](https://en.wikipedia.org/wiki/Majordomo_(software)).
+It is possible to configure multiple mailing lists at any list server to include or exclude selected groups, users and other email addresses.
+
+Import of existing mailing list memberships is supported, as well as reviewing changes before you apply them.
+At your option, this app will keep your mailing list memberships up-to-date on a daily basis.
+
+This app requires the PHP `imap` module and a dedicated IMAP mailbox to function!
+    </description>
+    <version>1.0.1</version>
     <licence>agpl</licence>
     <author mail="marco+nc@ziech.net" homepage="https://github.com/mziech">Marco Ziech</author>
     <category>integration</category>
     <website>https://github.com/mziech/nextcloud-majordomo</website>
     <discussion>https://github.com/mziech/nextcloud-majordomo/pulls</discussion>
     <bugs>https://github.com/mziech/nextcloud-majordomo/issues</bugs>
+    <screenshot>https://raw.githubusercontent.com/mziech/nextcloud-majordomo/master/img/screenshot1.jpg</screenshot>
+    <screenshot>https://raw.githubusercontent.com/mziech/nextcloud-majordomo/master/img/screenshot2.jpg</screenshot>
     <dependencies>
-        <nextcloud min-version="19" max-version="21"/>
+        <nextcloud min-version="19" max-version="22"/>
     </dependencies>
     <background-jobs>
         <job>OCA\Majordomo\Job\ReadCurrentListMembersJob</job>
