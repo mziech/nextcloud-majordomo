@@ -18,16 +18,16 @@
  *
  */
 
-import {getRootUrl} from "@nextcloud/router";
+import {generateUrl} from "@nextcloud/router";
 import axios from "@nextcloud/axios";
 
-const basepath = getRootUrl() + '/apps/majordomo/api';
+const BASEPATH = '/apps/majordomo/api';
 export default new class Api {
     get(path) {
-        return axios.get(basepath + path).then(response => response.data);
+        return axios.get(generateUrl(BASEPATH + path)).then(response => response.data);
     }
 
     post(path, data) {
-        return axios.post(basepath + path, data).then(response => response.data);
+        return axios.post(generateUrl(BASEPATH + path), data).then(response => response.data);
     }
 };
