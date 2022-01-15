@@ -13,6 +13,8 @@ At your option, this app will keep your mailing list memberships up-to-date on a
 
 This app requires the PHP `imap` module and a dedicated IMAP mailbox to function!
 
+To configure the IMAP server, use the format described in the php manual for [imap_open](https://www.php.net/manual/en/function.imap-open.php). For example to use a secure IMAP server attach `/ssl` to the servername: `imap.example.com/ssl`.
+
 ## Building the app
 Using NodeJS & NPM:
 ```
