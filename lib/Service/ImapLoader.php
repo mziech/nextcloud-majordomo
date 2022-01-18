@@ -50,6 +50,10 @@ class ImapLoader {
         $this->AppName = $AppName;
     }
 
+    public function isEnabled() {
+        return $this->imapSettings !== NULL && !empty($this->imapSettings->server);
+    }
+
     public function getImap() {
         if ($this->imap === NULL) {
             $this->imap = $this->imap = imap_open(

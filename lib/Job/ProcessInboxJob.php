@@ -39,7 +39,9 @@ class ProcessInboxJob extends \OCP\BackgroundJob\TimedJob {
     }
 
     protected function run($argument) {
-        $this->imapLoader->processMails();
+        if ($this->imapLoader->isEnabled()) {
+            $this->imapLoader->processMails();
+        }
     }
 
 }
