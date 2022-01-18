@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: translations@owncloud.org\n"
-"POT-Creation-Date: 2020-12-18 00:51+0100\n"
-"PO-Revision-Date: 2020-12-18 00:58+0100\n"
+"POT-Creation-Date: 2022-01-18 22:10+0100\n"
+"PO-Revision-Date: 2022-01-18 22:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,26 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 3.0\n"
 
-#: js/majordomo.js:5819 js/majordomo.js:6018
+#: js/majordomo.js:6565
 #, fuzzy
 #| msgid "form"
 msgid "form"
-msgid_plural "action-input__form"
+msgid_plural "action-text-editable__form"
 msgstr[0] "form"
 msgstr[1] "form"
 
-#: js/majordomo.js:5819
-#, fuzzy
-#| msgid "action-input"
-msgid "action-input"
-msgid_plural "action-input--picker"
-msgstr[0] "action-input"
-msgstr[1] "action-input"
-
-#: js/majordomo.js:5819 js/majordomo.js:6018 js/majordomo.js:6278
-#: js/majordomo.js:6780
+#: js/majordomo.js:6565
 #, fuzzy
 #| msgid "action-input"
 msgid "action"
@@ -43,354 +34,392 @@ msgid_plural "action--disabled"
 msgstr[0] "action-input"
 msgstr[1] "action-input"
 
-#: js/majordomo.js:6112
+#: js/majordomo.js:6651
 #, fuzzy
 #| msgid "app-navigation-entry-link"
 #| msgid_plural "#"
 msgid "app-navigation__list"
 msgstr "app-navigation-entry-link"
 
-#: js/majordomo.js:6112
+#: js/majordomo.js:6651
 #, fuzzy
 #| msgid "app-navigation-entry-link"
 #| msgid_plural "#"
 msgid "app-navigation"
 msgstr "app-navigation-entry-link"
 
-#: js/majordomo.js:6257 js/majordomo.js:6717
+#: js/majordomo.js:6769
 msgid "popover"
 msgstr ""
 
-#: js/majordomo.js:6312
+#: js/majordomo.js:6843
 #, fuzzy
 #| msgid "app-navigation-entry-link"
 #| msgid_plural "#"
 msgid "app-navigation-new"
 msgstr "app-navigation-entry-link"
 
-#: js/majordomo.js:6325
-msgid "settings-button"
-msgstr "settings-button"
-
-#: js/majordomo.js:6325
-msgid "app-settings-header"
-msgstr "app-settings-header"
-
-#: js/majordomo.js:6325
-msgid "slide-up"
-msgstr "slide-up"
-
-#: js/majordomo.js:6367
-#, fuzzy
-#| msgid "action-input__icon"
-msgid "mention-bubble__icon"
-msgstr "action-input__icon"
-
-#: js/majordomo.js:6367 js/majordomo.js:6487
+#: js/majordomo.js:6896 js/majordomo.js:7014
 msgid "mention-bubble__title"
 msgid_plural "heading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6367
-msgid "mention-bubble__content"
-msgstr ""
-
-#: js/majordomo.js:6367 js/majordomo.js:6487
+#: js/majordomo.js:6896 js/majordomo.js:7014
 msgid "mention-bubble__select"
 msgid_plural "none"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6367
-msgid "mention-bubble__wrapper"
-msgstr ""
-
-#: js/majordomo.js:6367 js/majordomo.js:6487
+#: js/majordomo.js:6896 js/majordomo.js:7014
 msgid "mention-bubble"
 msgid_plural "mention-bubble--primary"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6551
+#: js/majordomo.js:7078
 msgid "focusable"
 msgid_plural "#"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6551
+#: js/majordomo.js:7078
 msgid "icon-confirm"
 msgid_plural "submit"
 msgstr[0] "icon-confirm"
 msgstr[1] "submit"
 
-#: js/majordomo.js:6572
+#: js/majordomo.js:7099
+#, fuzzy
+#| msgid "icon-close"
+#| msgid_plural "reset"
+msgid "icon-loading"
+msgid_plural "px"
+msgstr[0] "icon-close"
+msgstr[1] "reset"
+
+#: js/majordomo.js:7099
 msgid "avatardiv__user-status"
 msgid_plural "avatardiv__user-status--"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6572
+#: js/majordomo.js:7099
 msgid "#"
 msgid_plural "M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6572
+#: js/majordomo.js:7099
 msgid "http://www.w3.org/2000/svg"
 msgid_plural "12"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6572
+#: js/majordomo.js:7099
 msgid "avatardiv__status"
 msgid_plural "avatardiv__status--"
 msgstr[0] ""
 msgstr[1] ""
 
-#: js/majordomo.js:6639
+#: js/majordomo.js:7162
 msgid "empty-content__icon"
 msgstr ""
 
-#: js/majordomo.js:6639
+#: js/majordomo.js:7162
 msgid "empty-content__title"
 msgstr ""
 
-#: js/majordomo.js:6639
+#: js/majordomo.js:7162
 msgid "empty-content"
 msgstr ""
 
-#: js/majordomo.js:6823
-msgid "progress-ring__circle"
-msgid_plural "white"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:6823
-msgid "progress-ring"
-msgid_plural "50"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:6823
-msgid "mask"
-msgid_plural "modal-mask"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:15695
+#: js/majordomo.js:10038
 msgid "An error occurred while loading the mailing list."
 msgstr "An error occurred while loading the mailing list."
 
-#: js/majordomo.js:15707
+#: js/majordomo.js:10050
 msgid "Mailing list saved."
 msgstr "Mailing list saved."
 
-#: js/majordomo.js:15718
+#: js/majordomo.js:10063
 msgid "Failed to save mailing list."
 msgstr "Failed to save mailing list."
 
-#: js/majordomo.js:16108
+#: js/majordomo.js:10543
 msgid "IMAP settings successfully updated"
 msgstr "IMAP settings successfully updated"
 
-#: js/majordomo.js:16111
+#: js/majordomo.js:10547
 msgid "Failed to store IMAP settings!"
 msgstr "Failed to store IMAP settings!"
 
-#: js/majordomo.js:16125
+#: js/majordomo.js:10561
 msgid "Failed to test IMAP settings!"
 msgstr "Failed to test IMAP settings!"
 
-#: js/majordomo.js:29329 js/majordomo.js:29342
+#: js/majordomo.js:29387 js/majordomo.js:29400
 msgid "Some text"
 msgstr "Some text"
 
-#: js/majordomo.js:29356 js/majordomo.js:29371
+#: js/majordomo.js:29414 js/majordomo.js:29429
 msgid "One thing"
 msgid_plural "Many things"
 msgstr[0] "One thing"
 msgstr[1] "Many things"
 
-#: js/majordomo.js:41312
+#: js/majordomo.js:38407
 msgid "New Mailinglist"
 msgstr "New Mailinglist"
 
-#: js/majordomo.js:41334 js/majordomo.js:41412 js/majordomo.js:42354
+#: js/majordomo.js:38429 js/majordomo.js:38502 js/majordomo.js:39459
 msgid "Loading ..."
 msgstr "Loading ..."
 
-#: js/majordomo.js:41357
+#: js/majordomo.js:38452
 msgid "Settings"
 msgstr "Settings"
 
-#: js/majordomo.js:41428
+#: js/majordomo.js:38518
 msgid "Current list members"
 msgstr "Current list members"
 
-#: js/majordomo.js:41454
+#: js/majordomo.js:38544
 msgid "E-Mail"
 msgstr "E-Mail"
 
-#: js/majordomo.js:41487
+#: js/majordomo.js:38577
 msgid "Member needs to be added"
 msgstr "Member needs to be added"
 
-#: js/majordomo.js:41499
+#: js/majordomo.js:38589
 msgid "Member needs to be removed"
 msgstr "Member needs to be removed"
 
-#: js/majordomo.js:41519
+#: js/majordomo.js:38609
 #, python-brace-format
 msgid "Edit Mailinglist: {title}"
 msgstr "Edit Mailinglist: {title}"
 
-#: js/majordomo.js:41529
+#: js/majordomo.js:38619
 msgid "Create Mailinglist"
 msgstr "Create Mailinglist"
 
-#: js/majordomo.js:41547
+#: js/majordomo.js:38637
 msgid "Mailing list title"
 msgstr "Mailing list title"
 
-#: js/majordomo.js:41577
+#: js/majordomo.js:38667
 msgid "List manager email address"
 msgstr "List manager email address"
 
-#: js/majordomo.js:41608
+#: js/majordomo.js:38698
 msgid "List name for management"
 msgstr "List name for management"
 
-#: js/majordomo.js:41638
+#: js/majordomo.js:38728
 msgid "List manager password"
 msgstr "List manager password"
 
-#: js/majordomo.js:41721
+#: js/majordomo.js:38811
 msgid "Enable automatic synchronization of list members"
 msgstr "Enable automatic synchronization of list members"
 
-#: js/majordomo.js:41731 js/majordomo.js:42569
+#: js/majordomo.js:38821 js/majordomo.js:39837
 msgid "Save"
 msgstr "Save"
 
-#: js/majordomo.js:41759
+#: js/majordomo.js:38850
 msgid "Retrieve current status from list manager"
 msgstr "Retrieve current status from list manager"
 
-#: js/majordomo.js:41795
+#: js/majordomo.js:38887
 msgid "Retrieve current status from list manager AND apply to settings"
 msgstr "Retrieve current status from list manager AND apply to settings"
 
-#: js/majordomo.js:41831
+#: js/majordomo.js:38924
 msgid "Write desired changes to list manager"
 msgstr "Write desired changes to list manager"
 
-#: js/majordomo.js:41845
+#: js/majordomo.js:38938
 msgid "Member Policy"
 msgstr "Member Policy"
 
-#: js/majordomo.js:41882 js/majordomo.js:42049
+#: js/majordomo.js:38975 js/majordomo.js:39144
 msgid "Members of group"
 msgstr "Members of group"
 
-#: js/majordomo.js:41886 js/majordomo.js:42058
+#: js/majordomo.js:38979 js/majordomo.js:39153
 msgid "E-Mail of user"
 msgstr "E-Mail of user"
 
-#: js/majordomo.js:41890 js/majordomo.js:42067
+#: js/majordomo.js:38983 js/majordomo.js:39162
 msgid "Additional E-Mail"
 msgstr "Additional E-Mail"
 
-#: js/majordomo.js:41895 js/majordomo.js:42079
+#: js/majordomo.js:38988 js/majordomo.js:39174
 msgid "Except members of group"
 msgstr "Except members of group"
 
-#: js/majordomo.js:41901 js/majordomo.js:42092
+#: js/majordomo.js:38994 js/majordomo.js:39187
 msgid "Except E-Mail of user"
 msgstr "Except E-Mail of user"
 
-#: js/majordomo.js:41906 js/majordomo.js:42102
+#: js/majordomo.js:38999 js/majordomo.js:39197
 msgid "Exclude E-Mail"
 msgstr "Exclude E-Mail"
 
-#: js/majordomo.js:41942
+#: js/majordomo.js:39035
 msgid "- Please select -"
 msgstr "- Please select -"
 
-#: js/majordomo.js:42006
+#: js/majordomo.js:39100
 msgid "Add policy"
 msgstr "Add policy"
 
-#: js/majordomo.js:42214
+#: js/majordomo.js:39299
 msgid "Apply pending changes"
 msgstr "Apply pending changes"
 
-#: js/majordomo.js:42223
-#| msgid "Apply pending changes"
+#: js/majordomo.js:39309
 msgid "There are currently no pending changes."
 msgstr "There are currently no pending changes."
 
-#: js/majordomo.js:42233
+#: js/majordomo.js:39320
 msgid "Please acknowledge to apply the following pending changes:"
 msgstr "Please acknowledge to apply the following pending changes:"
 
-#: js/majordomo.js:42247
+#: js/majordomo.js:39347
 #, python-brace-format
 msgid "Unsubscribe: {email}"
 msgstr "Unsubscribe: {email}"
 
-#: js/majordomo.js:42261
+#: js/majordomo.js:39365
 #, python-brace-format
 msgid "Subscribe: {email}"
 msgstr "Subscribe: {email}"
 
-#: js/majordomo.js:42289
+#: js/majordomo.js:39397
 msgid "Acknowledge"
 msgstr "Acknowledge"
 
-#: js/majordomo.js:42309
+#: js/majordomo.js:39417
 msgid "Cancel"
 msgstr "Cancel"
 
-#: js/majordomo.js:42357
+#: js/majordomo.js:39462
 msgid "Global Settings"
 msgstr "Global Settings"
 
-#: js/majordomo.js:42372
+#: js/majordomo.js:39477
 msgid "IMAP Server Address"
 msgstr "IMAP Server Address"
 
-#: js/majordomo.js:42399
+#: js/majordomo.js:39504
+#| msgid "action-input"
+msgid "Encryption"
+msgstr "Encryption"
+
+#: js/majordomo.js:39541
+msgid "(default)"
+msgstr "(default)"
+
+#: js/majordomo.js:39545
+msgid "Use SSL"
+msgstr "Use SSL"
+
+#: js/majordomo.js:39549
+msgid "Force TLS"
+msgstr "Force TLS"
+
+#: js/majordomo.js:39553
+msgid "Disable TLS"
+msgstr "Disable TLS"
+
+#: js/majordomo.js:39563
+msgid "Skip SSL/TLS certificate validation"
+msgstr "Skip SSL/TLS certificate validation"
+
+#: js/majordomo.js:39618
+msgid "Never send password in plaintext"
+msgstr "Never send password in plaintext"
+
+#: js/majordomo.js:39667
 msgid "E-Mail address"
 msgstr "E-Mail address"
 
-#: js/majordomo.js:42426
+#: js/majordomo.js:39694
 msgid "IMAP Username"
 msgstr "IMAP Username"
 
-#: js/majordomo.js:42453
+#: js/majordomo.js:39721
 msgid "IMAP Password"
 msgstr "IMAP Password"
 
-#: js/majordomo.js:42481
+#: js/majordomo.js:39749
 msgid "IMAP Inbox folder name"
 msgstr "IMAP Inbox folder name"
 
-#: js/majordomo.js:42510
+#: js/majordomo.js:39778
 msgid "IMAP Archive folder name"
 msgstr "IMAP Archive folder name"
 
-#: js/majordomo.js:42539
+#: js/majordomo.js:39807
 msgid "IMAP Errors folder name"
 msgstr "IMAP Errors folder name"
 
-#: js/majordomo.js:42587
+#: js/majordomo.js:39857
 msgid "Test IMAP Connection"
 msgstr "Test IMAP Connection"
 
-#: js/majordomo.js:42614
+#: js/majordomo.js:39893
 msgid "Process incoming mails now"
 msgstr "Process incoming mails now"
+
+#: js/majordomo.js:40039
+msgid "multiselect__tag-icon"
+msgid_plural "aria-hidden"
+msgstr[0] "multiselect__tag-icon"
+msgstr[1] "aria-hidden"
+
+#: js/majordomo.js:40039
+msgid "search"
+msgid_plural "multiselect__input"
+msgstr[0] "search"
+msgstr[1] "multiselect__input"
+
+#: js/majordomo.js:40039
+msgid "tags"
+msgid_plural "multiselect__tags"
+msgstr[0] "tags"
+msgstr[1] "multiselect__tags"
+
+#: js/majordomo.js:40039
+msgid "multiselect"
+msgid_plural "multiselect--active"
+msgstr[0] "multiselect"
+msgstr[1] "multiselect--active"
+
+#, fuzzy
+#~| msgid "action-input"
+#~ msgid "action-input"
+#~ msgid_plural "action-input--picker"
+#~ msgstr[0] "action-input"
+#~ msgstr[1] "action-input"
+
+#~ msgid "settings-button"
+#~ msgstr "settings-button"
+
+#~ msgid "app-settings-header"
+#~ msgstr "app-settings-header"
+
+#~ msgid "slide-up"
+#~ msgstr "slide-up"
+
+#, fuzzy
+#~| msgid "action-input__icon"
+#~ msgid "mention-bubble__icon"
+#~ msgstr "action-input__icon"
 
 #~ msgid "Majordomo"
 #~ msgstr "Majordomo"
@@ -416,31 +445,6 @@ msgstr "Process incoming mails now"
 
 #~ msgid "no-snapper"
 #~ msgstr "no-snapper"
-
-#~ msgid "icon-close"
-#~ msgid_plural "reset"
-#~ msgstr[0] "icon-close"
-#~ msgstr[1] "reset"
-
-#~ msgid "multiselect__tag-icon"
-#~ msgid_plural "aria-hidden"
-#~ msgstr[0] "multiselect__tag-icon"
-#~ msgstr[1] "aria-hidden"
-
-#~ msgid "search"
-#~ msgid_plural "multiselect__input"
-#~ msgstr[0] "search"
-#~ msgstr[1] "multiselect__input"
-
-#~ msgid "tags"
-#~ msgid_plural "multiselect__tags"
-#~ msgstr[0] "tags"
-#~ msgstr[1] "multiselect__tags"
-
-#~ msgid "multiselect"
-#~ msgid_plural "multiselect--active"
-#~ msgstr[0] "multiselect"
-#~ msgstr[1] "multiselect--active"
 
 #, fuzzy
 #~| msgid "slide-up"
