@@ -73,17 +73,17 @@
           <button class="primary">{{ t('majordomo', 'Save') }}</button>
         </p>
         <p class="centered-input" v-if="!isNew">
-          <RequestButton :list-id="list.id" action="check" @success="reload()">
+          <RequestButton :list-id="list.id" action="check" @success="reload()" :disabled="dirty">
             {{ t('majordomo', 'Retrieve current status from list manager') }}
           </RequestButton>
         </p>
         <p class="centered-input" v-if="!isNew">
-          <RequestButton :list-id="list.id" action="import" @success="reload()">
+          <RequestButton :list-id="list.id" action="import" @success="reload()" :disabled="dirty">
             {{ t('majordomo', 'Retrieve current status from list manager AND apply to settings') }}
           </RequestButton>
         </p>
         <p class="centered-input" v-if="!isNew">
-          <RequestButton :list-id="list.id" action="sync" @success="reload()">
+          <RequestButton :list-id="list.id" action="sync" @success="reload()" :disabled="dirty">
             {{ t('majordomo', 'Write desired changes to list manager') }}
           </RequestButton>
         </p>
@@ -162,6 +162,7 @@ export default {
       loading: true,
       isNew: true,
       loadingError: null,
+      dirty: false,
       list: {},
       status: []
     }
@@ -183,6 +184,7 @@ export default {
         }),
         api.get(`/lists/${id}`).then(list => {
           this.list = list;
+          this.dirty = false;
         }),
         api.get(`/lists/${id}/status`).then(status => {
           this.status = status;
@@ -201,6 +203,7 @@ export default {
         OC.Notification.showTemporary(t("majordomo", "Mailing list saved."));
         this.$router.replace({name: 'list', params: {id: list.id}});
         this.$emit("saved");
+        this.dirty = false;
       }).catch(() => {
         OC.Notification.showTemporary(t("majordomo", "Failed to save mailing list."), {type: "error"});
       });
@@ -216,6 +219,7 @@ export default {
         members: !this.list.members ? [memberToAdd] : [...this.list.members, memberToAdd]
       }
       this.addMemberReference = '';
+      this.dirty = true;
     },
     removeMember(memberToRemove) {
       if (this.list.members) {
@@ -224,6 +228,7 @@ export default {
               member.type !== memberToRemove.type || member.reference !== memberToRemove.reference
           )]
         };
+        this.dirty = true;
       }
     },
   },
