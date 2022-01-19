@@ -40,6 +40,7 @@ class PageController extends Controller {
     }
 
     /**
+	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 */
     public function index() {
@@ -49,6 +50,7 @@ class PageController extends Controller {
     }
 
     /**
+	 * @NoAdminRequired
      * @NoCSRFRequired
      */
     public function catchAll() {

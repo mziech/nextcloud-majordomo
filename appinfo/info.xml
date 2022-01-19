@@ -34,7 +34,7 @@ This app requires the PHP `imap` module and a dedicated IMAP mailbox to function
         <job>OCA\Majordomo\Job\ProcessInboxJob</job>
     </background-jobs>
     <navigations>
-        <navigation role="admin">
+        <navigation role="all">
             <name>Majordomo</name>
             <route>majordomo.page.index</route>
             <icon>app-dark.svg</icon>

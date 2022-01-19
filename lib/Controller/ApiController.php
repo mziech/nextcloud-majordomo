@@ -90,6 +90,9 @@ class ApiController extends Controller {
         $this->imapLoader = $imapLoader;
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function appContext() {
         $appContext = ["users" => [], "groups" => []];
         foreach ($this->userManager->search("") as $user) {
@@ -101,10 +104,16 @@ class ApiController extends Controller {
         return new JSONResponse($appContext);
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function lists() {
         return new JSONResponse($this->mailingListMapper->findAll());
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function getList($id) {
         if ($id == "new") {
             return new JSONResponse(["id" => "new"]);
@@ -113,6 +122,9 @@ class ApiController extends Controller {
         return new JSONResponse($this->mailingListService->read($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function getListStatus($id) {
         if ($id == "new") {
             return new JSONResponse([]);
@@ -121,10 +133,16 @@ class ApiController extends Controller {
         return new JSONResponse($this->mailingListService->getListStatus($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function getListMembers($id) {
         return new JSONResponse($this->memberMapper->findAllByListId($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postList($id) {
         if ($id == "new") {
             return new JSONResponse(
@@ -138,38 +156,62 @@ class ApiController extends Controller {
         return new JSONResponse($this->mailingListService->read($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function getPendingChanges($id) {
         return new JSONResponse($this->outboundService->getPendingMembershipUpdate($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postListCheck($id) {
         return new JSONResponse($this->outboundService->retrieveCurrentMembers($id, false));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postListImport($id) {
         return new JSONResponse($this->outboundService->retrieveCurrentMembers($id, true));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postListSync($id) {
         return new JSONResponse($this->outboundService->updateMailingListMembership($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function getRequestStatus($id) {
         return new JSONResponse($this->outboundService->getRequestStatus($id));
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function getSettings() {
         return new JSONResponse([
             'imap' => $this->settings->getImapSettings()
         ]);
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postSettings() {
         $json = $this->request->post;
         $this->settings->setImapSettings($json['imap']);
         return $this->getSettings();
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postSettingsTest() {
         try {
             return array_merge(["success" => true], $this->imapLoader->test());
@@ -178,6 +220,9 @@ class ApiController extends Controller {
         }
     }
 
+	/**
+	 * @NoAdminRequired
+	 */
     public function postProcessMails() {
         $this->imapLoader->processMails();
     }
