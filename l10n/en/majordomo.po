@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: translations@owncloud.org\n"
 "POT-Creation-Date: 2022-01-18 22:10+0100\n"
-"PO-Revision-Date: 2022-01-18 22:17+0100\n"
+"PO-Revision-Date: 2022-01-22 21:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -318,7 +318,7 @@ msgstr "IMAP Server Address"
 #: js/majordomo.js:39504
 #| msgid "action-input"
 msgid "Encryption"
-msgstr "Encryption"
+msgstr "Secure connection"
 
 #: js/majordomo.js:39541
 msgid "(default)"
@@ -326,15 +326,15 @@ msgstr "(default)"
 
 #: js/majordomo.js:39545
 msgid "Use SSL"
-msgstr "Use SSL"
+msgstr "Use SSL/TLS"
 
 #: js/majordomo.js:39549
 msgid "Force TLS"
-msgstr "Force TLS"
+msgstr "Force STARTTLS"
 
 #: js/majordomo.js:39553
 msgid "Disable TLS"
-msgstr "Disable TLS"
+msgstr "Disable STARTTLS"
 
 #: js/majordomo.js:39563
 msgid "Skip SSL/TLS certificate validation"
