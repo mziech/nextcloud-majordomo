@@ -4,6 +4,8 @@
 
 **NextCloud app to synchronize user and group information with the Majordomo mailing list manager.**
 
+The app is only meant to be used by a group of trusted users, because the imap and mailinglist configurations are shared between all users with access to the app.
+
 Using this app you can automatically synchronize your user's to a
 [Majordomo mailing list manager](https://en.wikipedia.org/wiki/Majordomo_(software)).
 It is possible to configure multiple mailing lists at any list server to include or exclude selected groups, users and other email addresses.
@@ -45,4 +47,5 @@ docker run -it -u $(id -u) --rm -v $HOME/.npm:/.npm -v $(pwd):/work -w /work nod
 ```
 
 ## Install
-Place this app in `nextcloud/apps/majordomo`
+
+Place this app in `nextcloud/apps/majordomo`, enable it and limit access to a trusted group.

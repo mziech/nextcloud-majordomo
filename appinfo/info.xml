@@ -12,6 +12,8 @@ It is possible to configure multiple mailing lists at any list server to include
 Import of existing mailing list memberships is supported, as well as reviewing changes before you apply them.
 At your option, this app will keep your mailing list memberships up-to-date on a daily basis.
 
+This app shares one set of configurations and has to be limited to a group of trusted users.
+
 This app requires the PHP `imap` module and a dedicated IMAP mailbox to function!
     </description>
     <version>1.0.3</version>
