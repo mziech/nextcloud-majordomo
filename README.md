@@ -4,6 +4,8 @@
 
 **NextCloud app to synchronize user and group information with the Majordomo mailing list manager.**
 
+The app can only be used by nextcloud admins, because the imap and mailinglist configurations are global settings.
+
 Using this app you can automatically synchronize your user's to a
 [Majordomo mailing list manager](https://en.wikipedia.org/wiki/Majordomo_(software)).
 It is possible to configure multiple mailing lists at any list server to include or exclude selected groups, users and other email addresses.
