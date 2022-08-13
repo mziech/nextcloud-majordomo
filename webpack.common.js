@@ -36,7 +36,7 @@ const config = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
-		new ESLintPlugin({ extensions: ['js', 'vue'] }),
+		new ESLintPlugin({ extensions: ['js', 'vue'], failOnError: false }),
 	],
 	resolve: {
 		extensions: ['*', '.js', '.vue'],
