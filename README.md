@@ -24,7 +24,7 @@ npm run build
 
 Using Docker:
 ```shell
-docker run -it -u $(id -u) --rm -v $HOME/.npm:/.npm -v $(pwd):/work -w /work node:14 sh -c "npm install && npm run build"
+docker run -it -u $(id -u) --rm -v $HOME/.npm:/.npm -v $(pwd):/work -w /work node:lts sh -c "npm install && npm run build"
 ```
 
 The majordomo.tar.gz for the app store release can be built with:
@@ -41,7 +41,7 @@ npm run watch
 
 Or use Docker:
 ```shell
-docker run -it -u $(id -u) --rm -v $HOME/.npm:/.npm -v $(pwd):/work -w /work node:14 sh -c "npm install && npm run watch"
+docker run -it -u $(id -u) --rm -v $HOME/.npm:/.npm -v $(pwd):/work -w /work node:lts sh -c "npm install && npm run watch"
 ```
 
 ## Install
