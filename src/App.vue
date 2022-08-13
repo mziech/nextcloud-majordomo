@@ -35,7 +35,8 @@
         </ul>
       </template>
       <template #footer>
-        <AppNavigationItem icon="icon-settings" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>
+        <AppNavigationItem icon="icon-error" :title="t('majordomo', 'Bounces')" :to="{ name: 'bounces' }"/>
+        <AppNavigationItem icon="icon-settings-dark" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>
       </template>
     </AppNavigation>
     <AppContent>
@@ -64,6 +65,7 @@ import ActionTextEditable from '@nextcloud/vue/dist/Components/ActionTextEditabl
 import VueRouter from "vue-router";
 
 import api from "./api";
+import Bounces from "./Bounces";
 import MailingList from "./MailingList";
 import Settings from "./Settings";
 import {linkTo} from "@nextcloud/router";
@@ -74,6 +76,7 @@ const router = new VueRouter({
   routes: [
     {path: "/", component: {template: ""}},
     {path: "/settings", name: 'settings', component: Settings},
+    {path: "/bounces/:uid?", name: 'bounces', component: Bounces},
     {path: "/lists/:id", name: 'list', component: MailingList}
   ]
 });

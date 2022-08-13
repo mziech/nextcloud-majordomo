@@ -21,14 +21,16 @@
 namespace OCA\Majordomo\Service;
 
 use DateTime;
+use OCA\Majordomo\Db\MailingList;
 use Psr\Log\LoggerInterface;
 
 class ImapLoader {
 
     const SUBJECT_PREFIX = "Majordomo results: " . MajordomoCommands::MAGIC . " ";
+    const BOUNCE_PATTERN = "/BOUNCE +([^@]*@[^:]*): +Non-member submission from \[([^]]*)]/";
 
     private $AppName;
-    private $imap = NULL;
+    private $imap = [];
     private $imapSettings;
     /**
      * @var DateTime
@@ -54,21 +56,27 @@ class ImapLoader {
         return $this->imapSettings !== NULL && !empty($this->imapSettings->server);
     }
 
-    public function getImap() {
-        if ($this->imap === NULL) {
-            $this->imap = $this->imap = imap_open(
-                '{' . $this->imapSettings->server . '}' . $this->imapSettings->inbox,
-                $this->imapSettings->user, $this->imapSettings->password
+    public function getImap($folder = NULL) {
+        if ($folder == NULL) {
+            $folder = $this->imapSettings->inbox;
+        }
+
+        if (!isset($this->imap[$folder])) {
+            $mailbox = '{' . $this->imapSettings->server . '}' . $folder;
+            $this->logger->debug("Opening IMAP connection: $mailbox");
+            $this->imap[$folder] = imap_open(
+                $mailbox, $this->imapSettings->user, $this->imapSettings->password
             );
         }
 
-        return $this->imap;
+        return $this->imap[$folder];
     }
 
     function __destruct() {
-        if ($this->imap !== NULL && $this->imap !== FALSE) {
-            imap_close($this->imap);
+        foreach ($this->imap as $imap) {
+            imap_close($imap);
         }
+        $this->imap = [];
     }
 
     public function test() {
@@ -94,8 +102,8 @@ class ImapLoader {
         $imap = $this->getImap();
         $ref = '{' . $this->imapSettings->server . '}';
         $folders = $this->getFolders();
-        foreach ([ $this->imapSettings->archive, $this->imapSettings->errors ] as $required) {
-            if (!in_array($required, $folders)) {
+        foreach ([ $this->imapSettings->archive, $this->imapSettings->errors, $this->imapSettings->bounces ] as $required) {
+            if ($required !== NULL && !in_array($required, $folders)) {
                 imap_createmailbox($imap, $ref . $required);
             }
         }
@@ -156,6 +164,10 @@ class ImapLoader {
                     imap_mail_move($imap, $mail->msgno, $this->imapSettings->errors);
                 }
                 $expunge = true;
+            } else if (!empty($this->imapSettings->bounces) && \Safe\preg_match(self::BOUNCE_PATTERN, $mail->subject)) {
+                imap_mail_move($imap, $mail->msgno, $this->imapSettings->bounces);
+                $this->logger->info("Moved bounce {$mail->msgno} '{$mail->subject}' from {$mail->from}", [ "app" => $this->AppName ]);
+                $expunge = true;
             }
         }
 
@@ -163,5 +175,69 @@ class ImapLoader {
             imap_expunge($imap);
         }
     }
-    
+
+    public function getBounces() {
+        $imap = $this->getImap($this->imapSettings->bounces);
+        $out = array();
+        $this->ensureFoldersExist();
+        $nrs = imap_sort($imap, SORTARRIVAL, 1);
+        $bouncerMapping = $this->inboundService->getBouncerMapping();
+        if ($nrs !== false) {
+            $mails = [];
+            foreach (imap_fetch_overview($imap, join(",", $nrs)) as $mail) {
+                $m = [];
+                if (isset($mail->subject) && \Safe\preg_match(self::BOUNCE_PATTERN, $mail->subject, $m)) {
+                    if (!array_key_exists($m[1], $bouncerMapping)) {
+                        continue;
+                    }
+
+                    if ($mail->deleted) {
+                        continue;
+                    }
+
+                    $ml = $bouncerMapping[$m[1]];
+                    $mails[$mail->msgno] = [
+                        "list_id" => $ml->id,
+                        "list_title" => $ml->title,
+                        "list_address" => $m[1],
+                        "from" => $m[2],
+                        "date" => $mail->date,
+                        "mid" => $mail->message_id,
+                        "uid" => $mail->uid,
+                    ];
+                }
+            }
+            foreach ($nrs as $nr) {
+                if (isset($mails[$nr])) {
+                    $out[] = $mails[$nr];
+                }
+            }
+        }
+        return $out;
+    }
+
+    public function getBounce($uid) {
+        $imap = $this->getImap($this->imapSettings->bounces);
+        $ml = $this->assertBounce($uid);
+        return [
+            "ml" => $ml,
+            "body" => imap_body($imap, $uid, FT_UID),
+        ];
+    }
+
+    public function deleteBounce($uid) {
+        $imap = $this->getImap($this->imapSettings->bounces);
+        $this->assertBounce($uid);
+        imap_mail_move($imap, $uid, $this->imapSettings->archive, FT_UID);
+    }
+
+    protected function assertBounce($uid): MailingList {
+        $imap = $this->getImap($this->imapSettings->bounces);
+        $mail = imap_fetch_overview($imap, "$uid", FT_UID)[0];
+        $m = [];
+        if (\Safe\preg_match(self::BOUNCE_PATTERN, $mail->subject, $m)) {
+            return $this->inboundService->getListByBounceAddress($m[1]);
+        }
+        throw new \RuntimeException("The mail $uid is not a bounced message");
+    }
 }

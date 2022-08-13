@@ -175,6 +175,13 @@ class OutboundService {
         ];
     }
 
+    public function approveBounce($uid) {
+        $bounce = $this->imapLoader->getBounce($uid);
+        (new MajordomoCommands("Bounce Approval", $bounce["ml"], $this->mailer, $this->settings))
+            ->approveBounce($bounce["body"]);
+        $this->imapLoader->deleteBounce($uid);
+    }
+
     private function commands(Request $request, MailingList $ml): MajordomoCommands {
         return (new MajordomoCommands($request->getRequestId(), $ml, $this->mailer, $this->settings));
     }

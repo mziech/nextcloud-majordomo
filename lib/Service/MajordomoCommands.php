@@ -100,25 +100,34 @@ class MajordomoCommands {
     function apply() {
         $this->commands[] = 'end';
         $this->commands[] = '';
-        $subject = self::MAGIC . " " . $this->requestId;
         $body = implode("\r\n", $this->commands);
-        $from = $this->settings->getImapSettings()->from;
+        $to = $this->ml->manager;
 
+        $this->sendRawMail($to, $body);
+
+        $this->commands = [];
+    }
+
+    function approveBounce(string $body) {
+        $this->sendRawMail($this->ml->bounceAddress, "Approve: " . $this->ml->password . "\r\n" . $body);
+    }
+
+    private function sendRawMail(string $to, string $body) {
+        $from = $this->settings->getImapSettings()->from;
+        $subject = self::MAGIC . " " . $this->requestId;
         $message = new Message(new \Swift_Message(), true);
         if ($from) {
-            $message->setFrom([ $from ]);
+            $message->setFrom([$from]);
         }
-        $message->setTo([ $this->ml->manager ]);
+        $message->setTo([$to]);
         $message->setPlainBody($body);
         $message->setSubject($subject);
         $message->getSwiftMessage()->setEncoder(new \Swift_Mime_ContentEncoder_RawContentEncoder());  // disable quoted-printable encoding
         $message->getSwiftMessage()->setMaxLineLength(0);  // disable word-wrap
         $failedReceipients = $this->mailer->send($message);
-        if (in_array($this->ml->manager, $failedReceipients)) {
+        if (in_array($to, $failedReceipients)) {
             throw new OutboundException("Failed to send Majordomo command for MailingList {$this->ml->id} to " . implode(", ", $failedReceipients));
         }
-
-        $this->commands = [];
     }
 
 }

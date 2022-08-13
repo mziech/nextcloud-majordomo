@@ -158,6 +158,25 @@ class ApiController extends Controller {
         return new JSONResponse($this->outboundService->getRequestStatus($id));
     }
 
+    public function getBounces() {
+        $this->imapLoader->processMails();
+        return new JSONResponse($this->imapLoader->getBounces());
+    }
+
+    public function getBounce($uid) {
+        return new JSONResponse(["body" => $this->imapLoader->getBounce($uid)["body"]]);
+    }
+
+    public function approveBounce($uid) {
+        $this->outboundService->approveBounce($uid);
+        return new JSONResponse([]);
+    }
+
+    public function rejectBounce($uid) {
+        $this->imapLoader->deleteBounce($uid);
+        return new JSONResponse([]);
+    }
+
     public function getSettings() {
         return new JSONResponse([
             'imap' => $this->settings->getImapSettings()

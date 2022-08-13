@@ -10,7 +10,9 @@
   "scripts": {
     "build": "NODE_ENV=production webpack --progress --config webpack.prod.js",
     "dev": "NODE_ENV=development webpack --progress --config webpack.dev.js",
-    "watch": "NODE_ENV=development webpack --progress --watch --config webpack.dev.js"
+    "watch": "NODE_ENV=development webpack --progress --watch --config webpack.dev.js",
+    "l10n:read": "node ./l10n/read.js",
+    "l10n:write": "node ./l10n/write.js"
   },
   "author": "",
   "license": "UNLICENSED",
@@ -45,6 +47,9 @@
     "eslint-plugin-promise": "^5.2.0",
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": "^7.20.0",
+    "gettext-extractor": "^3.5.4",
+    "gettext-extractor-vue": "^5.0.0",
+    "gettext-parser": "^5.1.2",
     "linkifyjs": "^3.0.5",
     "sass": "^1.48.0",
     "sass-loader": "^12.4.0",

@@ -29,4 +29,5 @@ class ImapSettings {
     public $inbox;
     public $archive;
     public $errors;
+    public $bounces;
 }

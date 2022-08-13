@@ -1,5 +1,5 @@
 <?php
-script('majordomo', 'majordomo');
+\OCP\Util::addScript('majordomo', 'majordomo');
 ?>
 
 <div id="content"></div>

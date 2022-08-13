@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
-"Report-Msgid-Bugs-To: translations@owncloud.org\n"
-"POT-Creation-Date: 2022-01-18 22:10+0100\n"
-"PO-Revision-Date: 2022-01-22 21:21+0100\n"
+"Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
+"POT-Creation-Date: 2022-08-12 15:15+0000\n"
+"PO-Revision-Date: 2022-08-12 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,431 +16,280 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: js/majordomo.js:6565
-#, fuzzy
-#| msgid "form"
-msgid "form"
-msgid_plural "action-text-editable__form"
-msgstr[0] "form"
-msgstr[1] "form"
-
-#: js/majordomo.js:6565
-#, fuzzy
-#| msgid "action-input"
-msgid "action"
-msgid_plural "action--disabled"
-msgstr[0] "action-input"
-msgstr[1] "action-input"
-
-#: js/majordomo.js:6651
-#, fuzzy
-#| msgid "app-navigation-entry-link"
-#| msgid_plural "#"
-msgid "app-navigation__list"
-msgstr "app-navigation-entry-link"
-
-#: js/majordomo.js:6651
-#, fuzzy
-#| msgid "app-navigation-entry-link"
-#| msgid_plural "#"
-msgid "app-navigation"
-msgstr "app-navigation-entry-link"
-
-#: js/majordomo.js:6769
-msgid "popover"
-msgstr ""
-
-#: js/majordomo.js:6843
-#, fuzzy
-#| msgid "app-navigation-entry-link"
-#| msgid_plural "#"
-msgid "app-navigation-new"
-msgstr "app-navigation-entry-link"
-
-#: js/majordomo.js:6896 js/majordomo.js:7014
-msgid "mention-bubble__title"
-msgid_plural "heading"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:6896 js/majordomo.js:7014
-msgid "mention-bubble__select"
-msgid_plural "none"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:6896 js/majordomo.js:7014
-msgid "mention-bubble"
-msgid_plural "mention-bubble--primary"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7078
-msgid "focusable"
-msgid_plural "#"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7078
-msgid "icon-confirm"
-msgid_plural "submit"
-msgstr[0] "icon-confirm"
-msgstr[1] "submit"
-
-#: js/majordomo.js:7099
-#, fuzzy
-#| msgid "icon-close"
-#| msgid_plural "reset"
-msgid "icon-loading"
-msgid_plural "px"
-msgstr[0] "icon-close"
-msgstr[1] "reset"
-
-#: js/majordomo.js:7099
-msgid "avatardiv__user-status"
-msgid_plural "avatardiv__user-status--"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7099
-msgid "#"
-msgid_plural "M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7099
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "12"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7099
-msgid "avatardiv__status"
-msgid_plural "avatardiv__status--"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7162
-msgid "empty-content__icon"
-msgstr ""
-
-#: js/majordomo.js:7162
-msgid "empty-content__title"
-msgstr ""
-
-#: js/majordomo.js:7162
-msgid "empty-content"
-msgstr ""
-
-#: js/majordomo.js:10038
-msgid "An error occurred while loading the mailing list."
-msgstr "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten."
-
-#: js/majordomo.js:10050
-msgid "Mailing list saved."
-msgstr "Verteiler Konfiguration gespeichert."
-
-#: js/majordomo.js:10063
-msgid "Failed to save mailing list."
-msgstr "Speichern der Verteiler Konfiguration fehlgeschlagen."
-
-#: js/majordomo.js:10543
-msgid "IMAP settings successfully updated"
-msgstr "IMAP Einsatellungen erfolgreich aktualisiert"
-
-#: js/majordomo.js:10547
-msgid "Failed to store IMAP settings!"
-msgstr "Fehler beim Speichern der IMAP Einstellungen!"
-
-#: js/majordomo.js:10561
-msgid "Failed to test IMAP settings!"
-msgstr "Fehler beim Überprüfen der IMAP Einstellungen!"
-
-#: js/majordomo.js:29387 js/majordomo.js:29400
-msgid "Some text"
-msgstr "Irgendein Text"
-
-#: js/majordomo.js:29414 js/majordomo.js:29429
-msgid "One thing"
-msgid_plural "Many things"
-msgstr[0] "One thing"
-msgstr[1] "Many things"
-
-#: js/majordomo.js:38407
-msgid "New Mailinglist"
-msgstr "Neuer E-Mail Verteiler"
-
-#: js/majordomo.js:38429 js/majordomo.js:38502 js/majordomo.js:39459
-msgid "Loading ..."
-msgstr "Wird geladen ..."
-
-#: js/majordomo.js:38452
-msgid "Settings"
-msgstr "Einstellungen"
-
-#: js/majordomo.js:38518
-msgid "Current list members"
-msgstr "Aktuelle Mitglieder"
-
-#: js/majordomo.js:38544
-msgid "E-Mail"
-msgstr "E-Mail"
-
-#: js/majordomo.js:38577
-msgid "Member needs to be added"
-msgstr "Mitglied muss hinzugefügt werden"
-
-#: js/majordomo.js:38589
-msgid "Member needs to be removed"
-msgstr "Mitglied muss entfernt werden"
-
-#: js/majordomo.js:38609
-#, python-brace-format
-msgid "Edit Mailinglist: {title}"
-msgstr "Verteiler bearbeiten: {title}"
-
-#: js/majordomo.js:38619
-msgid "Create Mailinglist"
-msgstr "Erstelle E-Mail Verteiler"
-
-#: js/majordomo.js:38637
-msgid "Mailing list title"
-msgstr "Verteiler Titel"
-
-#: js/majordomo.js:38667
-msgid "List manager email address"
-msgstr "E-Mail zur Verteiler Konfiguration"
-
-#: js/majordomo.js:38698
-msgid "List name for management"
-msgstr "Verteiler Name für Konfiguration"
-
-#: js/majordomo.js:38728
-msgid "List manager password"
-msgstr "Passwort für Konfiguration"
-
-#: js/majordomo.js:38811
-msgid "Enable automatic synchronization of list members"
-msgstr "Aktiviere automatische Synchronisierung  der Verteiler Mitglieder"
-
-#: js/majordomo.js:38821 js/majordomo.js:39837
-msgid "Save"
-msgstr "Speichern"
-
-#: js/majordomo.js:38850
-msgid "Retrieve current status from list manager"
-msgstr "Aktuellen Status aus Verteiler Konfiguration abrufen"
-
-#: js/majordomo.js:38887
-msgid "Retrieve current status from list manager AND apply to settings"
-msgstr "Aktuellen Status abrufen UND Änderungen anwenden"
-
-#: js/majordomo.js:38924
-msgid "Write desired changes to list manager"
-msgstr "Gewünschte Änderungen an die Verteiler Konfiguration übertragen"
-
-#: js/majordomo.js:38938
-msgid "Member Policy"
-msgstr "Mitgliedschaftsregeln"
-
-#: js/majordomo.js:38975 js/majordomo.js:39144
-msgid "Members of group"
-msgstr "Mitglieder der Gruppe"
-
-#: js/majordomo.js:38979 js/majordomo.js:39153
-msgid "E-Mail of user"
-msgstr "E-Mail des Benutzers"
-
-#: js/majordomo.js:38983 js/majordomo.js:39162
-msgid "Additional E-Mail"
-msgstr "Zusätzliche E-Mail"
-
-#: js/majordomo.js:38988 js/majordomo.js:39174
-msgid "Except members of group"
-msgstr "Außer Mitglieder der Gruppe"
-
-#: js/majordomo.js:38994 js/majordomo.js:39187
-msgid "Except E-Mail of user"
-msgstr "Außer E-Mail des Benutzers"
-
-#: js/majordomo.js:38999 js/majordomo.js:39197
-msgid "Exclude E-Mail"
-msgstr "E-Mail ausschließen"
-
-#: js/majordomo.js:39035
+#: src/MailingList.vue:21
 msgid "- Please select -"
 msgstr "- Bitte wählen -"
 
-#: js/majordomo.js:39100
-msgid "Add policy"
-msgstr "Regel hinzufügen"
-
-#: js/majordomo.js:39299
-msgid "Apply pending changes"
-msgstr "Ausstehende Änderungen anwenden"
-
-#: js/majordomo.js:39309
-msgid "There are currently no pending changes."
-msgstr "Im Moment müssen keine Änderungen vorgenommen werden."
-
-#: js/majordomo.js:39320
-msgid "Please acknowledge to apply the following pending changes:"
-msgstr "Bitte bestätigen Sie, dass folgende Änderungen angewendet werden:"
-
-#: js/majordomo.js:39347
-#, python-brace-format
-msgid "Unsubscribe: {email}"
-msgstr "Entfernen: {email}"
-
-#: js/majordomo.js:39365
-#, python-brace-format
-msgid "Subscribe: {email}"
-msgstr "Hinzufügen: {email}"
-
-#: js/majordomo.js:39397
-msgid "Acknowledge"
-msgstr "Bestätigen"
-
-#: js/majordomo.js:39417
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: js/majordomo.js:39462
-msgid "Global Settings"
-msgstr "Allgemeine Einstellungen"
-
-#: js/majordomo.js:39477
-msgid "IMAP Server Address"
-msgstr "IMAP Server Adresse"
-
-#: js/majordomo.js:39504
-msgid "Encryption"
-msgstr "Verbindungssicherheit"
-
-#: js/majordomo.js:39541
+#: src/Settings.vue:22
 msgid "(default)"
 msgstr "(Vorgabe)"
 
-#: js/majordomo.js:39545
-msgid "Use SSL"
-msgstr "SSL/TLS"
+#: src/RequestButton.vue:21
+msgid "Acknowledge"
+msgstr "Bestätigen"
 
-#: js/majordomo.js:39549
-msgid "Force TLS"
-msgstr "Erzwinge STARTTLS"
+#: src/MailingList.vue:21
+msgid "Add policy"
+msgstr "Regel hinzufügen"
 
-#: js/majordomo.js:39553
+#: src/MailingList.vue:21
+msgid "Additional E-Mail"
+msgstr "Zusätzliche E-Mail"
+
+#: src/MailingList.vue:197
+msgid "An error occurred while loading the mailing list."
+msgstr "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten."
+
+#: src/RequestButton.vue:21
+msgid "Apply pending changes"
+msgstr "Ausstehende Änderungen anwenden"
+
+#: src/Bounces.vue:22
+msgid "Approve"
+msgstr "Genehmigen"
+
+#: src/Bounces.vue:106
+msgid "Bounced message was approved."
+msgstr "Abgewiesene E-Mail wurde genehmigt."
+
+#: src/Bounces.vue:117
+msgid "Bounced message was rejected."
+msgstr "Abgewiesene E-Mail wurde abgelehnt."
+
+#: src/Bounces.vue:22
+msgid "Bounced Messages"
+msgstr "Abgewiesene E-Mails"
+
+#: src/App.vue:21
+msgid "Bounces"
+msgstr "Abgewiesene E-Mails"
+
+#: src/RequestButton.vue:21
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: src/MailingList.vue:21
+msgid "Create Mailinglist"
+msgstr "Erstelle E-Mail Verteiler"
+
+#: src/MailingList.vue:21
+msgid "Current list members"
+msgstr "Aktuelle Mitglieder"
+
+#: src/Settings.vue:22
 msgid "Disable TLS"
 msgstr "Kein STARTTLS"
 
-#: js/majordomo.js:39563
-msgid "Skip SSL/TLS certificate validation"
-msgstr "SSL/TLS Zertifikatsüberprüfung deaktivieren"
+#: src/MailingList.vue:21
+msgid "E-Mail"
+msgstr "E-Mail"
 
-#: js/majordomo.js:39618
-msgid "Never send password in plaintext"
-msgstr "Passwort niemals in Klartext übertragen"
-
-#: js/majordomo.js:39667
+#: src/Settings.vue:22
 msgid "E-Mail address"
 msgstr "E-Mail Adresse"
 
-#: js/majordomo.js:39694
-msgid "IMAP Username"
-msgstr "IMAP Benutzername"
+#: src/MailingList.vue:21
+msgid "E-Mail of user"
+msgstr "E-Mail des Benutzers"
 
-#: js/majordomo.js:39721
-msgid "IMAP Password"
-msgstr "IMAP Passwort"
+#: src/MailingList.vue:21
+msgid "Edit Mailinglist: {title}"
+msgstr "Verteiler bearbeiten: {title}"
 
-#: js/majordomo.js:39749
-msgid "IMAP Inbox folder name"
-msgstr "IMAP Ordner für den Posteingang"
+#: src/MailingList.vue:21
+msgid "Enable automatic synchronization of list members"
+msgstr "Aktiviere automatische Synchronisierung  der Verteiler Mitglieder"
 
-#: js/majordomo.js:39778
+#: src/Settings.vue:22
+msgid "Encryption"
+msgstr "Verbindungssicherheit"
+
+#: src/MailingList.vue:21
+msgid "Except E-Mail of user"
+msgstr "Außer E-Mail des Benutzers"
+
+#: src/MailingList.vue:21
+msgid "Except members of group"
+msgstr "Außer Mitglieder der Gruppe"
+
+#: src/MailingList.vue:21
+msgid "Exclude E-Mail"
+msgstr "E-Mail ausschließen"
+
+#: src/Bounces.vue:109
+msgid "Failed to approve bounced message."
+msgstr "Fehler beim Genehmigen der abgewiesenen E-Mail."
+
+#: src/Bounces.vue:130
+msgid "Failed to load bounced message."
+msgstr "Fehler beim Laden der abgewiesenen E-Mail."
+
+#: src/Bounces.vue:120
+msgid "Failed to reject bounced message."
+msgstr "Fehler beim Ablehnen der abgewiesenen E-Mail."
+
+#: src/MailingList.vue:212
+msgid "Failed to save mailing list."
+msgstr "Speichern der Verteiler Konfiguration fehlgeschlagen."
+
+#: src/Settings.vue:166
+msgid "Failed to store IMAP settings!"
+msgstr "Fehler beim Speichern der IMAP Einstellungen!"
+
+#: src/Settings.vue:181
+msgid "Failed to test IMAP settings!"
+msgstr "Fehler beim Überprüfen der IMAP Einstellungen!"
+
+#: src/Settings.vue:22
+msgid "Force TLS"
+msgstr "Erzwinge STARTTLS"
+
+#: src/Settings.vue:22
+msgid "Global Settings"
+msgstr "Allgemeine Einstellungen"
+
+#: src/Settings.vue:22
 msgid "IMAP Archive folder name"
 msgstr "IMAP Ordner für das Archiv"
 
-#: js/majordomo.js:39807
+#: src/Settings.vue:22
 msgid "IMAP Errors folder name"
 msgstr "IMAP Ordner für Fehlermeldungen"
 
-#: js/majordomo.js:39857
-msgid "Test IMAP Connection"
-msgstr "IMAP Verbindung überprüfen"
+#: src/Settings.vue:22
+msgid "IMAP Inbox folder name"
+msgstr "IMAP Ordner für den Posteingang"
 
-#: js/majordomo.js:39893
+#: src/Settings.vue:22
+msgid "IMAP Password"
+msgstr "IMAP Passwort"
+
+#: src/Settings.vue:22
+msgid "IMAP Server Address"
+msgstr "IMAP Server Adresse"
+
+#: src/Settings.vue:162
+msgid "IMAP settings successfully updated"
+msgstr "IMAP Einsatellungen erfolgreich aktualisiert"
+
+#: src/Settings.vue:22
+msgid "IMAP Username"
+msgstr "IMAP Benutzername"
+
+#: src/MailingList.vue:21
+msgid "List manager email address"
+msgstr "E-Mail zur Verteiler Konfiguration"
+
+#: src/MailingList.vue:21
+msgid "List manager password"
+msgstr "Passwort für Konfiguration"
+
+#: src/MailingList.vue:21
+msgid "List name for management"
+msgstr "Verteiler Name für Konfiguration"
+
+#: src/App.vue:21 src/Bounces.vue:22 src/MailingList.vue:21 src/Settings.vue:22
+msgid "Loading ..."
+msgstr "Wird geladen ..."
+
+#: src/MailingList.vue:21
+msgid "Mail address to approve bounces"
+msgstr "E-Mail für Genehmigungprozess"
+
+#: src/MailingList.vue:207
+msgid "Mailing list saved."
+msgstr "Verteiler Konfiguration gespeichert."
+
+#: src/MailingList.vue:21
+msgid "Mailing list title"
+msgstr "Verteiler Titel"
+
+#: src/MailingList.vue:21
+msgid "Member needs to be added"
+msgstr "Mitglied muss hinzugefügt werden"
+
+#: src/MailingList.vue:21
+msgid "Member needs to be removed"
+msgstr "Mitglied muss entfernt werden"
+
+#: src/MailingList.vue:21
+msgid "Member Policy"
+msgstr "Mitgliedschaftsregeln"
+
+#: src/MailingList.vue:21
+msgid "Members of group"
+msgstr "Mitglieder der Gruppe"
+
+#: src/Settings.vue:22
+msgid "Never send password in plaintext"
+msgstr "Passwort niemals in Klartext übertragen"
+
+#: src/App.vue:21
+msgid "New Mailinglist"
+msgstr "Neuer E-Mail Verteiler"
+
+#: src/RequestButton.vue:21
+msgid "Please acknowledge to apply the following pending changes:"
+msgstr "Bitte bestätigen Sie, dass folgende Änderungen angewendet werden:"
+
+#: src/Settings.vue:22
 msgid "Process incoming mails now"
 msgstr "Empfangene E-Mails jetzt verarbeiten"
 
-#: js/majordomo.js:40039
-msgid "multiselect__tag-icon"
-msgid_plural "aria-hidden"
-msgstr[0] "multiselect__tag-icon"
-msgstr[1] "aria-hidden"
+#: src/Bounces.vue:22
+msgid "Reject"
+msgstr "Ablehnen"
 
-#: js/majordomo.js:40039
-msgid "search"
-msgid_plural "multiselect__input"
-msgstr[0] "search"
-msgstr[1] "multiselect__input"
+#: src/MailingList.vue:21
+msgid "Retrieve current status from list manager"
+msgstr "Aktuellen Status aus Verteiler Konfiguration abrufen"
 
-#: js/majordomo.js:40039
-msgid "tags"
-msgid_plural "multiselect__tags"
-msgstr[0] "tags"
-msgstr[1] "multiselect__tags"
+#: src/MailingList.vue:21
+msgid "Retrieve current status from list manager AND apply to settings"
+msgstr "Aktuellen Status abrufen UND Änderungen anwenden"
 
-#: js/majordomo.js:40039
-msgid "multiselect"
-msgid_plural "multiselect--active"
-msgstr[0] "multiselect"
-msgstr[1] "multiselect--active"
+#: src/MailingList.vue:21 src/Settings.vue:22
+msgid "Save"
+msgstr "Speichern"
 
-#, fuzzy
-#~| msgid "action-input"
-#~ msgid "action-input"
-#~ msgid_plural "action-input--picker"
-#~ msgstr[0] "action-input"
-#~ msgstr[1] "action-input"
+#: src/App.vue:21
+msgid "Settings"
+msgstr "Einstellungen"
 
-#~ msgid "settings-button"
-#~ msgstr "settings-button"
+#: src/Settings.vue:22
+msgid "Skip SSL/TLS certificate validation"
+msgstr "SSL/TLS Zertifikatsüberprüfung deaktivieren"
 
-#~ msgid "app-settings-header"
-#~ msgstr "app-settings-header"
+#: src/RequestButton.vue:21
+msgid "Subscribe: {email}"
+msgstr "Hinzufügen: {email}"
 
-#~ msgid "slide-up"
-#~ msgstr "slide-up"
+#: src/Settings.vue:22
+msgid "Test IMAP Connection"
+msgstr "IMAP Verbindung überprüfen"
 
-#, fuzzy
-#~| msgid "action-input__icon"
-#~ msgid "mention-bubble__icon"
-#~ msgstr "action-input__icon"
+#: src/Bounces.vue:22
+msgid "There are currently no bounced messages."
+msgstr "Im Moment gibt es keine abgewiesenen E-Mails die bearbeitet werden müssen."
 
-#~ msgid "Majordomo"
-#~ msgstr "Majordomo"
+#: src/RequestButton.vue:21
+msgid "There are currently no pending changes."
+msgstr "Im Moment müssen keine Änderungen vorgenommen werden."
 
-#~ msgid "checkbox"
-#~ msgid_plural "checkbox action-checkbox__checkbox"
-#~ msgstr[0] "checkbox"
-#~ msgstr[1] "checkbox action-checkbox__checkbox"
+#: src/RequestButton.vue:21
+msgid "Unsubscribe: {email}"
+msgstr "Entfernen: {email}"
 
-#~ msgid "label"
-#~ msgid_plural "action-checkbox__label"
-#~ msgstr[0] "label"
-#~ msgstr[1] "action-checkbox__label"
+#: src/Settings.vue:22
+msgid "Use SSL"
+msgstr "SSL/TLS"
 
-#~ msgid "action-input__submit"
-#~ msgstr "action-input__submit"
+#: src/Bounces.vue:22
+msgid "View"
+msgstr "Anzeigen"
 
-#~ msgid "action--disabled"
-#~ msgstr "action--disabled"
-
-#~ msgid "aria-expanded"
-#~ msgstr "aria-expanded"
-
-#~ msgid "no-snapper"
-#~ msgstr "no-snapper"
+#: src/MailingList.vue:21
+msgid "Write desired changes to list manager"
+msgstr "Gewünschte Änderungen an die Verteiler Konfiguration übertragen"

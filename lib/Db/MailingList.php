@@ -24,6 +24,7 @@ class MailingList extends \OCP\AppFramework\Db\Entity {
     public $manager;
     public $title;
     public $listname;
+    public $bounceAddress;
     public $password;
     public $syncActive;
 

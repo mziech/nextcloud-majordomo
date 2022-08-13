@@ -45,6 +45,13 @@ class MailingListMapper extends \OCP\AppFramework\Db\QBMapper {
             ->from("majordomo_lists"));
     }
 
+    public function findByBounceAddress(string $bounceAddress) : MailingList {
+        $qb = $this->db->getQueryBuilder();
+        return $this->findEntity($qb->select("*")
+            ->from("majordomo_lists")
+            ->where($qb->expr()->eq("bounce_address", $qb->createNamedParameter($bounceAddress, IQueryBuilder::PARAM_STR))));
+    }
+
     /**
      * @return array<MailingList>
      */

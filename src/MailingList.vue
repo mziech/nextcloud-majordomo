@@ -65,6 +65,10 @@
           <label for="password">{{ t('majordomo', 'List manager password') }}:</label>
           <input id="password" type="password" v-model="list.password" :placeholder="isNew ? '' : '********'"/>
         </p>
+        <p class="centered-input">
+          <label for="manager">{{ t('majordomo', 'Mail address to approve bounces') }}:</label>
+          <input id="bounceAddress" type="email" v-model="list.bounceAddress"/>
+        </p>
         <p>
           <input type="checkbox" id="syncActive" class="checkbox" v-model="list.syncActive">
           <label for="syncActive">{{ t('majordomo', 'Enable automatic synchronization of list members') }}</label><br>

@@ -6,9 +6,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
-"Report-Msgid-Bugs-To: translations@owncloud.org\n"
-"POT-Creation-Date: 2022-01-18 22:10+0100\n"
-"PO-Revision-Date: 2022-01-22 21:19+0100\n"
+"Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
+"POT-Creation-Date: 2022-08-12 15:15+0000\n"
+"PO-Revision-Date: 2022-08-12 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,447 +16,281 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: js/majordomo.js:6565
-#, fuzzy
-#| msgid "form"
-msgid "form"
-msgid_plural "action-text-editable__form"
-msgstr[0] "form"
-msgstr[1] "form"
-
-#: js/majordomo.js:6565
-#, fuzzy
-#| msgid "action-input"
-msgid "action"
-msgid_plural "action--disabled"
-msgstr[0] "action-input"
-msgstr[1] "action-input"
-
-#: js/majordomo.js:6651
-#, fuzzy
-#| msgid "app-navigation-entry-link"
-#| msgid_plural "#"
-msgid "app-navigation__list"
-msgstr "app-navigation-entry-link"
-
-#: js/majordomo.js:6651
-#, fuzzy
-#| msgid "app-navigation-entry-link"
-#| msgid_plural "#"
-msgid "app-navigation"
-msgstr "app-navigation-entry-link"
-
-#: js/majordomo.js:6769
-msgid "popover"
-msgstr ""
-
-#: js/majordomo.js:6843
-#, fuzzy
-#| msgid "app-navigation-entry-link"
-#| msgid_plural "#"
-msgid "app-navigation-new"
-msgstr "app-navigation-entry-link"
-
-#: js/majordomo.js:6896 js/majordomo.js:7014
-msgid "mention-bubble__title"
-msgid_plural "heading"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:6896 js/majordomo.js:7014
-msgid "mention-bubble__select"
-msgid_plural "none"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:6896 js/majordomo.js:7014
-msgid "mention-bubble"
-msgid_plural "mention-bubble--primary"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7078
-msgid "focusable"
-msgid_plural "#"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7078
-msgid "icon-confirm"
-msgid_plural "submit"
-msgstr[0] "icon-confirm"
-msgstr[1] "submit"
-
-#: js/majordomo.js:7099
-#, fuzzy
-#| msgid "icon-close"
-#| msgid_plural "reset"
-msgid "icon-loading"
-msgid_plural "px"
-msgstr[0] "icon-close"
-msgstr[1] "reset"
-
-#: js/majordomo.js:7099
-msgid "avatardiv__user-status"
-msgid_plural "avatardiv__user-status--"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7099
-msgid "#"
-msgid_plural "M3.21 3.043H.494l.679-1.177.68-1.176.678 1.176z"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7099
-msgid "http://www.w3.org/2000/svg"
-msgid_plural "12"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7099
-msgid "avatardiv__status"
-msgid_plural "avatardiv__status--"
-msgstr[0] ""
-msgstr[1] ""
-
-#: js/majordomo.js:7162
-msgid "empty-content__icon"
-msgstr ""
-
-#: js/majordomo.js:7162
-msgid "empty-content__title"
-msgstr ""
-
-#: js/majordomo.js:7162
-msgid "empty-content"
-msgstr ""
-
-#: js/majordomo.js:10038
-msgid "An error occurred while loading the mailing list."
-msgstr "An error occurred while loading the mailing list."
-
-#: js/majordomo.js:10050
-msgid "Mailing list saved."
-msgstr "Mailing list saved."
-
-#: js/majordomo.js:10063
-msgid "Failed to save mailing list."
-msgstr "Failed to save mailing list."
-
-#: js/majordomo.js:10543
-msgid "IMAP settings successfully updated"
-msgstr "IMAP settings successfully updated"
-
-#: js/majordomo.js:10547
-msgid "Failed to store IMAP settings!"
-msgstr "Failed to store IMAP settings!"
-
-#: js/majordomo.js:10561
-msgid "Failed to test IMAP settings!"
-msgstr "Failed to test IMAP settings!"
-
-#: js/majordomo.js:29387 js/majordomo.js:29400
-msgid "Some text"
-msgstr "Some text"
-
-#: js/majordomo.js:29414 js/majordomo.js:29429
-msgid "One thing"
-msgid_plural "Many things"
-msgstr[0] "One thing"
-msgstr[1] "Many things"
-
-#: js/majordomo.js:38407
-msgid "New Mailinglist"
-msgstr "New Mailinglist"
-
-#: js/majordomo.js:38429 js/majordomo.js:38502 js/majordomo.js:39459
-msgid "Loading ..."
-msgstr "Loading ..."
-
-#: js/majordomo.js:38452
-msgid "Settings"
-msgstr "Settings"
-
-#: js/majordomo.js:38518
-msgid "Current list members"
-msgstr "Current list members"
-
-#: js/majordomo.js:38544
-msgid "E-Mail"
-msgstr "E-Mail"
-
-#: js/majordomo.js:38577
-msgid "Member needs to be added"
-msgstr "Member needs to be added"
-
-#: js/majordomo.js:38589
-msgid "Member needs to be removed"
-msgstr "Member needs to be removed"
-
-#: js/majordomo.js:38609
-#, python-brace-format
-msgid "Edit Mailinglist: {title}"
-msgstr "Edit Mailinglist: {title}"
-
-#: js/majordomo.js:38619
-msgid "Create Mailinglist"
-msgstr "Create Mailinglist"
-
-#: js/majordomo.js:38637
-msgid "Mailing list title"
-msgstr "Mailing list title"
-
-#: js/majordomo.js:38667
-msgid "List manager email address"
-msgstr "List manager email address"
-
-#: js/majordomo.js:38698
-msgid "List name for management"
-msgstr "List name for management"
-
-#: js/majordomo.js:38728
-msgid "List manager password"
-msgstr "List manager password"
-
-#: js/majordomo.js:38811
-msgid "Enable automatic synchronization of list members"
-msgstr "Enable automatic synchronization of list members"
-
-#: js/majordomo.js:38821 js/majordomo.js:39837
-msgid "Save"
-msgstr "Save"
-
-#: js/majordomo.js:38850
-msgid "Retrieve current status from list manager"
-msgstr "Retrieve current status from list manager"
-
-#: js/majordomo.js:38887
-msgid "Retrieve current status from list manager AND apply to settings"
-msgstr "Retrieve current status from list manager AND apply to settings"
-
-#: js/majordomo.js:38924
-msgid "Write desired changes to list manager"
-msgstr "Write desired changes to list manager"
-
-#: js/majordomo.js:38938
-msgid "Member Policy"
-msgstr "Member Policy"
-
-#: js/majordomo.js:38975 js/majordomo.js:39144
-msgid "Members of group"
-msgstr "Members of group"
-
-#: js/majordomo.js:38979 js/majordomo.js:39153
-msgid "E-Mail of user"
-msgstr "E-Mail of user"
-
-#: js/majordomo.js:38983 js/majordomo.js:39162
-msgid "Additional E-Mail"
-msgstr "Additional E-Mail"
-
-#: js/majordomo.js:38988 js/majordomo.js:39174
-msgid "Except members of group"
-msgstr "Except members of group"
-
-#: js/majordomo.js:38994 js/majordomo.js:39187
-msgid "Except E-Mail of user"
-msgstr "Except E-Mail of user"
-
-#: js/majordomo.js:38999 js/majordomo.js:39197
-msgid "Exclude E-Mail"
-msgstr "Exclude E-Mail"
-
-#: js/majordomo.js:39035
+#: src/MailingList.vue:21
 msgid "- Please select -"
 msgstr "- Please select -"
 
-#: js/majordomo.js:39100
-msgid "Add policy"
-msgstr "Add policy"
-
-#: js/majordomo.js:39299
-msgid "Apply pending changes"
-msgstr "Apply pending changes"
-
-#: js/majordomo.js:39309
-msgid "There are currently no pending changes."
-msgstr "There are currently no pending changes."
-
-#: js/majordomo.js:39320
-msgid "Please acknowledge to apply the following pending changes:"
-msgstr "Please acknowledge to apply the following pending changes:"
-
-#: js/majordomo.js:39347
-#, python-brace-format
-msgid "Unsubscribe: {email}"
-msgstr "Unsubscribe: {email}"
-
-#: js/majordomo.js:39365
-#, python-brace-format
-msgid "Subscribe: {email}"
-msgstr "Subscribe: {email}"
-
-#: js/majordomo.js:39397
-msgid "Acknowledge"
-msgstr "Acknowledge"
-
-#: js/majordomo.js:39417
-msgid "Cancel"
-msgstr "Cancel"
-
-#: js/majordomo.js:39462
-msgid "Global Settings"
-msgstr "Global Settings"
-
-#: js/majordomo.js:39477
-msgid "IMAP Server Address"
-msgstr "IMAP Server Address"
-
-#: js/majordomo.js:39504
-#| msgid "action-input"
-msgid "Encryption"
-msgstr "Secure connection"
-
-#: js/majordomo.js:39541
+#: src/Settings.vue:22
 msgid "(default)"
 msgstr "(default)"
 
-#: js/majordomo.js:39545
-msgid "Use SSL"
-msgstr "Use SSL/TLS"
+#: src/RequestButton.vue:21
+msgid "Acknowledge"
+msgstr "Acknowledge"
 
-#: js/majordomo.js:39549
-msgid "Force TLS"
-msgstr "Force STARTTLS"
+#: src/MailingList.vue:21
+msgid "Add policy"
+msgstr "Add policy"
 
-#: js/majordomo.js:39553
+#: src/MailingList.vue:21
+msgid "Additional E-Mail"
+msgstr "Additional E-Mail"
+
+#: src/MailingList.vue:197
+msgid "An error occurred while loading the mailing list."
+msgstr "An error occurred while loading the mailing list."
+
+#: src/RequestButton.vue:21
+msgid "Apply pending changes"
+msgstr "Apply pending changes"
+
+#: src/Bounces.vue:22
+msgid "Approve"
+msgstr "Approve"
+
+#: src/Bounces.vue:106
+msgid "Bounced message was approved."
+msgstr "Bounced message was approved."
+
+#: src/Bounces.vue:117
+msgid "Bounced message was rejected."
+msgstr "Bounced message was rejected."
+
+#: src/Bounces.vue:22
+msgid "Bounced Messages"
+msgstr "Bounced Messages"
+
+#: src/App.vue:21
+#| msgid "Bounced Messages"
+msgid "Bounces"
+msgstr "Bounces"
+
+#: src/RequestButton.vue:21
+msgid "Cancel"
+msgstr "Cancel"
+
+#: src/MailingList.vue:21
+msgid "Create Mailinglist"
+msgstr "Create Mailinglist"
+
+#: src/MailingList.vue:21
+msgid "Current list members"
+msgstr "Current list members"
+
+#: src/Settings.vue:22
 msgid "Disable TLS"
 msgstr "Disable STARTTLS"
 
-#: js/majordomo.js:39563
-msgid "Skip SSL/TLS certificate validation"
-msgstr "Skip SSL/TLS certificate validation"
+#: src/MailingList.vue:21
+msgid "E-Mail"
+msgstr "E-Mail"
 
-#: js/majordomo.js:39618
-msgid "Never send password in plaintext"
-msgstr "Never send password in plaintext"
-
-#: js/majordomo.js:39667
+#: src/Settings.vue:22
 msgid "E-Mail address"
 msgstr "E-Mail address"
 
-#: js/majordomo.js:39694
-msgid "IMAP Username"
-msgstr "IMAP Username"
+#: src/MailingList.vue:21
+msgid "E-Mail of user"
+msgstr "E-Mail of user"
 
-#: js/majordomo.js:39721
-msgid "IMAP Password"
-msgstr "IMAP Password"
+#: src/MailingList.vue:21
+msgid "Edit Mailinglist: {title}"
+msgstr "Edit Mailinglist: {title}"
 
-#: js/majordomo.js:39749
-msgid "IMAP Inbox folder name"
-msgstr "IMAP Inbox folder name"
+#: src/MailingList.vue:21
+msgid "Enable automatic synchronization of list members"
+msgstr "Enable automatic synchronization of list members"
 
-#: js/majordomo.js:39778
+#: src/Settings.vue:22
+msgid "Encryption"
+msgstr "Secure connection"
+
+#: src/MailingList.vue:21
+msgid "Except E-Mail of user"
+msgstr "Except E-Mail of user"
+
+#: src/MailingList.vue:21
+msgid "Except members of group"
+msgstr "Except members of group"
+
+#: src/MailingList.vue:21
+msgid "Exclude E-Mail"
+msgstr "Exclude E-Mail"
+
+#: src/Bounces.vue:109
+msgid "Failed to approve bounced message."
+msgstr "Failed to approve bounced message."
+
+#: src/Bounces.vue:130
+msgid "Failed to load bounced message."
+msgstr "Failed to load bounced message."
+
+#: src/Bounces.vue:120
+msgid "Failed to reject bounced message."
+msgstr "Failed to reject bounced message."
+
+#: src/MailingList.vue:212
+msgid "Failed to save mailing list."
+msgstr "Failed to save mailing list."
+
+#: src/Settings.vue:166
+msgid "Failed to store IMAP settings!"
+msgstr "Failed to store IMAP settings!"
+
+#: src/Settings.vue:181
+msgid "Failed to test IMAP settings!"
+msgstr "Failed to test IMAP settings!"
+
+#: src/Settings.vue:22
+msgid "Force TLS"
+msgstr "Force STARTTLS"
+
+#: src/Settings.vue:22
+msgid "Global Settings"
+msgstr "Global Settings"
+
+#: src/Settings.vue:22
 msgid "IMAP Archive folder name"
 msgstr "IMAP Archive folder name"
 
-#: js/majordomo.js:39807
+#: src/Settings.vue:22
 msgid "IMAP Errors folder name"
 msgstr "IMAP Errors folder name"
 
-#: js/majordomo.js:39857
-msgid "Test IMAP Connection"
-msgstr "Test IMAP Connection"
+#: src/Settings.vue:22
+msgid "IMAP Inbox folder name"
+msgstr "IMAP Inbox folder name"
 
-#: js/majordomo.js:39893
+#: src/Settings.vue:22
+msgid "IMAP Password"
+msgstr "IMAP Password"
+
+#: src/Settings.vue:22
+msgid "IMAP Server Address"
+msgstr "IMAP Server Address"
+
+#: src/Settings.vue:162
+msgid "IMAP settings successfully updated"
+msgstr "IMAP settings successfully updated"
+
+#: src/Settings.vue:22
+msgid "IMAP Username"
+msgstr "IMAP Username"
+
+#: src/MailingList.vue:21
+msgid "List manager email address"
+msgstr "List manager email address"
+
+#: src/MailingList.vue:21
+msgid "List manager password"
+msgstr "List manager password"
+
+#: src/MailingList.vue:21
+msgid "List name for management"
+msgstr "List name for management"
+
+#: src/App.vue:21 src/Bounces.vue:22 src/MailingList.vue:21 src/Settings.vue:22
+msgid "Loading ..."
+msgstr "Loading ..."
+
+#: src/MailingList.vue:21
+msgid "Mail address to approve bounces"
+msgstr "Mail address to approve bounces"
+
+#: src/MailingList.vue:207
+msgid "Mailing list saved."
+msgstr "Mailing list saved."
+
+#: src/MailingList.vue:21
+msgid "Mailing list title"
+msgstr "Mailing list title"
+
+#: src/MailingList.vue:21
+msgid "Member needs to be added"
+msgstr "Member needs to be added"
+
+#: src/MailingList.vue:21
+msgid "Member needs to be removed"
+msgstr "Member needs to be removed"
+
+#: src/MailingList.vue:21
+msgid "Member Policy"
+msgstr "Member Policy"
+
+#: src/MailingList.vue:21
+msgid "Members of group"
+msgstr "Members of group"
+
+#: src/Settings.vue:22
+msgid "Never send password in plaintext"
+msgstr "Never send password in plaintext"
+
+#: src/App.vue:21
+msgid "New Mailinglist"
+msgstr "New Mailinglist"
+
+#: src/RequestButton.vue:21
+msgid "Please acknowledge to apply the following pending changes:"
+msgstr "Please acknowledge to apply the following pending changes:"
+
+#: src/Settings.vue:22
 msgid "Process incoming mails now"
 msgstr "Process incoming mails now"
 
-#: js/majordomo.js:40039
-msgid "multiselect__tag-icon"
-msgid_plural "aria-hidden"
-msgstr[0] "multiselect__tag-icon"
-msgstr[1] "aria-hidden"
+#: src/Bounces.vue:22
+msgid "Reject"
+msgstr "Reject"
 
-#: js/majordomo.js:40039
-msgid "search"
-msgid_plural "multiselect__input"
-msgstr[0] "search"
-msgstr[1] "multiselect__input"
+#: src/MailingList.vue:21
+msgid "Retrieve current status from list manager"
+msgstr "Retrieve current status from list manager"
 
-#: js/majordomo.js:40039
-msgid "tags"
-msgid_plural "multiselect__tags"
-msgstr[0] "tags"
-msgstr[1] "multiselect__tags"
+#: src/MailingList.vue:21
+msgid "Retrieve current status from list manager AND apply to settings"
+msgstr "Retrieve current status from list manager AND apply to settings"
 
-#: js/majordomo.js:40039
-msgid "multiselect"
-msgid_plural "multiselect--active"
-msgstr[0] "multiselect"
-msgstr[1] "multiselect--active"
+#: src/MailingList.vue:21 src/Settings.vue:22
+msgid "Save"
+msgstr "Save"
 
-#, fuzzy
-#~| msgid "action-input"
-#~ msgid "action-input"
-#~ msgid_plural "action-input--picker"
-#~ msgstr[0] "action-input"
-#~ msgstr[1] "action-input"
+#: src/App.vue:21
+msgid "Settings"
+msgstr "Settings"
 
-#~ msgid "settings-button"
-#~ msgstr "settings-button"
+#: src/Settings.vue:22
+msgid "Skip SSL/TLS certificate validation"
+msgstr "Skip SSL/TLS certificate validation"
 
-#~ msgid "app-settings-header"
-#~ msgstr "app-settings-header"
+#: src/RequestButton.vue:21
+msgid "Subscribe: {email}"
+msgstr "Subscribe: {email}"
 
-#~ msgid "slide-up"
-#~ msgstr "slide-up"
+#: src/Settings.vue:22
+msgid "Test IMAP Connection"
+msgstr "Test IMAP Connection"
 
-#, fuzzy
-#~| msgid "action-input__icon"
-#~ msgid "mention-bubble__icon"
-#~ msgstr "action-input__icon"
+#: src/Bounces.vue:22
+msgid "There are currently no bounced messages."
+msgstr "There are currently no bounced messages."
 
-#~ msgid "Majordomo"
-#~ msgstr "Majordomo"
+#: src/RequestButton.vue:21
+msgid "There are currently no pending changes."
+msgstr "There are currently no pending changes."
 
-#~ msgid "checkbox"
-#~ msgid_plural "checkbox action-checkbox__checkbox"
-#~ msgstr[0] "checkbox"
-#~ msgstr[1] "checkbox action-checkbox__checkbox"
+#: src/RequestButton.vue:21
+msgid "Unsubscribe: {email}"
+msgstr "Unsubscribe: {email}"
 
-#~ msgid "label"
-#~ msgid_plural "action-checkbox__label"
-#~ msgstr[0] "label"
-#~ msgstr[1] "action-checkbox__label"
+#: src/Settings.vue:22
+msgid "Use SSL"
+msgstr "Use SSL/TLS"
 
-#~ msgid "action-input__submit"
-#~ msgstr "action-input__submit"
+#: src/Bounces.vue:22
+msgid "View"
+msgstr "View"
 
-#~ msgid "action--disabled"
-#~ msgstr "action--disabled"
-
-#~ msgid "aria-expanded"
-#~ msgstr "aria-expanded"
-
-#~ msgid "no-snapper"
-#~ msgstr "no-snapper"
-
-#, fuzzy
-#~| msgid "slide-up"
-#~ msgid "slide"
-#~ msgstr "slide-up"
-
-#, fuzzy
-#~| msgid "form"
-#~ msgid "transform"
-#~ msgstr "form"
-
-#, fuzzy
-#~| msgid "aria-expanded"
-#~ msgid "expand"
-#~ msgstr "aria-expanded"
+#: src/MailingList.vue:21
+msgid "Write desired changes to list manager"
+msgstr "Write desired changes to list manager"

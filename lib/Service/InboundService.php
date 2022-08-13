@@ -91,6 +91,24 @@ class InboundService {
     }
 
     /**
+     * @return array<string, MailingList>
+     */
+    public function getBouncerMapping() {
+        $map = [];
+        foreach ($this->mailingListMapper->findAll() as $ml) {
+            $bounceAddress = $ml->getBounceAddress();
+            if (!empty($bounceAddress)) {
+                $map[$bounceAddress] = $ml;
+            }
+        }
+        return $map;
+    }
+
+    public function getListByBounceAddress($bounceAddress) {
+        return $this->mailingListMapper->findByBounceAddress($bounceAddress);
+    }
+
+    /**
      * @param string $requestId
      * @param array<MajordomoResult> $results
      * @param string $from
