@@ -109,7 +109,7 @@ class MajordomoCommands {
     }
 
     function approveBounce(string $body) {
-        $this->sendRawMail($this->ml->bounceAddress, "Approve: " . $this->ml->password . "\r\n" . $body);
+        $this->sendRawMail($this->ml->bounceAddress, "Approved: " . $this->ml->password . "\r\n" . $body);
     }
 
     private function sendRawMail(string $to, string $body) {
