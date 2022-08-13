@@ -14,7 +14,7 @@ At your option, this app will keep your mailing list memberships up-to-date on a
 
 This app requires the PHP `imap` module and a dedicated IMAP mailbox to function!
     </description>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <licence>agpl</licence>
     <author mail="marco+nc@ziech.net" homepage="https://github.com/mziech">Marco Ziech</author>
     <category>integration</category>
