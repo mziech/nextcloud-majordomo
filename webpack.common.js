@@ -1,5 +1,6 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const packageJson = require('./package.json');
 const appName = packageJson.name;
@@ -35,6 +36,7 @@ const config = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
+		new ESLintPlugin({ extensions: ['js', 'vue'] }),
 	],
 	resolve: {
 		extensions: ['*', '.js', '.vue'],
