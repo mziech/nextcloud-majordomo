@@ -69,7 +69,7 @@ class Version000005Initial extends SimpleMigrationStep {
 			]);
 			$table->addColumn('payload', 'string', [
 				'notnull' => false,
-				'length' => 1000000,
+				'length' => 255,
 			]);
 			$table->addColumn('done', 'boolean', [
 				'notnull' => false,
