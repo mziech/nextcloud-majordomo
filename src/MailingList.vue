@@ -143,10 +143,10 @@
   </div>
 </template>
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/AppContentList';
-import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails';
-import Avatar from '@nextcloud/vue/dist/Components/Avatar';
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent';
+import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList';
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails';
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar';
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent';
 import api from "./api";
 import RequestButton from "./RequestButton";
 

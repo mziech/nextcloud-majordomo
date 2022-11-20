@@ -98,8 +98,8 @@
 </template>
 
 <script>
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent';
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch';
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent';
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch';
 import api from "./api";
 
 function extractImapOption(server, option) {

@@ -47,21 +47,21 @@
 
 <script>
 
-import Content from '@nextcloud/vue/dist/Components/Content';
-import AppContent from '@nextcloud/vue/dist/Components/AppContent';
-import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation';
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem';
-import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew';
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter';
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings';
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton';
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink';
-import AppNavigationIconBullet from '@nextcloud/vue/dist/Components/AppNavigationIconBullet';
-import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox';
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput';
-import ActionRouter from '@nextcloud/vue/dist/Components/ActionRouter';
-import ActionText from '@nextcloud/vue/dist/Components/ActionText';
-import ActionTextEditable from '@nextcloud/vue/dist/Components/ActionTextEditable';
+import Content from '@nextcloud/vue/dist/Components/NcContent';
+import AppContent from '@nextcloud/vue/dist/Components/NcAppContent';
+import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation';
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem';
+import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew';
+import AppNavigationCounter from '@nextcloud/vue/dist/Components/NcAppNavigationCounter';
+import AppNavigationSettings from '@nextcloud/vue/dist/Components/NcAppNavigationSettings';
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton';
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink';
+import AppNavigationIconBullet from '@nextcloud/vue/dist/Components/NcAppNavigationIconBullet';
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox';
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput';
+import ActionRouter from '@nextcloud/vue/dist/Components/NcActionRouter';
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText';
+import ActionTextEditable from '@nextcloud/vue/dist/Components/NcActionTextEditable';
 import VueRouter from "vue-router";
 
 import api from "./api";
