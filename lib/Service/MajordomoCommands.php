@@ -23,6 +23,9 @@ namespace OCA\Majordomo\Service;
 use OC\Mail\Message;
 use OCA\Majordomo\Db\MailingList;
 use OCP\Mail\IMailer;
+use Symfony\Component\Mime\Email;
+use Symfony\Component\Mime\Encoder\EightBitContentEncoder;
+use Symfony\Component\Mime\Part\TextPart;
 
 class MajordomoCommands {
 
@@ -115,18 +118,37 @@ class MajordomoCommands {
     private function sendRawMail(string $to, string $body) {
         $from = $this->settings->getImapSettings()->from;
         $subject = self::MAGIC . " " . $this->requestId;
-        $message = new Message(new \Swift_Message(), true);
+        $message = $this->createPlaintextMessage($body);
         if ($from) {
             $message->setFrom([$from]);
         }
         $message->setTo([$to]);
-        $message->setPlainBody($body);
         $message->setSubject($subject);
-        $message->getSwiftMessage()->setEncoder(new \Swift_Mime_ContentEncoder_RawContentEncoder());  // disable quoted-printable encoding
-        $message->getSwiftMessage()->setMaxLineLength(0);  // disable word-wrap
         $failedReceipients = $this->mailer->send($message);
         if (in_array($to, $failedReceipients)) {
             throw new OutboundException("Failed to send Majordomo command for MailingList {$this->ml->id} to " . implode(", ", $failedReceipients));
+        }
+    }
+
+    /**
+     * Creates a plaintext message using private API which is not available from IMailer
+     *
+     * @return Message
+     */
+    protected function createPlaintextMessage(string $text): Message {
+        // Horrible stuff is happening here ... but I couldn't find any public API to achieve all of this
+        if ((new \ReflectionClass(Message::class))->getConstructor()->getParameters()[0]->getType()->getName() === "Swift_Message") {
+            $message = new Message(new \Swift_Message(), true);
+            $message->getSwiftMessage()->setEncoder(new \Swift_Mime_ContentEncoder_RawContentEncoder());  // disable quoted-printable encoding
+            $message->getSwiftMessage()->setMaxLineLength(0);  // disable word-wrap
+            $message->setPlainBody($text);
+            return $message;
+        } else { // Nextcloud version >= 26
+            $email = new Email();
+            $email->setBody(new TextPart($text, "utf-8", "plain", "8bit"));
+            $message = new Message($email, true);
+            $message->setPlainBody("overwritten");
+            return $message;
         }
     }
 
