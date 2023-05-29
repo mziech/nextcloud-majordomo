@@ -15,6 +15,26 @@ This app requires the PHP `imap` module and a dedicated IMAP mailbox to function
 
 To configure the IMAP server, use the format described in the php manual for [imap_open](https://www.php.net/manual/en/function.imap-open.php). For example to use a secure IMAP server attach `/ssl` to the servername: `imap.example.com/ssl`.
 
+## Caveat: Using Nextcloud inside Docker
+
+If you are using the [Nextcloud Docker image](https://hub.docker.com/_/nextcloud/), this app will not work out of the box, because the image is lacking IMAP support.
+In order to use this app, you need to extend the image with IMAP support, e.g. by using the following `Dockerfile`:
+
+```Dockerfile
+FROM nextcloud:26
+
+RUN apt-get update && apt-get install -y libc-client-dev libkrb5-dev && rm -r /var/lib/apt/lists/*
+RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl && docker-php-ext-install imap
+```
+
+You can then use the extended Docker image in Docker Compose like:
+```yaml
+  nextcloud:
+    build:
+      context: ./build
+      dockerfile: Dockerfile.nextcloud
+```
+
 ## Building the app
 Using NodeJS & NPM:
 ```shell
