@@ -3,7 +3,7 @@
       xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
     <id>majordomo</id>
     <name>Majordomo</name>
-    <summary>Synchronize users and groups with the Majordomo mailing list manager</summary>
+    <summary>Synchronize users and groups with the Majordomo mailing list manager (admins only)</summary>
     <description>
 Using this app you can automatically synchronize your user's to a
 [Majordomo mailing list manager](https://en.wikipedia.org/wiki/Majordomo_(software)).
