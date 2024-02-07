@@ -44,12 +44,23 @@ class ImapLoader {
      * @var InboundService
      */
     private $inboundService;
+    /**
+     * @var ResendService
+     */
+    private $resendService;
 
-    function __construct($AppName, Settings $settings, InboundService $inboundService, LoggerInterface $logger) {
+    function __construct(
+        $AppName,
+        Settings $settings,
+        InboundService $inboundService,
+        ResendService $resendService,
+        LoggerInterface $logger
+    ) {
         $this->imapSettings = $settings->getImapSettings();
         $this->logger = $logger;
         $this->inboundService = $inboundService;
         $this->AppName = $AppName;
+        $this->resendService = $resendService;
     }
 
     public function isEnabled() {
@@ -64,16 +75,22 @@ class ImapLoader {
         if (!isset($this->imap[$folder])) {
             $mailbox = '{' . $this->imapSettings->server . '}' . $folder;
             $this->logger->debug("Opening IMAP connection: $mailbox");
-            $this->imap[$folder] = imap_open(
+            $imap = imap_open(
                 $mailbox, $this->imapSettings->user, $this->imapSettings->password
             );
+            if ($imap !== false) {
+                $this->imap[$folder] = $imap;
+            } else {
+                $this->logger->error("Failed to open IMAP connection to $mailbox: " . imap_last_error());
+                return false;
+            }
         }
 
         return $this->imap[$folder];
     }
 
     function __destruct() {
-        foreach ($this->imap as $imap) {
+        foreach (array_values($this->imap) as $imap) {
             imap_close($imap);
         }
         $this->imap = [];
@@ -149,6 +166,7 @@ class ImapLoader {
         $expunge = false;
         foreach ($this->fetchMails() as $mail) {
             $from = strtolower($mail->from);
+            $this->logger->debug("Checking inbound mail from {$mail->from} with subject '{$mail->subject}'");
             if (strncasecmp($mail->subject, self::SUBJECT_PREFIX, strlen(self::SUBJECT_PREFIX)) == 0) {
                 try {
                     $requestId = substr($mail->subject, strlen(self::SUBJECT_PREFIX));
@@ -168,6 +186,29 @@ class ImapLoader {
                 imap_mail_move($imap, $mail->msgno, $this->imapSettings->bounces);
                 $this->logger->info("Moved bounce {$mail->msgno} '{$mail->subject}' from {$mail->from}", [ "app" => $this->AppName ]);
                 $expunge = true;
+            } else if ($this->resendService->isEnabled()) {
+                $header = imap_headerinfo($imap, $mail->msgno);
+                if (isset($header->to)) {
+                    $this->logger->debug("header: " . print_r($header, true));
+                    $to = array_map(function ($t) {
+                        return strtolower($t->mailbox . '@' . $t->host);
+                    }, $header->to);
+
+                    $rawHeader = null;
+                    $body = null;
+                    foreach ($this->resendService->getLists($to) as $ml) {
+                        if ($body === null) {
+                            $rawHeader = imap_fetchheader($imap, $mail->msgno);
+                            $body = imap_body($imap, $mail->msgno);
+                        }
+                        $this->logger->info("Resending mail from $from to " . $ml->title, ["app" => $this->AppName]);
+                        $this->resendService->bounceOrResend($ml, $from, $rawHeader, $body);
+                    }
+                    if ($body !== null) {
+                        imap_mail_move($imap, $mail->msgno, $this->imapSettings->archive);
+                        $expunge = true;
+                    }
+                }
             }
         }
 

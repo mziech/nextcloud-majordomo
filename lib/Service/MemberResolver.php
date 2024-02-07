@@ -62,11 +62,11 @@ class MemberResolver {
         $this->memberMapper = $memberMapper;
     }
 
-    public function getMemberEmails($id) {
+    public function getMemberEmails($id, $types = Member::TYPES_RECEIPIENT) {
         $emails = [];
         $exclusions = [];
 
-        foreach ($this->memberMapper->findAllByListId($id) as $member) {
+        foreach ($this->memberMapper->findAllByListIdAndTypes($id, $types) as $member) {
             if ($member->getType() === Member::TYPE_EXCLUDE
                 || $member->getType() === Member::TYPE_EXCLUDE_USER
                 || $member->getType() === Member::TYPE_EXCLUDE_GROUP) {
@@ -89,10 +89,13 @@ class MemberResolver {
     private function resolveEmailsForMember(Member $member): array {
         switch ($member->getType()) {
             case Member::TYPE_EXTRA:
+            case Member::TYPE_MODERATOR_EXTRA:
             case Member::TYPE_EXCLUDE:
                 return [ strtolower($member->getReference()) ];
                 break;
             case Member::TYPE_USER:
+            case Member::TYPE_MODERATOR_USER:
+            case Member::TYPE_ADMIN_USER:
             case Member::TYPE_EXCLUDE_USER:
                 $user = $this->userManager->get($member->getReference());
                 if ($user !== null && $user->isEnabled()) {
@@ -102,6 +105,8 @@ class MemberResolver {
                 }
                 break;
             case Member::TYPE_GROUP:
+            case Member::TYPE_MODERATOR_GROUP:
+            case Member::TYPE_ADMIN_GROUP:
             case Member::TYPE_EXCLUDE_GROUP:
                 $group = $this->groupManager->get($member->getReference());
                 if ($group !== null) {

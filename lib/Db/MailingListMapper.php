@@ -33,7 +33,7 @@ class MailingListMapper extends \OCP\AppFramework\Db\QBMapper {
         $qb = $this->db->getQueryBuilder();
         return $this->findEntity($qb->select("*")
             ->from("majordomo_lists")
-            ->andWhere($qb->expr()->eq("id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))));
+            ->where($qb->expr()->eq("id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))));
     }
 
     /**
@@ -50,6 +50,26 @@ class MailingListMapper extends \OCP\AppFramework\Db\QBMapper {
         return $this->findEntity($qb->select("*")
             ->from("majordomo_lists")
             ->where($qb->expr()->eq("bounce_address", $qb->createNamedParameter($bounceAddress, IQueryBuilder::PARAM_STR))));
+    }
+
+    /**
+     * @param array<string> $resendAddresses
+     * @return array<MailingList>
+     * @throws \OCP\AppFramework\Db\DoesNotExistException
+     * @throws \OCP\AppFramework\Db\MultipleObjectsReturnedException
+     * @throws \OCP\DB\Exception
+     */
+    public function findByResendAddressIn(array $resendAddresses) : array {
+        if (empty($resendAddresses)) {
+            return [];
+        }
+
+        $qb = $this->db->getQueryBuilder();
+        return $this->findEntities($qb->select("*")
+            ->from("majordomo_lists")
+            ->where($qb->expr()->in("resend_address", $qb->createNamedParameter($resendAddresses, IQueryBuilder::PARAM_STR_ARRAY)))
+            ->andWhere($qb->expr()->neq("resend_access", $qb->createNamedParameter(MailingList::ACCESS_NONE, IQueryBuilder::PARAM_INT)))
+        );
     }
 
     /**

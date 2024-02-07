@@ -40,4 +40,18 @@ class MemberMapper extends \OCP\AppFramework\Db\QBMapper {
             ->andWhere($qb->expr()->eq("list_id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT))));
     }
 
+    /**
+     * @param $id
+     * @return array<Member>
+     */
+    public function findAllByListIdAndTypes($id, $types) {
+        $qb = $this->db->getQueryBuilder();
+        return $this->findEntities($qb->select("*")
+            ->from("majordomo_members")
+            ->andWhere(
+                $qb->expr()->eq("list_id", $qb->createNamedParameter($id, IQueryBuilder::PARAM_INT)),
+                $qb->expr()->in("type", $qb->createNamedParameter($types, IQueryBuilder::PARAM_STR_ARRAY)),
+            ));
+    }
+
 }

@@ -72,6 +72,11 @@
         <label for="errors">{{ t('majordomo', 'IMAP Errors folder name') }}:</label>
         <input id="errors" v-model="settings.imap.errors" @change="makeDirty()"/>
       </p>
+      <p class="centered-input" style="display: none">
+        <CheckboxRadioSwitch :checked.sync="settings.imap.resend" class="right" @update:checked="makeDirty()">
+          {{ t('majordomo', 'Enable resending mails without external Majordomo') }}
+        </CheckboxRadioSwitch>
+      </p>
       <p class="centered-input">
         <button class="primary" :disabled="saving">{{ t('majordomo', 'Save') }}</button>
         <span v-if="saving" class="icon-loading-small inlineblock"></span>

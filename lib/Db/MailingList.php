@@ -21,15 +21,29 @@
 namespace OCA\Majordomo\Db;
 
 class MailingList extends \OCP\AppFramework\Db\Entity {
+    const ACCESS_NONE = 0;
+    const ACCESS_MODERATORS = 2;
+    const ACCESS_MEMBERS = 4;
+    const ACCESS_OPEN = 6;
+
     public $manager;
     public $title;
     public $listname;
     public $bounceAddress;
     public $password;
     public $syncActive;
+    public $resendAddress;
+    public $resendAccess;
+    public $viewAccess;
+    public $memberListAccess;
+    public $memberEditAccess;
 
     public function __construct() {
         $this->addType("syncActive", "boolean");
+        $this->addType("resendAccess", "integer");
+        $this->addType("viewAccess", "integer");
+        $this->addType("memberListAccess", "integer");
+        $this->addType("memberEditAccess", "integer");
     }
 
     public static function fromPost($post) {

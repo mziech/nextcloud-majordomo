@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-02-07
+### Changed
+- Nextcloud 28 compatibility
+- Internal preparations for use without external Majordomo installation and without admin privileges ([#25](https://github.com/mziech/nextcloud-majordomo/issues/25))
+- Update frontend dependencies ([#38](https://github.com/mziech/nextcloud-majordomo/issues/38))
+
 ## [1.1.5] - 2023-08-20
 ### Changed
 - Nextcloud 25-27 compatibility

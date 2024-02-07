@@ -30,4 +30,5 @@ class ImapSettings {
     public $archive;
     public $errors;
     public $bounces;
+    public bool $resend;
 }
