@@ -20,6 +20,7 @@
  */
 namespace OCA\Majordomo\Db;
 
+use OCA\Majordomo\Service\MailingListAccess;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
 
@@ -81,5 +82,33 @@ class MailingListMapper extends \OCP\AppFramework\Db\QBMapper {
             ->from("majordomo_lists")
             ->where($qb->expr()->eq("sync_active", $qb->createNamedParameter(true, IQueryBuilder::PARAM_BOOL))));
     }
+
+    public function findAllByAccessLevel($listAccess, $accessType = MailingListAccess::VIEW_ACCESS) {
+        $qb = $this->db->getQueryBuilder();
+        $or = $qb->expr()->orX();
+
+        $or->add($qb->expr()->gte(
+            $accessType, $qb->createNamedParameter(MailingList::ACCESS_OPEN, IQueryBuilder::PARAM_INT)));
+
+        $accessList = [];
+        foreach ($listAccess as $listId => $access) {
+            if (!isset($accessList[$access])) {
+                $accessList[$access] = [];
+            }
+            $accessList[$access][] = $listId;
+        }
+
+        foreach ($accessList as $access => $listIds) {
+            $or->add($qb->expr()->andX(
+                $qb->expr()->gte($accessType, $qb->createNamedParameter($access, IQueryBuilder::PARAM_INT)),
+                $qb->expr()->in("id", $qb->createNamedParameter($listIds, IQueryBuilder::PARAM_STR_ARRAY)),
+            ));
+        }
+
+        return $this->findEntities($qb->select("*")
+            ->from("majordomo_lists")
+            ->where($or));
+    }
+
 
 }

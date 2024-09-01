@@ -20,6 +20,8 @@
  */
 namespace OCA\Majordomo\Controller;
 
+use OC\AppFramework\Http;
+use OC\ForbiddenException;
 use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\MemberMapper;
 use OCA\Majordomo\Service\ImapLoader;
@@ -28,16 +30,15 @@ use OCA\Majordomo\Service\OutboundService;
 use OCA\Majordomo\Service\Settings;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\AppFramework\Http\Response;
+use OCP\IGroup;
 use OCP\IGroupManager;
 use OCP\IRequest;
+use OCP\IUser;
 use OCP\IUserManager;
 
 class ApiController extends Controller {
 	private $userId;
-    /**
-     * @var MailingListMapper
-     */
-    private $mailingListMapper;
     /**
      * @var MemberMapper
      */
@@ -71,7 +72,6 @@ class ApiController extends Controller {
         $AppName, IRequest $request, $UserId,
         IUserManager $userManager,
         IGroupManager $groupManager,
-        MailingListMapper $mailingListMapper,
         MailingListService $mailingListService,
         OutboundService $outboundService,
         MemberMapper $memberMapper,
@@ -80,7 +80,6 @@ class ApiController extends Controller {
     ) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
-        $this->mailingListMapper = $mailingListMapper;
         $this->memberMapper = $memberMapper;
         $this->mailingListService = $mailingListService;
         $this->outboundService = $outboundService;
@@ -90,41 +89,101 @@ class ApiController extends Controller {
         $this->imapLoader = $imapLoader;
     }
 
-    public function appContext() {
-        $appContext = ["users" => [], "groups" => []];
-        foreach ($this->userManager->search("") as $user) {
-            $appContext["users"][$user->getUID()] = $user->getDisplayName();
-        }
-        foreach ($this->groupManager->search("") as $group) {
-            $appContext["groups"][$group->getGID()] = $group->getGID();
-        }
-        return new JSONResponse($appContext);
-    }
-
+    /**
+     * @NoAdminRequired
+     */
     public function lists() {
-        return new JSONResponse($this->mailingListMapper->findAll());
+        return $this->mailingListService->list();
     }
 
+    /**
+     * @NoAdminRequired
+     */
     public function getList($id) {
         if ($id == "new") {
             return new JSONResponse(["id" => "new"]);
         }
 
-        return new JSONResponse($this->mailingListService->read($id));
+        try {
+            return new JSONResponse($this->mailingListService->read($id));
+        } catch (ForbiddenException $ignored) {
+            return new JSONResponse([], Http::STATUS_FORBIDDEN);
+        }
     }
 
+    /**
+     * @NoAdminRequired
+     */
     public function getListStatus($id) {
         if ($id == "new") {
             return new JSONResponse([]);
         }
 
-        return new JSONResponse($this->mailingListService->getListStatus($id));
+        try {
+            return new JSONResponse($this->mailingListService->getListStatus($id));
+        } catch (ForbiddenException $ignored) {
+            return new JSONResponse([], Http::STATUS_FORBIDDEN);
+        }
     }
 
+    /**
+     * @NoAdminRequired
+     * @throws ForbiddenException
+     */
+    public function searchUsers() {
+        if (!$this->mailingListService->canEditMembers()) {
+            throw new ForbiddenException("List members edit access not allowed for any list");
+        }
+        $admin = $this->groupManager->isAdmin($this->userId);
+        return new JSONResponse(array_values(array_map(function (IUser $user) use ($admin) {
+            return [
+                "id" => $user->getUID(),
+                "displayName" => $user->getDisplayName(),
+                "subtitle" => $admin ? $user->getEMailAddress() : null,
+                "isNoUser" => false,
+                "icon" => ""
+            ];
+        }, $this->userManager->search(""))));
+    }
+
+    /**
+     * @NoAdminRequired
+     * @throws ForbiddenException
+     */
+    public function searchGroups() {
+        if (!$this->mailingListService->canEditMembers()) {
+            throw new ForbiddenException("List members edit access not allowed for any list");
+        }
+        $admin = $this->groupManager->isAdmin($this->userId);
+        return new JSONResponse(array_map(function (IGroup $group) use ($admin) {
+            return [
+                "id" => $group->getGID(),
+                "displayName" => $group->getDisplayName(),
+                "subtitle" => null,
+                "isNoUser" => true,
+                "iconTitle" => "Group icon"
+            ];
+        }, $this->groupManager->search("")));
+    }
+
+    /**
+     * @NoAdminRequired
+     * @throws ForbiddenException
+     */
     public function getListMembers($id) {
+        if (!$this->mailingListService->getListAccessByListId($id)->canListMembers) {
+            throw new ForbiddenException("List members access not allowed for list ID $id");
+        }
         return new JSONResponse($this->memberMapper->findAllByListId($id));
     }
 
+    /**
+     * @NoAdminRequired
+     * @param $id
+     * @return JSONResponse
+     * @throws ForbiddenException
+     * @throws \OCP\DB\Exception
+     */
     public function postList($id) {
         if ($id == "new") {
             return new JSONResponse(
@@ -179,13 +238,15 @@ class ApiController extends Controller {
 
     public function getSettings() {
         return new JSONResponse([
-            'imap' => $this->settings->getImapSettings()
+            'imap' => $this->settings->getImapSettings(),
+            'webhook' => $this->settings->getWebhookSettings(),
         ]);
     }
 
     public function postSettings() {
         $json = $this->request->post;
         $this->settings->setImapSettings($json['imap']);
+        $this->settings->setWebhookSettings($json['webhook']);
         return $this->getSettings();
     }
 
@@ -199,6 +260,21 @@ class ApiController extends Controller {
 
     public function postProcessMails() {
         $this->imapLoader->processMails();
+        return new Response(204);
+    }
+
+    /**
+     * @NoAdminRequired
+     * @NoCSRFRequired
+     * @PublicPage
+     */
+    public function postWebhook() {
+        $webhook = $this->settings->getWebhookSettings();
+        if (!$webhook->enabled || !$webhook->token || $webhook->token !== $this->request->post["token"]) {
+            throw new ForbiddenException("Webhook access rejected");
+        }
+
+        return $this->postProcessMails();
     }
 
 }

@@ -20,39 +20,68 @@
  */
 namespace OCA\Majordomo\Controller;
 
+use OCA\Majordomo\Db\Member;
+use OCA\Majordomo\Service\MailingListService;
+use OCP\AppFramework\Http\JSONResponse;
+use OCP\IGroupManager;
 use OCP\IRequest;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 use OCP\IURLGenerator;
+use OCP\IUserManager;
 
 class PageController extends Controller {
 	private $userId;
-    /**
-     * @var IURLGenerator
-     */
-    private $urlGenerator;
+    private IURLGenerator $urlGenerator;
+    private IGroupManager $groupManager;
+    private MailingListService $mailingListService;
 
-    public function __construct($AppName, IRequest $request, IURLGenerator $urlGenerator, $UserId){
+    public function __construct(
+        $AppName,
+        IRequest $request,
+        IURLGenerator $urlGenerator,
+        IGroupManager $groupManager,
+        MailingListService $mailingListService,
+        $UserId
+    ){
         parent::__construct($AppName, $request);
         $this->userId = $UserId;
         $this->urlGenerator = $urlGenerator;
+        $this->groupManager = $groupManager;
+        $this->mailingListService = $mailingListService;
     }
 
     /**
 	 * @NoCSRFRequired
-	 */
+     * @NoAdminRequired
+     */
     public function index() {
         return new TemplateResponse('majordomo', 'index', [
-            "basename" => $this->urlGenerator->linkToRoute($this->appName. ".page.index")
+            "basename" => $this->urlGenerator->linkToRoute($this->appName. ".page.index"),
+            "appContext" => $this->appContext(),
         ]);  // templates/index.php
     }
 
     /**
      * @NoCSRFRequired
+     * @NoAdminRequired
      */
     public function catchAll() {
         return $this->index();
     }
 
+    private function appContext() {
+        $appContext = ["users" => [], "groups" => []];
+        $appContext["admin"] = $this->groupManager->isAdmin($this->userId);
+        $appContext["moderator"] = $this->mailingListService->canModerate();
+        $appContext["types"] = [
+            "user" => Member::TYPES_USER,
+            "group" => Member::TYPES_GROUP,
+            "moderator" => Member::TYPES_MODERATOR,
+            "admin" => Member::TYPES_ADMIN,
+            "recipient" => Member::TYPES_RECIPIENT,
+        ];
+        return $appContext;
+    }
 }

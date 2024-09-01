@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
-"POT-Creation-Date: 2022-08-12 15:15+0000\n"
-"PO-Revision-Date: 2022-08-12 17:23+0200\n"
+"POT-Creation-Date: 2024-09-01 23:34+0200\n"
+"PO-Revision-Date: 2024-09-01 23:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: src/MailingList.vue:21
 msgid "- Please select -"
@@ -25,6 +25,10 @@ msgstr "- Bitte wählen -"
 #: src/Settings.vue:22
 msgid "(default)"
 msgstr "(Vorgabe)"
+
+#: src/MailingList.vue:21
+msgid "Access Control"
+msgstr "Berechtigungen"
 
 #: src/RequestButton.vue:21
 msgid "Acknowledge"
@@ -38,7 +42,23 @@ msgstr "Regel hinzufügen"
 msgid "Additional E-Mail"
 msgstr "Zusätzliche E-Mail"
 
-#: src/MailingList.vue:197
+#: src/MailingList.vue:21
+msgid "Additional moderator E-Mail"
+msgstr "Zusätzliche Moderatoren E-Mail"
+
+#: src/MailingList.vue:21
+msgid "Admin group"
+msgstr "Admistrationsgruppe"
+
+#: src/MailingList.vue:21
+msgid "Admin user"
+msgstr "Administrationbenutzer"
+
+#: src/MailingListAccess.vue:14
+msgid "Administrators"
+msgstr "Administratoren"
+
+#: src/MailingList.vue:236
 msgid "An error occurred while loading the mailing list."
 msgstr "Beim Laden des E-Mail Verteilers ist ein Fehler aufgetreten."
 
@@ -99,12 +119,32 @@ msgid "Edit Mailinglist: {title}"
 msgstr "Verteiler bearbeiten: {title}"
 
 #: src/MailingList.vue:21
+msgid "Editing members"
+msgstr "Mitglieder bearbeiten"
+
+#: src/MailingList.vue:21
+msgid "Email address for built-in list manager"
+msgstr "E-Mail Adresse für den integrierten List-Manager"
+
+#: src/MailingList.vue:21
 msgid "Enable automatic synchronization of list members"
 msgstr "Aktiviere automatische Synchronisierung  der Verteiler Mitglieder"
 
 #: src/Settings.vue:22
+msgid "Enable built-in list manager without external Majordomo"
+msgstr "Aktiviere integrierten List-Manager ohne externe Majordomo Installation"
+
+#: src/Settings.vue:22
+msgid "Enable webhook to process inbound emails"
+msgstr "Aktiviere Webhook um eingehende E-Mail sofort zu bearbeiten"
+
+#: src/Settings.vue:22
 msgid "Encryption"
 msgstr "Verbindungssicherheit"
+
+#: src/MailingListAccess.vue:14
+msgid "Everyone"
+msgstr "Jeder"
 
 #: src/MailingList.vue:21
 msgid "Except E-Mail of user"
@@ -126,19 +166,31 @@ msgstr "Fehler beim Genehmigen der abgewiesenen E-Mail."
 msgid "Failed to load bounced message."
 msgstr "Fehler beim Laden der abgewiesenen E-Mail."
 
+#: src/MailingList.vue:266
+msgid "Failed to load groups."
+msgstr "Fehler beim Laden der Gruppen."
+
+#: src/App.vue:118
+msgid "Failed to load mailing lists."
+msgstr "Fehler beim Laden der Listen."
+
+#: src/MailingList.vue:278
+msgid "Failed to load users."
+msgstr "Fehler beim Laden der Benutzer."
+
 #: src/Bounces.vue:120
 msgid "Failed to reject bounced message."
 msgstr "Fehler beim Ablehnen der abgewiesenen E-Mail."
 
-#: src/MailingList.vue:212
+#: src/MailingList.vue:251
 msgid "Failed to save mailing list."
 msgstr "Speichern der Verteiler Konfiguration fehlgeschlagen."
 
-#: src/Settings.vue:166
+#: src/Settings.vue:190
 msgid "Failed to store IMAP settings!"
 msgstr "Fehler beim Speichern der IMAP Einstellungen!"
 
-#: src/Settings.vue:181
+#: src/Settings.vue:217
 msgid "Failed to test IMAP settings!"
 msgstr "Fehler beim Überprüfen der IMAP Einstellungen!"
 
@@ -170,13 +222,17 @@ msgstr "IMAP Passwort"
 msgid "IMAP Server Address"
 msgstr "IMAP Server Adresse"
 
-#: src/Settings.vue:162
+#: src/Settings.vue:186
 msgid "IMAP settings successfully updated"
 msgstr "IMAP Einsatellungen erfolgreich aktualisiert"
 
 #: src/Settings.vue:22
 msgid "IMAP Username"
 msgstr "IMAP Benutzername"
+
+#: src/MailingList.vue:21
+msgid "List administrators"
+msgstr "Verteiler Administratoren"
 
 #: src/MailingList.vue:21
 msgid "List manager email address"
@@ -198,7 +254,7 @@ msgstr "Wird geladen ..."
 msgid "Mail address to approve bounces"
 msgstr "E-Mail für Genehmigungprozess"
 
-#: src/MailingList.vue:207
+#: src/MailingList.vue:246
 msgid "Mailing list saved."
 msgstr "Verteiler Konfiguration gespeichert."
 
@@ -218,9 +274,25 @@ msgstr "Mitglied muss entfernt werden"
 msgid "Member Policy"
 msgstr "Mitgliedschaftsregeln"
 
+#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+msgid "Members"
+msgstr "Mitglieder"
+
 #: src/MailingList.vue:21
 msgid "Members of group"
 msgstr "Mitglieder der Gruppe"
+
+#: src/MailingList.vue:21
+msgid "Moderation group"
+msgstr "Moderationsgruppe"
+
+#: src/MailingList.vue:21
+msgid "Moderation user"
+msgstr "Mederationsbenutzer"
+
+#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+msgid "Moderators"
+msgstr "Moderatoren"
 
 #: src/Settings.vue:22
 msgid "Never send password in plaintext"
@@ -229,6 +301,10 @@ msgstr "Passwort niemals in Klartext übertragen"
 #: src/App.vue:21
 msgid "New Mailinglist"
 msgstr "Neuer E-Mail Verteiler"
+
+#: src/MailingListAccess.vue:14
+msgid "Nobody"
+msgstr "Niemand"
 
 #: src/RequestButton.vue:21
 msgid "Please acknowledge to apply the following pending changes:"
@@ -283,6 +359,10 @@ msgid "Unsubscribe: {email}"
 msgstr "Entfernen: {email}"
 
 #: src/Settings.vue:22
+msgid "Usage example inside a Procmail configuration"
+msgstr "Beispiel zur Verwendung in einer Procmail Konfiguration"
+
+#: src/Settings.vue:22
 msgid "Use SSL"
 msgstr "SSL/TLS"
 
@@ -291,5 +371,21 @@ msgid "View"
 msgstr "Anzeigen"
 
 #: src/MailingList.vue:21
+msgid "Viewing members"
+msgstr "Mitglieder anzeigen"
+
+#: src/MailingList.vue:21
+msgid "Visibility in list"
+msgstr "Sichtbar in Liste"
+
+#: src/Settings.vue:22
+msgid "Webhook token"
+msgstr "Webhook Token"
+
+#: src/MailingList.vue:21
 msgid "Write desired changes to list manager"
 msgstr "Gewünschte Änderungen an die Verteiler Konfiguration übertragen"
+
+#: src/MailingList.vue:21
+msgid "Writing emails to the list"
+msgstr "E-Mails an den Verteiler senden"

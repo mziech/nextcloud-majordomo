@@ -21,6 +21,7 @@
 namespace OCA\Majordomo\Service;
 
 
+use OCA\Majordomo\Db\MailingList;
 use OCA\Majordomo\Db\Member;
 use OCA\Majordomo\Db\MemberMapper;
 use OCP\IGroupManager;
@@ -62,7 +63,43 @@ class MemberResolver {
         $this->memberMapper = $memberMapper;
     }
 
-    public function getMemberEmails($id, $types = Member::TYPES_RECEIPIENT) {
+    /**
+     * Find all lists the given user has access permissions to
+     *
+     * @param $userId the user ID
+     * @param $listId an optional list ID if only the access level of a specific list is relevant
+     * @return array[int, int] a map of listId to access level for that list
+     */
+    public function resolveListsByMember($userId, $listId = NULL) {
+        $groups = $this->groupManager->getUserGroups($this->userManager->get($userId));
+        $groupIds = array_map(function ($group) {
+            return $group->getGID();
+        }, $groups);
+
+        $listAccess = [];
+        $excludedListAccess = [];
+        foreach ($this->memberMapper->findAllByUserAndGroups($userId, $groupIds, $listId) as $member) {
+            if (in_array($member->type, Member::TYPES_EXCLUDE)) {
+                $excludedListAccess[$member->listId] = true;
+            } else if (in_array($member->type, Member::TYPES_ADMIN)) {
+                $listAccess[$member->listId] = max($listAccess[$member->listId] ?? 0, MailingList::ACCESS_ADMIN);
+            } else if (in_array($member->type, Member::TYPES_MODERATOR)) {
+                $listAccess[$member->listId] = max($listAccess[$member->listId] ?? 0, MailingList::ACCESS_MODERATORS);
+            } else if (in_array($member->type, Member::TYPES_RECIPIENT)) {
+                $listAccess[$member->listId] = max($listAccess[$member->listId] ?? 0, MailingList::ACCESS_MEMBERS);
+            } else {
+                $this->logger->error("Cannot map list ID $member->listId membership type $member->type to access level: $member->reference");
+            }
+        }
+
+        foreach (array_keys($excludedListAccess) as $excluded) {
+            unset($listAccess[$excluded]);
+        }
+
+        return $listAccess;
+    }
+
+    public function getMemberEmails($id, $types = Member::TYPES_RECIPIENT) {
         $emails = [];
         $exclusions = [];
 
@@ -92,7 +129,7 @@ class MemberResolver {
             case Member::TYPE_MODERATOR_EXTRA:
             case Member::TYPE_EXCLUDE:
                 return [ strtolower($member->getReference()) ];
-                break;
+
             case Member::TYPE_USER:
             case Member::TYPE_MODERATOR_USER:
             case Member::TYPE_ADMIN_USER:
@@ -104,6 +141,7 @@ class MemberResolver {
                     $this->logger->error("Unknown user {$member->getReference()} for member id {$member->getId()}", ["app" => $this->AppName]);
                 }
                 break;
+
             case Member::TYPE_GROUP:
             case Member::TYPE_MODERATOR_GROUP:
             case Member::TYPE_ADMIN_GROUP:
@@ -119,6 +157,7 @@ class MemberResolver {
                     $this->logger->error("Unknown group {$member->getReference()} for member id {$member->getId()}", ["app" => $this->AppName]);
                 }
                 break;
+
             default:
                 $this->logger->error("Unknown type {$member->type} for member id {$member->id}", ["app" => $this->AppName]);
         }

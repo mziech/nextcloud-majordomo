@@ -21,31 +21,45 @@
 namespace OCA\Majordomo\Service;
 
 
-use OCP\IConfig;
+use OCP\IAppConfig;
 
 class Settings {
 
     /**
-     * @var IConfig
+     * @var IAppConfig
      */
-    private $config;
+    private $appConfig;
     private $AppName;
 
-    function __construct($AppName, IConfig $config) {
-        $this->config = $config;
+    function __construct($AppName, IAppConfig $appConfig) {
+        $this->appConfig = $appConfig;
         $this->AppName = $AppName;
     }
 
     public function setImapSettings(array $arr) {
-        $this->config->setAppValue($this->AppName, "imap", json_encode($this->arrayToObject($arr, new ImapSettings())));
+        $this->appConfig->setValueString($this->AppName, "imap",
+            json_encode($this->arrayToObject($arr, new ImapSettings())));
     }
 
     /**
      * @return ImapSettings
      */
     public function getImapSettings() {
-        $value = $this->config->getAppValue($this->AppName, "imap");
+        $value = $this->appConfig->getValueString($this->AppName, "imap");
         return $this->jsonToObject($value, new ImapSettings());
+    }
+
+    public function setWebhookSettings(mixed $arr) {
+        $this->appConfig->setValueString($this->AppName, "webhook",
+            json_encode($this->arrayToObject($arr, new WebhookSettings())));
+    }
+
+    /**
+     * @return WebhookSettings
+     */
+    public function getWebhookSettings() {
+        $value = $this->appConfig->getValueString($this->AppName, "webhook");
+        return $this->jsonToObject($value, new WebhookSettings());
     }
 
     private function jsonToObject($value, $obj) {

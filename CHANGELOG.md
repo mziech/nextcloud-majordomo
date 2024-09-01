@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - TBD
+- Nextcloud 29 compatibility
+- Introduced concept of list admins and moderators
+- Introduced fine-grained list permissions
+- Subsequently, make the app visible to ALL users ([#25](https://github.com/mziech/nextcloud-majordomo/issues/25))
+- Exposed configuration for internal list manager, making it useful without the (pre-)historic Majordomo software
+
 ## [1.2.0] - 2024-02-07
 ### Changed
 - Nextcloud 28 compatibility

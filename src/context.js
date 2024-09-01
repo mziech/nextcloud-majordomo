@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2020 Marco Ziech <marco+nc@ziech.net>
+ * @copyright Copyright (c) 2024 Marco Ziech <marco+nc@ziech.net>
  *
  * @license AGPL-3.0-or-later
  *
@@ -18,20 +18,7 @@
  *
  */
 
-import { generateUrl } from "@nextcloud/router";
-import axios from "@nextcloud/axios";
+const appContext = JSON.parse(
+    document.getElementById("majordomo-app-context").getAttribute("data-app-context"));
 
-const BASEPATH = '/apps/majordomo/api';
-export default new class Api {
-    path(path) {
-        return generateUrl(BASEPATH + path);
-    }
-
-    get(path) {
-        return axios.get(generateUrl(BASEPATH + path)).then(response => response.data);
-    }
-
-    post(path, data) {
-        return axios.post(generateUrl(BASEPATH + path), data).then(response => response.data);
-    }
-};
+export default appContext;

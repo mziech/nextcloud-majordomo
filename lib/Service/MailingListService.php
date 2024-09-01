@@ -21,17 +21,22 @@
 namespace OCA\Majordomo\Service;
 
 
+use OC\ForbiddenException;
 use OCA\Majordomo\Db\CurrentEmailMapper;
 use OCA\Majordomo\Db\MailingList;
 use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\Member;
 use OCA\Majordomo\Db\MemberMapper;
 use OCP\AppFramework\Db\Entity;
+use OCP\DB\Exception;
 use OCP\IDBConnection;
+use OCP\IGroupManager;
 use OCP\IUserManager;
+use Psr\Log\LoggerInterface;
 
 class MailingListService {
 
+    private LoggerInterface $logger;
     /**
      * @var MailingListMapper
      */
@@ -56,14 +61,19 @@ class MailingListService {
      * @var CurrentEmailMapper
      */
     private $currentEmailMapper;
+    private IGroupManager $groupManager;
+    private $UserId;
 
     public function __construct(
+        LoggerInterface $logger,
         MailingListMapper $mailingListMapper,
         MemberMapper $memberMapper,
         MemberResolver $memberResolver,
         CurrentEmailMapper $currentEmailMapper,
         IDBConnection $db,
-        IUserManager $userManager
+        IUserManager $userManager,
+        IGroupManager $groupManager,
+        $UserId
     ) {
         $this->mailingListMapper = $mailingListMapper;
         $this->memberMapper = $memberMapper;
@@ -71,21 +81,80 @@ class MailingListService {
         $this->currentEmailMapper = $currentEmailMapper;
         $this->db = $db;
         $this->userManager = $userManager;
+        $this->groupManager = $groupManager;
+        $this->UserId = $UserId;
+        $this->logger = $logger;
     }
 
     public function read($id) {
-        $dto = ["members" => []];
         $ml = $this->mailingListMapper->find($id);
-        self::mapEntityToDto($ml, $dto, ["password"]);
-        foreach ($this->memberMapper->findAllByListId($ml->id) as $member) {
-            $memberDto = [];
-            self::mapEntityToDto($member, $memberDto, ["id", "listId"]);
-            $dto["members"][] = $memberDto;
+        $access = $this->getListAccess($ml);
+        if (!$access->canView) {
+            $this->logger->error("Rejecting read access to mailing list ID $id to unauthorized user $this->UserId");
+            throw new ForbiddenException();
         }
+
+        $dto = ["access" => $access, "members" => []];
+        if ($access->canAdmin) {
+            self::mapEntityToDto($ml, $dto, ["password"]);
+        } else {
+            self::mapEntityToDto($ml, $dto, [], ["id", "resendAddress", "title"]);
+        }
+
+        if ($access->canEditMembers) {
+            foreach ($this->memberMapper->findAllByListId($ml->id) as $member) {
+                $memberDto = [];
+                self::mapEntityToDto($member, $memberDto, ["id", "listId"]);
+                $dto["members"][] = $memberDto;
+            }
+        }
+
         return $dto;
     }
 
+    public function list() {
+        $admin = $this->groupManager->isAdmin($this->UserId);
+        if ($admin) {
+            $mls = $this->mailingListMapper->findAll();
+        } else {
+            $mls = $this->mailingListMapper->findAllByAccessLevel(
+                $this->memberResolver->resolveListsByMember($this->UserId)
+            );
+        }
+
+        return array_map(function (MailingList $ml) use ($admin) {
+            $dto = [];
+            return self::mapEntityToDto($ml, $dto, [], $admin ? ["id", "title", "syncActive"] : ["id", "title"]);
+        }, $mls);
+    }
+
+    public function canEditMembers(): bool {
+        $admin = $this->groupManager->isAdmin($this->UserId);
+        if ($admin) {
+            return true;
+        } else {
+            return !empty($this->mailingListMapper->findAllByAccessLevel(
+                $this->memberResolver->resolveListsByMember($this->UserId),
+                MailingListAccess::MEMBER_EDIT_ACCESS
+            ));
+        }
+    }
+
+    public function canModerate(): bool {
+        $admin = $this->groupManager->isAdmin($this->UserId);
+        if ($admin) {
+            return true;
+        } else {
+            $accessLevels = $this->memberResolver->resolveListsByMember($this->UserId);
+            return !empty($accessLevels) && max(array_values($accessLevels)) >= MailingList::ACCESS_MODERATORS;
+        }
+    }
+
     public function create($post) {
+        if (!$this->groupManager->isAdmin($this->UserId)) {
+            throw new ForbiddenException("List creation is not allowed");
+        }
+
         $this->db->beginTransaction();
 
         $ml = new MailingList();
@@ -97,11 +166,24 @@ class MailingListService {
         return $newId;
     }
 
+    /**
+     * @throws ForbiddenException
+     * @throws Exception
+     */
     public function update($id, $post) {
         $this->db->beginTransaction();
 
         $ml = $this->mailingListMapper->find($id);
-        self::mapPostToEntity($post, $ml);
+        $access = $this->getListAccess($ml);
+        if (!$access->canEditMembers) {
+            $this->db->rollBack();
+            $this->logger->error("Received update for mailing list ID $id from unauthorized user $this->UserId");
+            throw new ForbiddenException();
+        }
+
+        if ($access->canAdmin) {
+            self::mapPostToEntity($post, $ml);
+        }
         $this->mailingListMapper->update($ml);
         $this->updateMembers($id, $post);
 
@@ -109,10 +191,36 @@ class MailingListService {
     }
 
     public function getListStatus($id) {
+        $access = $this->getListAccessByListId($id);
+        if (!$access->canView) {
+            throw new ForbiddenException("User ID {$this->UserId} cannot view list ID $id");
+        }
+
         $expected = $this->memberResolver->getMemberEmails($id);
         $actual = $this->currentEmailMapper->findEmailsByListId($id);
         $toAdd = array_diff($expected, $actual);
         $toDelete = array_diff($actual, $expected);
+
+        if (!$access->canListMembers) {
+            $user = $this->userManager->get($this->UserId);
+            $email = $user->getEMailAddress();
+            if (!in_array($email, $expected) && !in_array($email, $actual)) {
+                return [];
+            }
+
+            return [
+                [
+                    "uid" => $user->getUID(),
+                    "displayName" => $user->getDisplayName(),
+                    "email" => $email,
+                    'status' => in_array($email, $toAdd)
+                        ? 'ADD'
+                        : (in_array($email, $toDelete)
+                            ? 'DELETE'
+                            : 'UNCHANGED')
+                ]
+            ];
+        }
 
         $status = [];
         foreach (array_unique(array_merge(array_values($expected), array_values($actual))) as $email) {
@@ -141,6 +249,28 @@ class MailingListService {
             return 0;
         });
         return $status;
+    }
+
+    private function getListAccessLevel($listId): int {
+        if ($this->groupManager->isAdmin($this->UserId)) {
+            // can access even inaccessible things
+            return MailingList::ACCESS_NONE;
+        }
+
+        $access = $this->memberResolver->resolveListsByMember($this->UserId, $listId);
+        if (!isset($access[$listId])) {
+            return MailingList::ACCESS_OPEN;
+        }
+
+        return $access[$listId];
+    }
+
+    private function getListAccess(MailingList $ml): MailingListAccess {
+        return new MailingListAccess($ml, $this->getListAccessLevel($ml->id));
+    }
+
+    public function getListAccessByListId($listId): MailingListAccess {
+        return $this->getListAccess($this->mailingListMapper->find($listId));
     }
 
     /**
@@ -185,13 +315,14 @@ class MailingListService {
         }
     }
 
-    private static function mapEntityToDto(Entity $entity, array &$dto, array $exclude = []) {
+    private static function mapEntityToDto(Entity $entity, array &$dto = [], array $exclude = [], array $include = null) {
         $vars = get_object_vars($entity);
         foreach ($vars as $key => $value) {
-            if (!in_array($key, $exclude)) {
+            if (!in_array($key, $exclude) && ($include === null || in_array($key, $include))) {
                 $dto[$key] = $value;
             }
         }
+        return $dto;
     }
 
 }

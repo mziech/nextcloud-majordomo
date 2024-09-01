@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
-"POT-Creation-Date: 2022-08-12 15:15+0000\n"
-"PO-Revision-Date: 2022-08-12 17:23+0200\n"
+"POT-Creation-Date: 2024-09-01 23:34+0200\n"
+"PO-Revision-Date: 2024-09-01 23:47+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: src/MailingList.vue:21
 msgid "- Please select -"
@@ -25,6 +25,10 @@ msgstr "- Please select -"
 #: src/Settings.vue:22
 msgid "(default)"
 msgstr "(default)"
+
+#: src/MailingList.vue:21
+msgid "Access Control"
+msgstr "Access Control"
 
 #: src/RequestButton.vue:21
 msgid "Acknowledge"
@@ -38,7 +42,24 @@ msgstr "Add policy"
 msgid "Additional E-Mail"
 msgstr "Additional E-Mail"
 
-#: src/MailingList.vue:197
+#: src/MailingList.vue:21
+#| msgid "Additional E-Mail"
+msgid "Additional moderator E-Mail"
+msgstr "Additional moderator E-Mail"
+
+#: src/MailingList.vue:21
+msgid "Admin group"
+msgstr "Admin group"
+
+#: src/MailingList.vue:21
+msgid "Admin user"
+msgstr "Admin user"
+
+#: src/MailingListAccess.vue:14
+msgid "Administrators"
+msgstr "Administrators"
+
+#: src/MailingList.vue:236
 msgid "An error occurred while loading the mailing list."
 msgstr "An error occurred while loading the mailing list."
 
@@ -63,7 +84,6 @@ msgid "Bounced Messages"
 msgstr "Bounced Messages"
 
 #: src/App.vue:21
-#| msgid "Bounced Messages"
 msgid "Bounces"
 msgstr "Bounces"
 
@@ -100,12 +120,32 @@ msgid "Edit Mailinglist: {title}"
 msgstr "Edit Mailinglist: {title}"
 
 #: src/MailingList.vue:21
+msgid "Editing members"
+msgstr "Editing members"
+
+#: src/MailingList.vue:21
+msgid "Email address for built-in list manager"
+msgstr "Email address for built-in list manager"
+
+#: src/MailingList.vue:21
 msgid "Enable automatic synchronization of list members"
 msgstr "Enable automatic synchronization of list members"
 
 #: src/Settings.vue:22
+msgid "Enable built-in list manager without external Majordomo"
+msgstr "Enable built-in list manager without external Majordomo"
+
+#: src/Settings.vue:22
+msgid "Enable webhook to process inbound emails"
+msgstr "Enable webhook to process inbound emails"
+
+#: src/Settings.vue:22
 msgid "Encryption"
 msgstr "Secure connection"
+
+#: src/MailingListAccess.vue:14
+msgid "Everyone"
+msgstr "Everyone"
 
 #: src/MailingList.vue:21
 msgid "Except E-Mail of user"
@@ -127,19 +167,34 @@ msgstr "Failed to approve bounced message."
 msgid "Failed to load bounced message."
 msgstr "Failed to load bounced message."
 
+#: src/MailingList.vue:266
+#| msgid "Failed to load bounced message."
+msgid "Failed to load groups."
+msgstr "Failed to load groups."
+
+#: src/App.vue:118
+#| msgid "Failed to save mailing list."
+msgid "Failed to load mailing lists."
+msgstr "Failed to load mailing lists."
+
+#: src/MailingList.vue:278
+#| msgid "Failed to load bounced message."
+msgid "Failed to load users."
+msgstr "Failed to load users."
+
 #: src/Bounces.vue:120
 msgid "Failed to reject bounced message."
 msgstr "Failed to reject bounced message."
 
-#: src/MailingList.vue:212
+#: src/MailingList.vue:251
 msgid "Failed to save mailing list."
 msgstr "Failed to save mailing list."
 
-#: src/Settings.vue:166
+#: src/Settings.vue:190
 msgid "Failed to store IMAP settings!"
 msgstr "Failed to store IMAP settings!"
 
-#: src/Settings.vue:181
+#: src/Settings.vue:217
 msgid "Failed to test IMAP settings!"
 msgstr "Failed to test IMAP settings!"
 
@@ -171,13 +226,17 @@ msgstr "IMAP Password"
 msgid "IMAP Server Address"
 msgstr "IMAP Server Address"
 
-#: src/Settings.vue:162
+#: src/Settings.vue:186
 msgid "IMAP settings successfully updated"
 msgstr "IMAP settings successfully updated"
 
 #: src/Settings.vue:22
 msgid "IMAP Username"
 msgstr "IMAP Username"
+
+#: src/MailingList.vue:21
+msgid "List administrators"
+msgstr "List administrators"
 
 #: src/MailingList.vue:21
 msgid "List manager email address"
@@ -199,7 +258,7 @@ msgstr "Loading ..."
 msgid "Mail address to approve bounces"
 msgstr "Mail address to approve bounces"
 
-#: src/MailingList.vue:207
+#: src/MailingList.vue:246
 msgid "Mailing list saved."
 msgstr "Mailing list saved."
 
@@ -219,9 +278,28 @@ msgstr "Member needs to be removed"
 msgid "Member Policy"
 msgstr "Member Policy"
 
+#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+#| msgid "Members of group"
+msgid "Members"
+msgstr "Members"
+
 #: src/MailingList.vue:21
 msgid "Members of group"
 msgstr "Members of group"
+
+#: src/MailingList.vue:21
+#| msgid "Members of group"
+msgid "Moderation group"
+msgstr "Moderation group"
+
+#: src/MailingList.vue:21
+#| msgid "E-Mail of user"
+msgid "Moderation user"
+msgstr "Moderation user"
+
+#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+msgid "Moderators"
+msgstr "Moderators"
 
 #: src/Settings.vue:22
 msgid "Never send password in plaintext"
@@ -230,6 +308,10 @@ msgstr "Never send password in plaintext"
 #: src/App.vue:21
 msgid "New Mailinglist"
 msgstr "New Mailinglist"
+
+#: src/MailingListAccess.vue:14
+msgid "Nobody"
+msgstr "Nobody"
 
 #: src/RequestButton.vue:21
 msgid "Please acknowledge to apply the following pending changes:"
@@ -284,6 +366,10 @@ msgid "Unsubscribe: {email}"
 msgstr "Unsubscribe: {email}"
 
 #: src/Settings.vue:22
+msgid "Usage example inside a Procmail configuration"
+msgstr "Usage example inside a Procmail configuration"
+
+#: src/Settings.vue:22
 msgid "Use SSL"
 msgstr "Use SSL/TLS"
 
@@ -292,5 +378,21 @@ msgid "View"
 msgstr "View"
 
 #: src/MailingList.vue:21
+msgid "Viewing members"
+msgstr "Viewing members"
+
+#: src/MailingList.vue:21
+msgid "Visibility in list"
+msgstr "Visibility in list"
+
+#: src/Settings.vue:22
+msgid "Webhook token"
+msgstr "Webhook token"
+
+#: src/MailingList.vue:21
 msgid "Write desired changes to list manager"
 msgstr "Write desired changes to list manager"
+
+#: src/MailingList.vue:21
+msgid "Writing emails to the list"
+msgstr "Writing emails to the list"

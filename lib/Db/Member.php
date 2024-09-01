@@ -27,7 +27,7 @@ class Member extends \OCP\AppFramework\Db\Entity {
     const TYPE_EXCLUDE = "EXCLUDE";
     const TYPE_EXCLUDE_USER = "NOTUSER";
     const TYPE_EXCLUDE_GROUP = "NOTGROUP";
-    const TYPES_RECEIPIENT = [
+    const TYPES_RECIPIENT = [
         self::TYPE_EXTRA, self::TYPE_USER, self::TYPE_GROUP,
         self::TYPE_EXCLUDE, self::TYPE_EXCLUDE_USER, self::TYPE_EXCLUDE_GROUP
     ];
@@ -38,6 +38,26 @@ class Member extends \OCP\AppFramework\Db\Entity {
     const TYPE_ADMIN_USER = "ADMUSER";
     const TYPE_ADMIN_GROUP = "ADMGROUP";
     const TYPES_ADMIN = [ self::TYPE_ADMIN_USER, self::TYPE_ADMIN_GROUP ];
+
+    const TYPES_USER = [
+        self::TYPE_USER,
+        self::TYPE_EXCLUDE_USER,
+        self::TYPE_MODERATOR_USER,
+        self::TYPE_ADMIN_USER,
+    ];
+
+    const TYPES_GROUP = [
+        self::TYPE_GROUP,
+        self::TYPE_EXCLUDE_GROUP,
+        self::TYPE_MODERATOR_GROUP,
+        self::TYPE_ADMIN_GROUP,
+    ];
+
+    const TYPES_EXCLUDE = [
+        self::TYPE_EXCLUDE,
+        self::TYPE_EXCLUDE_USER,
+        self::TYPE_EXCLUDE_GROUP,
+    ];
 
     public $listId;
     public $type;

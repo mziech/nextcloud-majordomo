@@ -124,9 +124,9 @@ class MajordomoCommands {
         }
         $message->setTo([$to]);
         $message->setSubject($subject);
-        $failedReceipients = $this->mailer->send($message);
-        if (in_array($to, $failedReceipients)) {
-            throw new OutboundException("Failed to send Majordomo command for MailingList {$this->ml->id} to " . implode(", ", $failedReceipients));
+        $failedRecipients = $this->mailer->send($message);
+        if (in_array($to, $failedRecipients)) {
+            throw new OutboundException("Failed to send Majordomo command for MailingList {$this->ml->id} to " . implode(", ", $failedRecipients));
         }
     }
 

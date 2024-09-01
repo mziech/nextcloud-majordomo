@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nextcloud app majordomo 8.0.0\n"
 "Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
-"POT-Creation-Date: 2022-08-12 15:15+0000\n"
+"POT-Creation-Date: 2024-09-01 23:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,10 @@ msgstr ""
 msgid "(default)"
 msgstr ""
 
+#: src/MailingList.vue:21
+msgid "Access Control"
+msgstr ""
+
 #: src/RequestButton.vue:21
 msgid "Acknowledge"
 msgstr ""
@@ -37,7 +41,23 @@ msgstr ""
 msgid "Additional E-Mail"
 msgstr ""
 
-#: src/MailingList.vue:197
+#: src/MailingList.vue:21
+msgid "Additional moderator E-Mail"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Admin group"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Admin user"
+msgstr ""
+
+#: src/MailingListAccess.vue:14
+msgid "Administrators"
+msgstr ""
+
+#: src/MailingList.vue:236
 msgid "An error occurred while loading the mailing list."
 msgstr ""
 
@@ -98,11 +118,31 @@ msgid "Edit Mailinglist: {title}"
 msgstr ""
 
 #: src/MailingList.vue:21
+msgid "Editing members"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Email address for built-in list manager"
+msgstr ""
+
+#: src/MailingList.vue:21
 msgid "Enable automatic synchronization of list members"
 msgstr ""
 
 #: src/Settings.vue:22
+msgid "Enable built-in list manager without external Majordomo"
+msgstr ""
+
+#: src/Settings.vue:22
+msgid "Enable webhook to process inbound emails"
+msgstr ""
+
+#: src/Settings.vue:22
 msgid "Encryption"
+msgstr ""
+
+#: src/MailingListAccess.vue:14
+msgid "Everyone"
 msgstr ""
 
 #: src/MailingList.vue:21
@@ -125,19 +165,31 @@ msgstr ""
 msgid "Failed to load bounced message."
 msgstr ""
 
+#: src/MailingList.vue:266
+msgid "Failed to load groups."
+msgstr ""
+
+#: src/App.vue:118
+msgid "Failed to load mailing lists."
+msgstr ""
+
+#: src/MailingList.vue:278
+msgid "Failed to load users."
+msgstr ""
+
 #: src/Bounces.vue:120
 msgid "Failed to reject bounced message."
 msgstr ""
 
-#: src/MailingList.vue:212
+#: src/MailingList.vue:251
 msgid "Failed to save mailing list."
 msgstr ""
 
-#: src/Settings.vue:166
+#: src/Settings.vue:190
 msgid "Failed to store IMAP settings!"
 msgstr ""
 
-#: src/Settings.vue:181
+#: src/Settings.vue:217
 msgid "Failed to test IMAP settings!"
 msgstr ""
 
@@ -169,12 +221,16 @@ msgstr ""
 msgid "IMAP Server Address"
 msgstr ""
 
-#: src/Settings.vue:162
+#: src/Settings.vue:186
 msgid "IMAP settings successfully updated"
 msgstr ""
 
 #: src/Settings.vue:22
 msgid "IMAP Username"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "List administrators"
 msgstr ""
 
 #: src/MailingList.vue:21
@@ -197,7 +253,7 @@ msgstr ""
 msgid "Mail address to approve bounces"
 msgstr ""
 
-#: src/MailingList.vue:207
+#: src/MailingList.vue:246
 msgid "Mailing list saved."
 msgstr ""
 
@@ -217,8 +273,24 @@ msgstr ""
 msgid "Member Policy"
 msgstr ""
 
+#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+msgid "Members"
+msgstr ""
+
 #: src/MailingList.vue:21
 msgid "Members of group"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Moderation group"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Moderation user"
+msgstr ""
+
+#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+msgid "Moderators"
 msgstr ""
 
 #: src/Settings.vue:22
@@ -227,6 +299,10 @@ msgstr ""
 
 #: src/App.vue:21
 msgid "New Mailinglist"
+msgstr ""
+
+#: src/MailingListAccess.vue:14
+msgid "Nobody"
 msgstr ""
 
 #: src/RequestButton.vue:21
@@ -282,6 +358,10 @@ msgid "Unsubscribe: {email}"
 msgstr ""
 
 #: src/Settings.vue:22
+msgid "Usage example inside a Procmail configuration"
+msgstr ""
+
+#: src/Settings.vue:22
 msgid "Use SSL"
 msgstr ""
 
@@ -290,5 +370,21 @@ msgid "View"
 msgstr ""
 
 #: src/MailingList.vue:21
+msgid "Viewing members"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Visibility in list"
+msgstr ""
+
+#: src/Settings.vue:22
+msgid "Webhook token"
+msgstr ""
+
+#: src/MailingList.vue:21
 msgid "Write desired changes to list manager"
+msgstr ""
+
+#: src/MailingList.vue:21
+msgid "Writing emails to the list"
 msgstr ""

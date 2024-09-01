@@ -30,10 +30,11 @@
 return [
     'routes' => [
 	    ['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-        ['name' => 'api#appContext', 'url' => '/api/app-context', 'verb' => 'GET'],
         ['name' => 'api#lists', 'url' => '/api/lists', 'verb' => 'GET'],
         ['name' => 'api#getList', 'url' => '/api/lists/{id}', 'verb' => 'GET'],
         ['name' => 'api#getListStatus', 'url' => '/api/lists/{id}/status', 'verb' => 'GET'],
+        ['name' => 'api#searchUsers', 'url' => '/api/search/users', 'verb' => 'GET'],
+        ['name' => 'api#searchGroups', 'url' => '/api/search/groups', 'verb' => 'GET'],
         ['name' => 'api#postList', 'url' => '/api/lists/{id}', 'verb' => 'POST'],
         ['name' => 'api#getPendingChanges', 'url' => '/api/lists/{id}/pending', 'verb' => 'GET'],
         ['name' => 'api#postListCheck', 'url' => '/api/lists/{id}/requests/check', 'verb' => 'POST'],
@@ -48,6 +49,7 @@ return [
         ['name' => 'api#postSettings', 'url' => '/api/settings', 'verb' => 'POST'],
         ['name' => 'api#postSettingsTest', 'url' => '/api/settings/test', 'verb' => 'POST'],
         ['name' => 'api#postProcessMails', 'url' => '/api/process-mails', 'verb' => 'POST'],
+        ['name' => 'api#postWebhook', 'url' => '/api/webhook', 'verb' => 'POST'],
         ['name' => 'page#catchAll', 'url' => '/{path}', 'verb' => 'GET', 'requirements' => array('path' => '.+')],
     ]
 ];

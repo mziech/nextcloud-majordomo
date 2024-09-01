@@ -22,11 +22,13 @@
  */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import appContext from "./context";
 
 import { translate, translatePlural } from '@nextcloud/l10n';
 
 import App from './App';
 
+Vue.prototype.appContext = appContext;
 Vue.prototype.t = translate;
 Vue.prototype.n = translatePlural;
 Vue.prototype.OC = window.OC;

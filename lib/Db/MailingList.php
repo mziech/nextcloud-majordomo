@@ -22,6 +22,7 @@ namespace OCA\Majordomo\Db;
 
 class MailingList extends \OCP\AppFramework\Db\Entity {
     const ACCESS_NONE = 0;
+    const ACCESS_ADMIN = 1;
     const ACCESS_MODERATORS = 2;
     const ACCESS_MEMBERS = 4;
     const ACCESS_OPEN = 6;
@@ -33,6 +34,7 @@ class MailingList extends \OCP\AppFramework\Db\Entity {
     public $password;
     public $syncActive;
     public $resendAddress;
+
     public $resendAccess;
     public $viewAccess;
     public $memberListAccess;

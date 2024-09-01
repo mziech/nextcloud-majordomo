@@ -72,18 +72,38 @@
         <label for="errors">{{ t('majordomo', 'IMAP Errors folder name') }}:</label>
         <input id="errors" v-model="settings.imap.errors" @change="makeDirty()"/>
       </p>
-      <p class="centered-input" style="display: none">
+      <p class="centered-input">
         <CheckboxRadioSwitch :checked.sync="settings.imap.resend" class="right" @update:checked="makeDirty()">
-          {{ t('majordomo', 'Enable resending mails without external Majordomo') }}
+          {{ t('majordomo', 'Enable built-in list manager without external Majordomo') }}
+          <NcCounterBubble type="highlight">BETA</NcCounterBubble>
+        </CheckboxRadioSwitch>
+
+      </p>
+      <p class="centered-input">
+        <CheckboxRadioSwitch :checked.sync="settings.webhook.enabled" class="right" @update:checked="maybeGenerateToken()">
+          {{ t('majordomo', 'Enable webhook to process inbound emails') }}
         </CheckboxRadioSwitch>
       </p>
+      <p class="centered-input" v-if="settings.webhook.enabled">
+        <label for="webhookToken">{{ t('majordomo', 'Webhook token') }}:</label>
+        <input id="webhookToken" v-model="settings.webhook.token" @change="makeDirty()"/>
+        <button @click="generateRandomToken()">Generate</button>
+      </p>
+      <h5 v-if="settings.webhook.enabled">
+        {{ t('majordomo', 'Usage example inside a Procmail configuration') }}:
+      </h5>
+      <pre v-if="settings.webhook.enabled">
+:0 c:
+|curl -d 'token={{ settings.webhook.token }}' '{{ webhookPath }}'
+      </pre>
+
       <p class="centered-input">
         <button class="primary" :disabled="saving">{{ t('majordomo', 'Save') }}</button>
         <span v-if="saving" class="icon-loading-small inlineblock"></span>
       </p>
       <p class="centered-input">
-        <button type="button" :disabled="saving || testing || dirty" v-on:click="test">{{ t('majordomo', 'Test IMAP Connection')
-          }}
+        <button type="button" :disabled="saving || testing || dirty" v-on:click="test">
+          {{ t('majordomo', 'Test IMAP Connection') }}
         </button>
         <span v-if="testing" class="status-icon icon-loading-small inlineblock"></span>
         <span v-if="testSuccess === true" class="status-icon  icon-checkmark-color inlineblock"></span>
@@ -105,6 +125,7 @@
 <script>
 import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent';
 import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch';
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble';
 import api from "./api";
 
 function extractImapOption(server, option) {
@@ -121,6 +142,7 @@ export default {
   components: {
     EmptyContent,
     CheckboxRadioSwitch,
+    NcCounterBubble,
   },
   name: "Settings",
   data() {
@@ -133,13 +155,14 @@ export default {
       testError: "",
       processing: false,
       processSuccess: null,
-      settings: {imap: {}},
+      settings: {imap: {}, webhook: {}},
       server: {},
+      webhookPath: location.origin + api.path("/webhook"),
     };
   },
   mounted() {
     api.get('/settings').then(settings => {
-      this.settings = Object.assign({imap: {}}, settings);
+      this.settings = Object.assign({imap: {}, webhook: {}}, settings);
       const server = { hostname: this.settings.imap.server || "", encryption: "" };
       server.secure = extractImapOption(server, "secure");
       server.novalidatecert = extractImapOption(server, "novalidate-cert");
@@ -174,6 +197,18 @@ export default {
     },
     makeDirty() {
       this.dirty = true;
+    },
+    maybeGenerateToken() {
+      if (this.settings.webhook.enabled && !this.settings.webhook.token) {
+        this.generateRandomToken();
+      }
+      this.makeDirty();
+    },
+    generateRandomToken() {
+      const bytes = new Uint8Array(32);
+      crypto.getRandomValues(bytes);
+      this.settings.webhook.token = btoa(String.fromCodePoint(...bytes));
+      this.makeDirty();
     },
     test() {
       this.testing = true;
@@ -236,6 +271,14 @@ $rightWidth: 250px;
   .status-icon {
     vertical-align: middle;
   }
+}
+
+h5, pre {
+  margin-left: $leftWidth;
+}
+
+pre {
+  font-family: monospace;
 }
 
 </style>

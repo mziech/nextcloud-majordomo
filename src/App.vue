@@ -35,8 +35,8 @@
         </ul>
       </template>
       <template #footer>
-        <AppNavigationItem icon="icon-error" :title="t('majordomo', 'Bounces')" :to="{ name: 'bounces' }"/>
-        <AppNavigationItem icon="icon-settings-dark" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }"/>
+        <AppNavigationItem icon="icon-error" :title="t('majordomo', 'Bounces')" :to="{ name: 'bounces' }" v-if="appContext.moderator"/>
+        <AppNavigationItem icon="icon-settings-dark" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }" v-if="appContext.admin"/>
       </template>
     </AppNavigation>
     <AppContent>
@@ -69,6 +69,7 @@ import Bounces from "./Bounces";
 import MailingList from "./MailingList";
 import Settings from "./Settings";
 import {linkTo} from "@nextcloud/router";
+import appContext from "./context";
 
 const router = new VueRouter({
   mode: 'hash',
@@ -110,9 +111,11 @@ export default {
   methods: {
     load() {
       this.loading = true;
-      api.get("/lists").then(data => {
+      api.get("/lists").then(lists => {
         this.loading = false;
-        this.lists = data;
+        this.lists = lists;
+      }).catch(() => {
+        OC.Notification.showTemporary(t("majordomo", "Failed to load mailing lists."), {type: "error"});
       });
     }
   },
