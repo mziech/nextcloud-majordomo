@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [2.0.0-pre1] - 2024-09-20
+## [2.0.0-pre2] - 2024-09-20
 ### Changed
 - Nextcloud 29 compatibility
 - Introduced concept of list admins and moderators
