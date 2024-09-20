@@ -21,23 +21,22 @@
 namespace OCA\Majordomo\Service;
 
 
-use OCP\IAppConfig;
+use OCP\IConfig;
 
 class Settings {
 
-    /**
-     * @var IAppConfig
-     */
-    private $appConfig;
+    // private IAppConfig $appConfig;
     private $AppName;
+    private IConfig $config;
 
-    function __construct($AppName, IAppConfig $appConfig) {
-        $this->appConfig = $appConfig;
+    function __construct($AppName, IConfig $config) {
         $this->AppName = $AppName;
+        $this->config = $config;
     }
 
     public function setImapSettings(array $arr) {
-        $this->appConfig->setValueString($this->AppName, "imap",
+        // NC>=29: $this->appConfig->setValueString($this->AppName, "imap",
+        $this->config->setAppValue($this->AppName, "imap",
             json_encode($this->arrayToObject($arr, new ImapSettings())));
     }
 
@@ -45,12 +44,14 @@ class Settings {
      * @return ImapSettings
      */
     public function getImapSettings() {
-        $value = $this->appConfig->getValueString($this->AppName, "imap");
+        // NC>=29: $value = $this->appConfig->getValueString($this->AppName, "imap");
+        $value = $this->config->getAppValue($this->AppName, "imap");
         return $this->jsonToObject($value, new ImapSettings());
     }
 
     public function setWebhookSettings(mixed $arr) {
-        $this->appConfig->setValueString($this->AppName, "webhook",
+        // NC>=29: $this->appConfig->setValueString($this->AppName, "webhook",
+        $this->config->setAppValue($this->AppName, "webhook",
             json_encode($this->arrayToObject($arr, new WebhookSettings())));
     }
 
@@ -58,7 +59,8 @@ class Settings {
      * @return WebhookSettings
      */
     public function getWebhookSettings() {
-        $value = $this->appConfig->getValueString($this->AppName, "webhook");
+        // NC>=29: $value = $this->appConfig->getValueString($this->AppName, "webhook");
+        $value = $this->config->getAppValue($this->AppName, "webhook");
         return $this->jsonToObject($value, new WebhookSettings());
     }
 

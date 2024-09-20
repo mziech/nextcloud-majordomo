@@ -58,7 +58,7 @@
             {{ t('majordomo', 'Email address for built-in list manager') }}:
             <NcCounterBubble type="highlight">BETA</NcCounterBubble>
           </label>
-          <input id="resendAddress" type="email" :disabled="!list.access.canAdmin"/>
+          <input id="resendAddress" type="email" v-model="list.resendAddress" :disabled="!list.access.canAdmin"/>
         </p>
         <template v-if="list.access.canAdmin">
           <p class="centered-input">
