@@ -146,7 +146,7 @@ class MailingListService {
             return true;
         } else {
             $accessLevels = $this->memberResolver->resolveListsByMember($this->UserId);
-            return !empty($accessLevels) && max(array_values($accessLevels)) >= MailingList::ACCESS_MODERATORS;
+            return !empty($accessLevels) && max(array_values($accessLevels)) <= MailingList::ACCESS_MODERATORS;
         }
     }
 

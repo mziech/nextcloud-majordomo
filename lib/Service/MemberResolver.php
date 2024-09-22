@@ -82,11 +82,11 @@ class MemberResolver {
             if (in_array($member->type, Member::TYPES_EXCLUDE)) {
                 $excludedListAccess[$member->listId] = true;
             } else if (in_array($member->type, Member::TYPES_ADMIN)) {
-                $listAccess[$member->listId] = max($listAccess[$member->listId] ?? 0, MailingList::ACCESS_ADMIN);
+                $listAccess[$member->listId] = min($listAccess[$member->listId] ?? MailingList::ACCESS_OPEN, MailingList::ACCESS_ADMIN);
             } else if (in_array($member->type, Member::TYPES_MODERATOR)) {
-                $listAccess[$member->listId] = max($listAccess[$member->listId] ?? 0, MailingList::ACCESS_MODERATORS);
+                $listAccess[$member->listId] = min($listAccess[$member->listId] ?? MailingList::ACCESS_OPEN, MailingList::ACCESS_MODERATORS);
             } else if (in_array($member->type, Member::TYPES_RECIPIENT)) {
-                $listAccess[$member->listId] = max($listAccess[$member->listId] ?? 0, MailingList::ACCESS_MEMBERS);
+                $listAccess[$member->listId] = min($listAccess[$member->listId] ?? MailingList::ACCESS_OPEN, MailingList::ACCESS_MEMBERS);
             } else {
                 $this->logger->error("Cannot map list ID $member->listId membership type $member->type to access level: $member->reference");
             }
@@ -95,7 +95,7 @@ class MemberResolver {
         foreach (array_keys($excludedListAccess) as $excluded) {
             unset($listAccess[$excluded]);
         }
-        $this->logger->info("List access levels from user ID $userId with group IDs " .
+        $this->logger->debug("List access levels from user ID $userId with group IDs " .
             implode(", ", $groupIds) . ": " . print_r($listAccess, true));
 
         return $listAccess;

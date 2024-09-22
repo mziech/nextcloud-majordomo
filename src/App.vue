@@ -21,7 +21,7 @@
   <Content app-name="majordomo">
     <AppNavigation>
       <template #list>
-        <AppNavigationNew v-if="true"
+        <AppNavigationNew v-if="appContext.admin"
                           :text="t('majordomo', 'New Mailinglist')"
                           :disabled="false"
                           button-id="new-mailinglist-button"
