@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
 "POT-Creation-Date: 2024-09-01 23:34+0200\n"
-"PO-Revision-Date: 2024-09-01 23:43+0200\n"
+"PO-Revision-Date: 2024-09-22 19:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -124,7 +124,7 @@ msgstr "Mitglieder bearbeiten"
 
 #: src/MailingList.vue:21
 msgid "Email address for built-in list manager"
-msgstr "E-Mail Adresse für den integrierten List-Manager"
+msgstr "E-Mail Adresse für den integrierten Listen-Manager"
 
 #: src/MailingList.vue:21
 msgid "Enable automatic synchronization of list members"
@@ -288,7 +288,7 @@ msgstr "Moderationsgruppe"
 
 #: src/MailingList.vue:21
 msgid "Moderation user"
-msgstr "Mederationsbenutzer"
+msgstr "Moderationsbenutzer"
 
 #: src/MailingList.vue:21 src/MailingListAccess.vue:14
 msgid "Moderators"

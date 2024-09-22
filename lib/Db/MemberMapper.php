@@ -75,10 +75,10 @@ class MemberMapper extends \OCP\AppFramework\Db\QBMapper {
                 $qb->expr()->eq("reference", $qb->createNamedParameter($user))
             ));
         }
-        if (!empty($group)) {
+        if (!empty($groups)) {
             $or->add($qb->expr()->andX(
                 $qb->expr()->in("type", $qb->createNamedParameter(Member::TYPES_GROUP, IQueryBuilder::PARAM_STR_ARRAY)),
-                $qb->expr()->eq("reference", $qb->createNamedParameter($groups, IQueryBuilder::PARAM_STR_ARRAY))
+                $qb->expr()->in("reference", $qb->createNamedParameter($groups, IQueryBuilder::PARAM_STR_ARRAY))
             ));
         }
         return $this->findEntities($qb->select("*")

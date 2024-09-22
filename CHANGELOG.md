@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-pre3] - 2024-09-22
+## Fixed
+- Resolution of visible mailing lists
+- Some 'de' translation issues
+
 ## [2.0.0-pre2] - 2024-09-20
 ### Changed
 - Nextcloud 29 compatibility

@@ -95,6 +95,8 @@ class MemberResolver {
         foreach (array_keys($excludedListAccess) as $excluded) {
             unset($listAccess[$excluded]);
         }
+        $this->logger->info("List access levels from user ID $userId with group IDs " .
+            implode(", ", $groupIds) . ": " . print_r($listAccess, true));
 
         return $listAccess;
     }
