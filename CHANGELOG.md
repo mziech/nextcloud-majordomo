@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-pre5] - 2024-09-23
+## Fixed
+- Fix mailing list access resolver
+
 ## [2.0.0-pre4] - 2024-09-22
 ## Fixed
 - Fix moderator detection

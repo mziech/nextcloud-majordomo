@@ -60,30 +60,34 @@ class MemberMapper extends \OCP\AppFramework\Db\QBMapper {
      *
      * @param $user string the user ID
      * @param $groups string[] the group IDs the user is a member of
+     * @param $listId int|null the optional listId to limit the results to
      * @return Member[] the member entries matching the user
      * @throws \OCP\DB\Exception
      */
     public function findAllByUserAndGroups($user, $groups, $listId) {
         $qb = $this->db->getQueryBuilder();
-        $or = $qb->expr()->orX();
-        if ($listId !== NULL) {
-            $or->add($qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)));
-        }
+        $where = $qb->expr()->orX();
         if (!empty($user)) {
-            $or->add($qb->expr()->andX(
+            $where->add($qb->expr()->andX(
                 $qb->expr()->in("type", $qb->createNamedParameter(Member::TYPES_USER, IQueryBuilder::PARAM_STR_ARRAY)),
                 $qb->expr()->eq("reference", $qb->createNamedParameter($user))
             ));
         }
         if (!empty($groups)) {
-            $or->add($qb->expr()->andX(
+            $where->add($qb->expr()->andX(
                 $qb->expr()->in("type", $qb->createNamedParameter(Member::TYPES_GROUP, IQueryBuilder::PARAM_STR_ARRAY)),
                 $qb->expr()->in("reference", $qb->createNamedParameter($groups, IQueryBuilder::PARAM_STR_ARRAY))
             ));
         }
+        if ($listId !== NULL) {
+            $where = $qb->expr()->andX(
+                $qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)),
+                $where
+            );
+        }
         return $this->findEntities($qb->select("*")
             ->from("majordomo_members")
-            ->where($or));
+            ->where($where));
     }
 
 }

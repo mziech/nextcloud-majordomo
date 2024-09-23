@@ -90,7 +90,7 @@ class MailingListService {
         $ml = $this->mailingListMapper->find($id);
         $access = $this->getListAccess($ml);
         if (!$access->canView) {
-            $this->logger->error("Rejecting read access to mailing list ID $id to unauthorized user $this->UserId");
+            $this->logger->error("Rejecting read access to mailing list ID $id to unauthorized user $this->UserId ($access)");
             throw new ForbiddenException();
         }
 
@@ -177,7 +177,7 @@ class MailingListService {
         $access = $this->getListAccess($ml);
         if (!$access->canEditMembers) {
             $this->db->rollBack();
-            $this->logger->error("Received update for mailing list ID $id from unauthorized user $this->UserId");
+            $this->logger->error("Received update for mailing list ID $id from unauthorized user $this->UserId ($access)");
             throw new ForbiddenException();
         }
 
@@ -193,7 +193,8 @@ class MailingListService {
     public function getListStatus($id) {
         $access = $this->getListAccessByListId($id);
         if (!$access->canView) {
-            throw new ForbiddenException("User ID {$this->UserId} cannot view list ID $id");
+            $this->logger->error("Rejecting list status access of list ID $id for user ID $this->UserId ($access)");
+            throw new ForbiddenException();
         }
 
         $expected = $this->memberResolver->getMemberEmails($id);
