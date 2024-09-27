@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0-pre6] - 2024-09-27
+## Fixed
+- Fix possible permission escalation by sub-admin users
+
 ## [2.0.0-pre5] - 2024-09-23
 ## Fixed
 - Fix mailing list access resolver

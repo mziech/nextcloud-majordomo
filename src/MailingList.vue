@@ -120,33 +120,14 @@
       </form>
       <h3  v-if="list.access.canListMembers">{{ t('majordomo', 'Member Policy') }}</h3>
       <div v-if="list.access.canEditMembers">
-        <select v-model="addMemberType" @change="onMemberTypeChange()">
-          <option value="">{{ t('majordomo', '- Please select -') }}</option>
-          <optgroup :label="t('majordomo', 'Members')">
-            <option value="GROUP">{{ t('majordomo', 'Members of group') }}</option>
-            <option value="USER">{{ t('majordomo', 'E-Mail of user') }}</option>
-            <option value="EXTRA">{{ t('majordomo', 'Additional E-Mail') }}</option>
-            <option value="NOTGROUP">{{ t('majordomo', 'Except members of group') }}</option>
-            <option value="NOTUSER">{{ t('majordomo', 'Except E-Mail of user') }}</option>
-            <option value="EXCLUDE">{{ t('majordomo', 'Exclude E-Mail') }}</option>
-          </optgroup>
-          <optgroup :label="t('majordomo', 'Moderators')">
-            <option value="MODGROUP">{{ t('majordomo', 'Moderation group') }}</option>
-            <option value="MODUSER">{{ t('majordomo', 'Moderation user') }}</option>
-            <option value="MODEXTRA">{{ t('majordomo', 'Additional moderator E-Mail') }}</option>
-          </optgroup>
-          <optgroup :label="t('majordomo', 'List administrators')">
-            <option value="ADMGROUP">{{ t('majordomo', 'Admin group') }}</option>
-            <option value="ADMUSER">{{ t('majordomo', 'Admin user') }}</option>
-          </optgroup>
-        </select>
+        <NcSelect :value="typeOption(addMemberType)" :options="this.typeOptions" label="displayName" @input="v => this.addMemberType = v.id" @option:selected="onMemberTypeChange()"/>
         <span v-if="[...appContext.types.user, ...appContext.types.group].indexOf(addMemberType) >= 0 && availableMembers === null" class="icon-loading-small inlineblock"></span>
         <NcSelect v-model="addMemberReference"
                   v-if="[...appContext.types.user, ...appContext.types.group].indexOf(addMemberType) >= 0 && availableMembers !== null"
                   :userSelect="true"
                   :options="availableMembers">
         </NcSelect>
-        <input v-model="addMemberReference" v-else/>
+        <input v-model="addMemberReference" v-else-if="addMemberType !== ''"/>
         <button type="button"
                 v-on:click="addMember()"
                 :disabled="addMemberReference === ''"
@@ -159,21 +140,12 @@
           <Avatar v-else-if="member.type in appContext.types.user" :user="member.reference"/>
           <Avatar v-else iconClass="icon-mail-white" :isNoUser="true"/>
           <div class="mailing-list-policy--text">
-            <div v-if="member.type === 'GROUP'">{{ t('majordomo', 'Members of group') }}</div>
-            <div v-else-if="member.type === 'USER'">{{ t('majordomo', 'E-Mail of user') }}</div>
-            <div v-else-if="member.type === 'EXTRA'">{{ t('majordomo', 'Additional E-Mail') }}</div>
-            <div v-else-if="member.type === 'NOTGROUP'">{{ t('majordomo', 'Except members of group') }}</div>
-            <div v-else-if="member.type === 'NOTUSER'">{{ t('majordomo', 'Except E-Mail of user') }}</div>
-            <div v-else-if="member.type === 'EXCLUDE'">{{ t('majordomo', 'Exclude E-Mail') }}</div>
-            <div v-else-if="member.type === 'MODUSER'">{{ t('majordomo', 'Moderation user') }}</div>
-            <div v-else-if="member.type === 'MODGROUP'">{{ t('majordomo', 'Moderation group') }}</div>
-            <div v-else-if="member.type === 'MODEXTRA'">{{ t('majordomo', 'Additional moderator E-Mail') }}</div>
-            <div v-else-if="member.type === 'ADMUSER'">{{ t('majordomo', 'Admin user') }}</div>
-            <div v-else-if="member.type === 'ADMGROUP'">{{ t('majordomo', 'Admin group') }}</div>
+            <div>{{ translateMemberType(member.type) }}</div>
             <div class="mailing-list-policy--reference">{{ member.reference }}</div>
           </div>
           <button type="button"
                   class="icon-delete"
+                  v-if="list.access.editableTypes.indexOf(member.type) >= 0"
                   v-on:click="removeMember(member)"></button>
         </div>
       </div>
@@ -191,6 +163,20 @@ import api from "./api";
 import RequestButton from "./RequestButton";
 import MailingListAccess from "./MailingListAccess";
 import appContext from "./context";
+
+const TYPES = {
+  "GROUP": t('majordomo', 'Members of group'),
+  "USER": t('majordomo', 'E-Mail of user'),
+  "EXTRA": t('majordomo', 'Additional E-Mail'),
+  "NOTGROUP": t('majordomo', 'Except members of group'),
+  "NOTUSER": t('majordomo', 'Except E-Mail of user'),
+  "EXCLUDE": t('majordomo', 'Exclude E-Mail'),
+  "MODGROUP": t('majordomo', 'Moderation group'),
+  "MODUSER": t('majordomo', 'Moderation user'),
+  "MODEXTRA": t('majordomo', 'Additional moderator E-Mail'),
+  "ADMGROUP": t('majordomo', 'Admin group'),
+  "ADMUSER": t('majordomo', 'Admin user'),
+};
 
 export default {
   components: {
@@ -215,7 +201,12 @@ export default {
       loadingError: null,
       dirty: false,
       list: {},
-      status: []
+      status: [],
+    }
+  },
+  computed: {
+    typeOptions() {
+      return ['', ...this.list.access.editableTypes].map(id => this.typeOption(id));
     }
   },
   mounted() {
@@ -307,6 +298,15 @@ export default {
         };
         this.dirty = true;
       }
+    },
+    translateMemberType(type) {
+      return TYPES[type] || type;
+    },
+    typeOption(id) {
+      if (id === '') {
+        return { id: '', displayName: t('majordomo', '- Please select -') };
+      }
+      return { id, displayName: this.translateMemberType(id) };
     },
   },
 }

@@ -185,7 +185,7 @@ class MailingListService {
             self::mapPostToEntity($post, $ml);
         }
         $this->mailingListMapper->update($ml);
-        $this->updateMembers($id, $post);
+        $this->updateMembers($id, $post, $access->editableTypes);
 
         $this->db->commit();
     }
@@ -274,12 +274,7 @@ class MailingListService {
         return $this->getListAccess($this->mailingListMapper->find($listId));
     }
 
-    /**
-     * @param $listId
-     * @param array|Member $oldMembers
-     * @param array $post
-     */
-    private function updateMembers($listId, array $post) {
+    private function updateMembers($listId, array $post, array $editableTypes = NULL) {
         if (!isset($post["members"]) || !is_array($post["members"])) {
             return;
         }
@@ -295,14 +290,24 @@ class MailingListService {
         }
 
         foreach (array_diff(array_keys($oldMembersMap), array_keys($newMemberMap)) as $toDelete) {
-            $this->memberMapper->delete($oldMembersMap[$toDelete]);
+            if ($editableTypes === NULL || in_array($oldMembersMap[$toDelete]->type, $editableTypes)) {
+                $this->memberMapper->delete($oldMembersMap[$toDelete]);
+            } else {
+                $this->logger->error("Rejecting to delete member $toDelete to list ID $listId by user ID $this->UserId: " .
+                    implode(", ", $editableTypes));
+            }
         }
 
         foreach (array_diff(array_keys($newMemberMap), array_keys($oldMembersMap)) as $toCreate) {
             $newMember = new Member();
             self::mapPostToEntity($newMemberMap[$toCreate], $newMember);
             $newMember->setListId($listId);
-            $this->memberMapper->insert($newMember);
+            if ($editableTypes === NULL || in_array($newMember->type, $editableTypes)) {
+                $this->memberMapper->insert($newMember);
+            } else {
+                $this->logger->error("Rejecting to add member $toCreate to list ID $listId by user ID $this->UserId: " .
+                    implode(", ", $editableTypes));
+            }
         }
     }
 
