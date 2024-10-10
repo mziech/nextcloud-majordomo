@@ -22,15 +22,19 @@ namespace OCA\Majordomo\Controller;
 
 use OC\AppFramework\Http;
 use OC\ForbiddenException;
-use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\MemberMapper;
 use OCA\Majordomo\Service\ImapLoader;
+use OCA\Majordomo\Service\MailingListAccess;
 use OCA\Majordomo\Service\MailingListService;
 use OCA\Majordomo\Service\OutboundService;
 use OCA\Majordomo\Service\Settings;
 use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\Attribute\NoAdminRequired;
+use OCP\AppFramework\Http\Attribute\NoCSRFRequired;
+use OCP\AppFramework\Http\Attribute\PublicPage;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\Response;
+use OCP\DB\Exception;
 use OCP\IGroup;
 use OCP\IGroupManager;
 use OCP\IRequest;
@@ -89,21 +93,13 @@ class ApiController extends Controller {
         $this->imapLoader = $imapLoader;
     }
 
-    /**
-     * @NoAdminRequired
-     */
+    #[NoAdminRequired]
     public function lists() {
         return $this->mailingListService->list();
     }
 
-    /**
-     * @NoAdminRequired
-     */
-    public function getList($id) {
-        if ($id == "new") {
-            return new JSONResponse(["id" => "new"]);
-        }
-
+    #[NoAdminRequired]
+    public function getList($id): Response {
         try {
             return new JSONResponse($this->mailingListService->read($id));
         } catch (ForbiddenException $ignored) {
@@ -111,10 +107,8 @@ class ApiController extends Controller {
         }
     }
 
-    /**
-     * @NoAdminRequired
-     */
-    public function getListStatus($id) {
+    #[NoAdminRequired]
+    public function getListStatus($id): Response {
         if ($id == "new") {
             return new JSONResponse([]);
         }
@@ -127,10 +121,10 @@ class ApiController extends Controller {
     }
 
     /**
-     * @NoAdminRequired
      * @throws ForbiddenException
      */
-    public function searchUsers() {
+    #[NoAdminRequired]
+    public function searchUsers(): Response {
         if (!$this->mailingListService->canEditMembers()) {
             throw new ForbiddenException("List members edit access not allowed for any list");
         }
@@ -147,15 +141,14 @@ class ApiController extends Controller {
     }
 
     /**
-     * @NoAdminRequired
      * @throws ForbiddenException
      */
-    public function searchGroups() {
+    #[NoAdminRequired]
+    public function searchGroups(): Response {
         if (!$this->mailingListService->canEditMembers()) {
             throw new ForbiddenException("List members edit access not allowed for any list");
         }
-        $admin = $this->groupManager->isAdmin($this->userId);
-        return new JSONResponse(array_map(function (IGroup $group) use ($admin) {
+        return new JSONResponse(array_map(function (IGroup $group) {
             return [
                 "id" => $group->getGID(),
                 "displayName" => $group->getDisplayName(),
@@ -167,10 +160,10 @@ class ApiController extends Controller {
     }
 
     /**
-     * @NoAdminRequired
      * @throws ForbiddenException
      */
-    public function getListMembers($id) {
+    #[NoAdminRequired]
+    public function getListMembers($id): Response {
         if (!$this->mailingListService->getListAccessByListId($id)->canListMembers) {
             throw new ForbiddenException("List members access not allowed for list ID $id");
         }
@@ -178,13 +171,11 @@ class ApiController extends Controller {
     }
 
     /**
-     * @NoAdminRequired
-     * @param $id
-     * @return JSONResponse
      * @throws ForbiddenException
-     * @throws \OCP\DB\Exception
+     * @throws Exception
      */
-    public function postList($id) {
+    #[NoAdminRequired]
+    public function postList($id): Response {
         if ($id == "new") {
             return new JSONResponse(
                 $this->mailingListService->read(
@@ -197,78 +188,76 @@ class ApiController extends Controller {
         return new JSONResponse($this->mailingListService->read($id));
     }
 
-    public function getPendingChanges($id) {
+    public function getPendingChanges($id): Response {
         return new JSONResponse($this->outboundService->getPendingMembershipUpdate($id));
     }
 
-    public function postListCheck($id) {
+    public function postListCheck($id): Response {
         return new JSONResponse($this->outboundService->retrieveCurrentMembers($id, false));
     }
 
-    public function postListImport($id) {
+    public function postListImport($id): Response {
         return new JSONResponse($this->outboundService->retrieveCurrentMembers($id, true));
     }
 
-    public function postListSync($id) {
+    public function postListSync($id): Response {
         return new JSONResponse($this->outboundService->updateMailingListMembership($id));
     }
 
-    public function getRequestStatus($id) {
+    public function getRequestStatus($id): Response {
         return new JSONResponse($this->outboundService->getRequestStatus($id));
     }
 
-    public function getBounces() {
+    public function getBounces(): Response {
         $this->imapLoader->processMails();
         return new JSONResponse($this->imapLoader->getBounces());
     }
 
-    public function getBounce($uid) {
+    public function getBounce($uid): Response {
         return new JSONResponse(["body" => $this->imapLoader->getBounce($uid)["body"]]);
     }
 
-    public function approveBounce($uid) {
+    public function approveBounce($uid): Response {
         $this->outboundService->approveBounce($uid);
         return new JSONResponse([]);
     }
 
-    public function rejectBounce($uid) {
+    public function rejectBounce($uid): Response {
         $this->imapLoader->deleteBounce($uid);
         return new JSONResponse([]);
     }
 
-    public function getSettings() {
+    public function getSettings(): Response {
         return new JSONResponse([
             'imap' => $this->settings->getImapSettings(),
             'webhook' => $this->settings->getWebhookSettings(),
         ]);
     }
 
-    public function postSettings() {
+    public function postSettings(): Response {
         $json = $this->request->post;
         $this->settings->setImapSettings($json['imap']);
         $this->settings->setWebhookSettings($json['webhook']);
         return $this->getSettings();
     }
 
-    public function postSettingsTest() {
+    public function postSettingsTest(): Response {
         try {
-            return array_merge(["success" => true], $this->imapLoader->test());
+            return new JSONResponse(array_merge(["success" => true], $this->imapLoader->test()));
         } catch (\Exception $e) {
-            return ["success" => false, "error" => $e->getMessage()];
+            return new JSONResponse(["success" => false, "error" => $e->getMessage()]);
         }
     }
 
-    public function postProcessMails() {
+    public function postProcessMails(): Response {
         $this->imapLoader->processMails();
         return new Response(204);
     }
 
-    /**
-     * @NoAdminRequired
-     * @NoCSRFRequired
-     * @PublicPage
-     */
-    public function postWebhook() {
+    #[NoAdminRequired]
+    #[NoCSRFRequired]
+    #[PublicPage]
+    public function postWebhook(): Response {
         $webhook = $this->settings->getWebhookSettings();
         if (!$webhook->enabled || !$webhook->token || $webhook->token !== $this->request->post["token"]) {
             throw new ForbiddenException("Webhook access rejected");

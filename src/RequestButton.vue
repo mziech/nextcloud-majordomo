@@ -78,7 +78,7 @@
 
 <script>
 import api from "./api";
-import Modal from '@nextcloud/vue/dist/Components/NcModal';
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js';
 
 export default {
   name: "RequestButton",

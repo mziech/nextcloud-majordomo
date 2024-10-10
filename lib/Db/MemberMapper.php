@@ -66,25 +66,29 @@ class MemberMapper extends \OCP\AppFramework\Db\QBMapper {
      */
     public function findAllByUserAndGroups($user, $groups, $listId) {
         $qb = $this->db->getQueryBuilder();
-        $where = $qb->expr()->orX();
+        $or = [];
+
         if (!empty($user)) {
-            $where->add($qb->expr()->andX(
+            $or[] = $qb->expr()->andX(
                 $qb->expr()->in("type", $qb->createNamedParameter(Member::TYPES_USER, IQueryBuilder::PARAM_STR_ARRAY)),
                 $qb->expr()->eq("reference", $qb->createNamedParameter($user))
-            ));
+            );
         }
         if (!empty($groups)) {
-            $where->add($qb->expr()->andX(
+            $or[] = $qb->expr()->andX(
                 $qb->expr()->in("type", $qb->createNamedParameter(Member::TYPES_GROUP, IQueryBuilder::PARAM_STR_ARRAY)),
                 $qb->expr()->in("reference", $qb->createNamedParameter($groups, IQueryBuilder::PARAM_STR_ARRAY))
-            ));
+            );
         }
+
+        $where = $qb->expr()->orX(...$or);
         if ($listId !== NULL) {
             $where = $qb->expr()->andX(
                 $qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)),
                 $where
             );
         }
+
         return $this->findEntities($qb->select("*")
             ->from("majordomo_members")
             ->where($where));

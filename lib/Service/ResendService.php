@@ -90,7 +90,9 @@ class ResendService {
     }
 
     public function isEnabled(): bool {
-        return $this->settings->getImapSettings()->resend && $this->rawMailer->isSupported();
+        return isset($this->settings->getImapSettings()->resend)
+            && $this->settings->getImapSettings()->resend
+            && $this->rawMailer->isSupported();
     }
 
     /**

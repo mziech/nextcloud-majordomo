@@ -39,7 +39,7 @@ const config = {
 		new ESLintPlugin({ extensions: ['js', 'vue'], failOnError: false }),
 	],
 	resolve: {
-		extensions: ['*', '.js', '.vue'],
+		extensions: ['.js', '.mjs', '.vue'],
 		symlinks: false
 	}
 };

@@ -85,9 +85,7 @@ class MailingListMapper extends \OCP\AppFramework\Db\QBMapper {
 
     public function findAllByAccessLevel($listAccess, $accessType = MailingListAccess::VIEW_ACCESS) {
         $qb = $this->db->getQueryBuilder();
-        $or = $qb->expr()->orX();
-
-        $or->add($qb->expr()->gte(
+        $or = $qb->expr()->orX($qb->expr()->gte(
             $accessType, $qb->createNamedParameter(MailingList::ACCESS_OPEN, IQueryBuilder::PARAM_INT)));
 
         $accessList = [];

@@ -28,6 +28,7 @@ use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\Member;
 use OCA\Majordomo\Db\MemberMapper;
 use OCP\AppFramework\Db\Entity;
+use OCP\AppFramework\Http\JSONResponse;
 use OCP\DB\Exception;
 use OCP\IDBConnection;
 use OCP\IGroupManager;
@@ -86,7 +87,15 @@ class MailingListService {
         $this->logger = $logger;
     }
 
-    public function read($id) {
+    public function read($id): array {
+        if ($id == "new") {
+            $dto = [
+                "access" => MailingListAccess::forNew()
+            ];
+            self::mapEntityToDto(MailingList::create(), $dto);
+            return $dto;
+        }
+
         $ml = $this->mailingListMapper->find($id);
         $access = $this->getListAccess($ml);
         if (!$access->canView) {
@@ -112,7 +121,7 @@ class MailingListService {
         return $dto;
     }
 
-    public function list() {
+    public function list(): array {
         $admin = $this->groupManager->isAdmin($this->UserId);
         if ($admin) {
             $mls = $this->mailingListMapper->findAll();
@@ -197,8 +206,9 @@ class MailingListService {
             throw new ForbiddenException();
         }
 
+        $ml = $this->mailingListMapper->find($id);
         $expected = $this->memberResolver->getMemberEmails($id);
-        $actual = $this->currentEmailMapper->findEmailsByListId($id);
+        $actual = $ml->manager != '' ? $this->currentEmailMapper->findEmailsByListId($id) : $expected;
         $toAdd = array_diff($expected, $actual);
         $toDelete = array_diff($actual, $expected);
 

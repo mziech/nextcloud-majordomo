@@ -37,6 +37,10 @@ class MailingListAccess {
         }
     }
 
+    public static function forNew(): MailingListAccess {
+        return new MailingListAccess(new MailingList(), 0);
+    }
+
     public function __toString(): string {
         return print_r($this, true);
     }

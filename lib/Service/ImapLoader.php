@@ -182,7 +182,7 @@ class ImapLoader {
                     imap_mail_move($imap, $mail->msgno, $this->imapSettings->errors);
                 }
                 $expunge = true;
-            } else if (!empty($this->imapSettings->bounces) && \Safe\preg_match(self::BOUNCE_PATTERN, $mail->subject)) {
+            } else if (!empty($this->imapSettings->bounces) && preg_match(self::BOUNCE_PATTERN, $mail->subject)) {
                 imap_mail_move($imap, $mail->msgno, $this->imapSettings->bounces);
                 $this->logger->info("Moved bounce {$mail->msgno} '{$mail->subject}' from {$mail->from}", [ "app" => $this->AppName ]);
                 $expunge = true;
@@ -227,7 +227,7 @@ class ImapLoader {
             $mails = [];
             foreach (imap_fetch_overview($imap, join(",", $nrs)) as $mail) {
                 $m = [];
-                if (isset($mail->subject) && \Safe\preg_match(self::BOUNCE_PATTERN, $mail->subject, $m)) {
+                if (isset($mail->subject) && preg_match(self::BOUNCE_PATTERN, $mail->subject, $m)) {
                     if (!array_key_exists($m[1], $bouncerMapping)) {
                         continue;
                     }
@@ -276,7 +276,7 @@ class ImapLoader {
         $imap = $this->getImap($this->imapSettings->bounces);
         $mail = imap_fetch_overview($imap, "$uid", FT_UID)[0];
         $m = [];
-        if (\Safe\preg_match(self::BOUNCE_PATTERN, $mail->subject, $m)) {
+        if (preg_match(self::BOUNCE_PATTERN, $mail->subject, $m)) {
             return $this->inboundService->getListByBounceAddress($m[1]);
         }
         throw new \RuntimeException("The mail $uid is not a bounced message");

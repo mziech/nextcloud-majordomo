@@ -56,7 +56,7 @@
         <p class="centered-input">
           <label for="resendAddress">
             {{ t('majordomo', 'Email address for built-in list manager') }}:
-            <NcCounterBubble type="highlight">BETA</NcCounterBubble>
+            <NcCounterBubble type="highlighted">BETA</NcCounterBubble>
           </label>
           <input id="resendAddress" type="email" v-model="list.resendAddress" :disabled="!list.access.canAdmin"/>
         </p>
@@ -102,17 +102,17 @@
         <p class="centered-input" v-if="list.access.canEditMembers">
           <button class="primary">{{ t('majordomo', 'Save') }}</button>
         </p>
-        <p class="centered-input" v-if="!isNew && list.access.canAdmin">
+        <p class="centered-input" v-if="!isNew && list.access.canAdmin && list.manager">
           <RequestButton :list-id="list.id" action="check" @success="reload()" :disabled="dirty">
             {{ t('majordomo', 'Retrieve current status from list manager') }}
           </RequestButton>
         </p>
-        <p class="centered-input" v-if="!isNew && list.access.canAdmin">
+        <p class="centered-input" v-if="!isNew && list.access.canAdmin && list.manager">
           <RequestButton :list-id="list.id" action="import" @success="reload()" :disabled="dirty">
             {{ t('majordomo', 'Retrieve current status from list manager AND apply to settings') }}
           </RequestButton>
         </p>
-        <p class="centered-input" v-if="!isNew && list.access.canAdmin">
+        <p class="centered-input" v-if="!isNew && list.access.canAdmin && list.manager">
           <RequestButton :list-id="list.id" action="sync" @success="reload()" :disabled="dirty">
             {{ t('majordomo', 'Write desired changes to list manager') }}
           </RequestButton>
@@ -120,10 +120,16 @@
       </form>
       <h3  v-if="list.access.canListMembers">{{ t('majordomo', 'Member Policy') }}</h3>
       <div v-if="list.access.canEditMembers">
-        <NcSelect :value="typeOption(addMemberType)" :options="this.typeOptions" label="displayName" @input="v => this.addMemberType = v.id" @option:selected="onMemberTypeChange()"/>
+        <NcSelect :value="typeOption(addMemberType)"
+                  :options="this.typeOptions"
+                  :ariaLabelCombobox="t('majordomo', 'Choose the kind of membership entry to add')"
+                  label="displayName"
+                  @input="v => this.addMemberType = v.id"
+                  @option:selected="onMemberTypeChange()"/>
         <span v-if="[...appContext.types.user, ...appContext.types.group].indexOf(addMemberType) >= 0 && availableMembers === null" class="icon-loading-small inlineblock"></span>
         <NcSelect v-model="addMemberReference"
                   v-if="[...appContext.types.user, ...appContext.types.group].indexOf(addMemberType) >= 0 && availableMembers !== null"
+                  :ariaLabelCombobox="t('majordomo', 'Choose the user or group to add or exclude')"
                   :userSelect="true"
                   :options="availableMembers">
         </NcSelect>
@@ -153,12 +159,12 @@
   </div>
 </template>
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList';
-import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails';
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar';
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent';
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble';
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect';
+import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList.js';
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js';
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js';
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js';
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js';
+import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js';
 import api from "./api";
 import RequestButton from "./RequestButton";
 import MailingListAccess from "./MailingListAccess";
@@ -200,7 +206,7 @@ export default {
       isNew: true,
       loadingError: null,
       dirty: false,
-      list: {},
+      list: {access: {}},
       status: [],
     }
   },
@@ -238,11 +244,22 @@ export default {
       this.load(this.$route.params.id);
     },
     save() {
+      // Remove empty strings on fields possibly containing unique constraints
+      ["listname", "manager", "resendAddress"].forEach(field => {
+        if (this.list[field] === '') {
+          this.list[field] = null;
+        }
+      });
+
       api.post(`/lists/${this.$route.params.id}`, this.list).then(list => {
         OC.Notification.showTemporary(t("majordomo", "Mailing list saved."));
-        this.$router.replace({name: 'list', params: {id: list.id}});
         this.$emit("saved");
         this.dirty = false;
+        if (this.isNew) {
+          this.$router.replace({name: 'list', params: {id: list.id}});
+        } else {
+          this.reload();
+        }
       }).catch(() => {
         OC.Notification.showTemporary(t("majordomo", "Failed to save mailing list."), {type: "error"});
       });

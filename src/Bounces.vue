@@ -58,10 +58,10 @@
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton';
-import ActionRouter from "@nextcloud/vue/dist/Components/NcActionRouter";
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent';
-import ListItem from '@nextcloud/vue/dist/Components/NcListItem';
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js';
+import ActionRouter from "@nextcloud/vue/dist/Components/NcActionRouter.js";
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js';
+import ListItem from '@nextcloud/vue/dist/Components/NcListItem.js';
 import api from "./api";
 
 export default {

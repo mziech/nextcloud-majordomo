@@ -48,20 +48,14 @@ class MailingList extends \OCP\AppFramework\Db\Entity {
         $this->addType("memberEditAccess", "integer");
     }
 
-    public static function fromPost($post) {
-        $vars = get_class_vars(static::class);
-        return self::fromParams(array_filter($post, function ($key) use ($vars) {
-            return array_key_exists($key, $vars);
-        }, ARRAY_FILTER_USE_KEY));
+    public static function create(): MailingList {
+        $ml = new MailingList();
+        $ml->id = 'new';
+        $ml->resendAccess = self::ACCESS_MODERATORS;
+        $ml->viewAccess = self::ACCESS_MEMBERS;
+        $ml->memberListAccess = self::ACCESS_ADMIN;
+        $ml->memberEditAccess = self::ACCESS_ADMIN;
+        return $ml;
     }
 
-    public function populateFromPost($post) {
-        $vars = get_class_vars(self::class);
-        foreach ($post as $key => $value) {
-            if (array_key_exists($key, $vars) && $key !== "id") {
-                $setter = "set" . ucfirst($key);
-                $this->$setter($value);
-            }
-        }
-    }
 }

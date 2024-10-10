@@ -75,7 +75,7 @@
       <p class="centered-input">
         <CheckboxRadioSwitch :checked.sync="settings.imap.resend" class="right" @update:checked="makeDirty()">
           {{ t('majordomo', 'Enable built-in list manager without external Majordomo') }}
-          <NcCounterBubble type="highlight">BETA</NcCounterBubble>
+          <NcCounterBubble type="highlighted">BETA</NcCounterBubble>
         </CheckboxRadioSwitch>
 
       </p>
@@ -123,9 +123,9 @@
 </template>
 
 <script>
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent';
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch';
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble';
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js';
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js';
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js';
 import api from "./api";
 
 function extractImapOption(server, option) {

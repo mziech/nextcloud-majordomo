@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2024-10-11
+### Changed
+- Nextcloud 30 compatibility
+- Housekeeping and dependency updates
+- Remove not-null constraints from some classic Majordomo specific database fields
+
+### Fixed
+- Creation of new mailing lists (with missing fields)
+
 ## [2.0.0] - 2024-10-01
 ### Changed
 - Nextcloud 29 compatibility

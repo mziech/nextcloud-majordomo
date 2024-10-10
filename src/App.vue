@@ -29,14 +29,14 @@
                           v-on:click="$router.push({ name: 'list', params: { id: 'new' }})"
         />
         <ul>
-          <AppNavigationItem :title="t('majordomo', 'Loading ...')" :loading="true" v-if="loading"/>
-          <AppNavigationItem :key="list.id" :title="list.title" :icon="list.syncActive ? 'icon-play' : 'icon-pause'"
+          <AppNavigationItem :name="t('majordomo', 'Loading ...')" :loading="true" v-if="loading"/>
+          <AppNavigationItem :key="list.id" :name="list.title" :icon="list.syncActive ? 'icon-play' : 'icon-pause'"
                              :to="{ name: 'list', params: { id: list.id }}" v-for="list in lists"/>
         </ul>
       </template>
       <template #footer>
-        <AppNavigationItem icon="icon-error" :title="t('majordomo', 'Bounces')" :to="{ name: 'bounces' }" v-if="appContext.moderator"/>
-        <AppNavigationItem icon="icon-settings-dark" :title="t('majordomo', 'Settings')" :to="{ name: 'settings' }" v-if="appContext.admin"/>
+        <AppNavigationItem icon="icon-error" :name="t('majordomo', 'Bounces')" :to="{ name: 'bounces' }" v-if="appContext.moderator"/>
+        <AppNavigationItem icon="icon-settings-dark" :name="t('majordomo', 'Settings')" :to="{ name: 'settings' }" v-if="appContext.admin"/>
       </template>
     </AppNavigation>
     <AppContent>
@@ -47,21 +47,20 @@
 
 <script>
 
-import Content from '@nextcloud/vue/dist/Components/NcContent';
-import AppContent from '@nextcloud/vue/dist/Components/NcAppContent';
-import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation';
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem';
-import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew';
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/NcAppNavigationCounter';
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/NcAppNavigationSettings';
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton';
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink';
-import AppNavigationIconBullet from '@nextcloud/vue/dist/Components/NcAppNavigationIconBullet';
-import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox';
-import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput';
-import ActionRouter from '@nextcloud/vue/dist/Components/NcActionRouter';
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText';
-import ActionTextEditable from '@nextcloud/vue/dist/Components/NcActionTextEditable';
+import Content from '@nextcloud/vue/dist/Components/NcContent.js';
+import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js';
+import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation.js';
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js';
+import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew.js';
+import AppNavigationSettings from '@nextcloud/vue/dist/Components/NcAppNavigationSettings.js';
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js';
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js';
+import AppNavigationIconBullet from '@nextcloud/vue/dist/Components/NcAppNavigationIconBullet.js';
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js';
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js';
+import ActionRouter from '@nextcloud/vue/dist/Components/NcActionRouter.js';
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js';
+import ActionTextEditable from '@nextcloud/vue/dist/Components/NcActionTextEditable.js';
 import VueRouter from "vue-router";
 
 import api from "./api";
@@ -69,7 +68,6 @@ import Bounces from "./Bounces";
 import MailingList from "./MailingList";
 import Settings from "./Settings";
 import {linkTo} from "@nextcloud/router";
-import appContext from "./context";
 
 const router = new VueRouter({
   mode: 'hash',
@@ -90,7 +88,6 @@ export default {
     AppNavigation,
     AppNavigationItem,
     AppNavigationNew,
-    AppNavigationCounter,
     AppNavigationSettings,
     ActionButton,
     ActionLink,
