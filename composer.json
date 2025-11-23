@@ -1,0 +1,25 @@
+{
+  "name": "mziech/nextcloud-majordomo",
+  "description": "Nextcloud app to manage mailing lists",
+  "type": "project",
+  "require": {
+    "directorytree/imapengine": "^1.18"
+  },
+  "replace": {
+    "laravel/serializable-closure": "*",
+    "symfony/http-foundation": "*",
+    "symfony/mime": "*",
+    "doctrine/lexer": "*",
+    "psr/clock": "*",
+    "psr/container": "*",
+    "psr/http-factory": "*",
+    "psr/http-message": "*",
+    "psr/log": "*"
+  },
+  "license": "AGPL",
+  "authors": [
+    {
+      "name": "Marco Ziech"
+    }
+  ]
+}

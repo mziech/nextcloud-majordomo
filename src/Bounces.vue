@@ -28,13 +28,13 @@
       {{ t('majordomo', 'There are currently no bounced messages.') }}
     </div>
     <ul v-else>
-      <ListItem v-for="bounce of bounces" :title="bounce.from" :details="bounce.date" :key="bounce.uid"
+      <ListItem v-for="bounce of bounces" :name="bounce.from" :details="bounce.date" :key="bounce.uid"
                 :to="$route.params.uid === `${bounce.uid}` ? { name: 'bounces' } : { name: 'bounces', params: { uid: `${bounce.uid}` }, }">
         <template #icon>
           <div class="icon-triangle-s" v-if="$route.params.uid === `${bounce.uid}`"/>
           <div class="icon-triangle-e" v-else/>
         </template>
-        <template #subtitle>
+        <template #subname>
           → {{bounce.list_title}}
         </template>
         <template #actions>

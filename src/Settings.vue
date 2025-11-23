@@ -32,20 +32,14 @@
       <p class="centered-input">
         <label for="encryption">{{ t('majordomo', 'Encryption') }}:</label>
         <select id="encryption" v-model="server.encryption" @change="makeDirty()">
-          <option value="">{{ t('majordomo', '(default)') }}</option>
+          <option value="">{{ t('majordomo', '(none)') }}</option>
           <option value="/ssl">{{ t('majordomo', 'Use SSL') }}</option>
-          <option value="/tls">{{ t('majordomo', 'Force TLS') }}</option>
-          <option value="/notls">{{ t('majordomo', 'Disable TLS') }}</option>
+          <option value="/tls">{{ t('majordomo', 'Use TLS') }}</option>
         </select>
       </p>
       <p class="centered-input">
         <CheckboxRadioSwitch :checked.sync="server.novalidatecert" class="right" @update:checked="makeDirty()">
           {{ t('majordomo', 'Skip SSL/TLS certificate validation') }}
-        </CheckboxRadioSwitch>
-      </p>
-      <p class="centered-input">
-        <CheckboxRadioSwitch :checked.sync="server.secure" class="right" @update:checked="makeDirty()">
-          {{ t('majordomo', 'Never send password in plaintext') }}
         </CheckboxRadioSwitch>
       </p>
       <p class="centered-input">
@@ -164,11 +158,7 @@ export default {
     api.get('/settings').then(settings => {
       this.settings = Object.assign({imap: {}, webhook: {}}, settings);
       const server = { hostname: this.settings.imap.server || "", encryption: "" };
-      server.secure = extractImapOption(server, "secure");
       server.novalidatecert = extractImapOption(server, "novalidate-cert");
-      if (extractImapOption(server, "notls")) {
-        server.encryption = "/notls";
-      }
       if (extractImapOption(server, "tls")) {
         server.encryption = "/tls";
       }
@@ -184,8 +174,7 @@ export default {
     save() {
       this.saving = true;
       this.settings.imap.server = this.server.hostname + this.server.encryption +
-          (this.server.novalidatecert ? "/novalidate-cert" : "") +
-          (this.server.secure ? "/secure" : "");
+          (this.server.novalidatecert ? "/novalidate-cert" : "");
       api.post('/settings', this.settings).then(() => {
         OC.Notification.showTemporary(t("majordomo", "IMAP settings successfully updated"));
         this.saving = false;

@@ -3,4 +3,4 @@ _old
 /node_modules
 /js/majordomo.js*
 /majordomo.tar.gz
-
+/vendor/

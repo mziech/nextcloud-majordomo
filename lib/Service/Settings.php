@@ -21,22 +21,20 @@
 namespace OCA\Majordomo\Service;
 
 
-use OCP\IConfig;
+use OCP\IAppConfig;
 
 class Settings {
 
-    // private IAppConfig $appConfig;
     private $AppName;
-    private IConfig $config;
+    private IAppConfig $appConfig;
 
-    function __construct($AppName, IConfig $config) {
+    function __construct($AppName, IAppConfig $appConfig) {
         $this->AppName = $AppName;
-        $this->config = $config;
+        $this->appConfig = $appConfig;
     }
 
     public function setImapSettings(array $arr) {
-        // NC>=29: $this->appConfig->setValueString($this->AppName, "imap",
-        $this->config->setAppValue($this->AppName, "imap",
+        $this->appConfig->setValueString($this->AppName, "imap",
             json_encode($this->arrayToObject($arr, new ImapSettings())));
     }
 
@@ -44,14 +42,12 @@ class Settings {
      * @return ImapSettings
      */
     public function getImapSettings() {
-        // NC>=29: $value = $this->appConfig->getValueString($this->AppName, "imap");
-        $value = $this->config->getAppValue($this->AppName, "imap");
+        $value = $this->appConfig->getValueString($this->AppName, "imap", "{}");
         return $this->jsonToObject($value, new ImapSettings());
     }
 
     public function setWebhookSettings(mixed $arr) {
-        // NC>=29: $this->appConfig->setValueString($this->AppName, "webhook",
-        $this->config->setAppValue($this->AppName, "webhook",
+        $this->appConfig->setValueString($this->AppName, "webhook",
             json_encode($this->arrayToObject($arr, new WebhookSettings())));
     }
 
@@ -59,8 +55,7 @@ class Settings {
      * @return WebhookSettings
      */
     public function getWebhookSettings() {
-        // NC>=29: $value = $this->appConfig->getValueString($this->AppName, "webhook");
-        $value = $this->config->getAppValue($this->AppName, "webhook");
+        $value = $this->appConfig->getValueString($this->AppName, "webhook");
         return $this->jsonToObject($value, new WebhookSettings());
     }
 
@@ -76,7 +71,7 @@ class Settings {
     private function arrayToObject($arr, $obj) {
         $fields = get_class_vars(get_class($obj));
         foreach ($arr as $k => $v) {
-            if (array_key_exists($k, $fields)) {
+            if (array_key_exists($k, $fields) && $v !== null) {
                 $obj->$k = $v;
             }
         }

@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Marco Ziech <marco+nc@ziech.net>
+ * @copyright Copyright (c) 2025 Marco Ziech <marco+nc@ziech.net>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -18,17 +18,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-namespace OCA\Majordomo\Service;
+declare(strict_types=1);
 
+namespace OCA\Majordomo\AppInfo;
 
-class ImapSettings {
-    public $server;
-    public $from;
-    public $user;
-    public $password;
-    public $inbox = "INBOX";
-    public $archive = "archive";
-    public $errors = "errors";
-    public $bounces = "bounces";
-    public bool $resend;
+use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
+
+class Application extends App implements IBootstrap {
+
+    public function __construct() {
+        parent::__construct('majordomo');
+    }
+
+    public function register(IRegistrationContext $context): void {
+        require_once(__DIR__ . "/../../vendor/autoload.php");
+    }
+
+    public function boot(IBootContext $context): void {
+    }
+
 }

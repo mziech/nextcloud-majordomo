@@ -21,6 +21,7 @@
 
 namespace OCA\Majordomo\Service;
 
+use DirectoryTree\ImapEngine\MessageInterface;
 use OCA\Majordomo\Db\MailingList;
 use OCA\Majordomo\Db\MailingListMapper;
 use OCA\Majordomo\Db\Member;
@@ -63,6 +64,10 @@ class ResendService {
         'approved',  // accidental forwarding of legacy approved password
         'delivered-to',  // postfix mail loop
         'deliver-to',  // maybe an alias to the above
+        'received', // broken / privacy
+        // Headers added by Nextcloud mail client:
+        'content-transfer-encoding',
+        'content-type'
     ];
 
     private LoggerInterface $logger;
@@ -103,23 +108,34 @@ class ResendService {
         return $this->mailingListMapper->findByResendAddressIn($to);
     }
 
-    public function bounceOrResend(MailingList $ml, string $from, string $rawHeader, string $body): bool {
+    public function bounceOrResend(MailingList $ml, MessageInterface $mail): bool {
+        if ($mail->from() == null) {
+            $this->logger->error("Rejecting mail without sender for mailing list $ml->id");
+            return false;
+        }
+
+        $from = $mail->from()->email();
         if (!$this->isAllowedSender($ml, $from)) {
             $this->logger->error("Rejecting sender $from for mailing list $ml->id with resend mode $ml->resendAccess");
             return false;
         }
 
-        if (preg_match("/^List-Id:.*<$ml->resendAddress>/mi", $rawHeader, $loopMatches)) {
-            $this->logger->error("Rejecting mail loop from $from for mailing list $ml->id: " . print_r($loopMatches, true));
+        $listIds = array_map(function ($header) {
+            return strtolower(Address::create($header->getValue())->getAddress());
+        }, $mail->parse()->getAllHeadersByName("List-Id"));
+        if (in_array($ml->resendAddress, $listIds)) {
+            $this->logger->error("Rejecting mail loop from $from for mailing list $ml->id: " . print_r($listIds, true));
             return false;
+        } else {
+            $this->logger->debug("Parsed List-Id headers: " . implode(", ", $listIds));
         }
 
         $this->logger->info("Resending mail from $from to {$ml->resendAddress}");
-        $headers = $this->parseHeaders($rawHeader);
+        $headers = $this->parseHeaders($mail);
         $headers->addMailboxHeader("Sender", new Address($ml->resendAddress));
         $headers->addMailboxHeader("List-Id", new Address($ml->resendAddress, $ml->title));
         $to = $this->memberResolver->getMemberEmails($ml->id);
-        $this->rawMailer->sendRaw($body, $from, $to, $headers);
+        $this->rawMailer->resendRaw($mail, $from, $to, $headers);
         return true;
     }
 
@@ -137,46 +153,33 @@ class ResendService {
         }
     }
 
-    private function parseHeaders(string $rawHeader): Headers {
+    private function parseHeaders(MessageInterface $mail): Headers {
         $headers = new Headers();
-        $key = null;
-        $value = '';
-        foreach (explode("\n", $rawHeader) as $line) {
-            if (ctype_space(substr($line, 0, 1))) {
-                // Continuation of previous header
-                $value .= "\n" . trim($line);
-            } else if (trim($line) !== "") {
-                // Next header
-                $this->addParsedHeader($headers, $key, $value);
-                $parts = explode(':', $line, 2);
-                $key = $parts[0];
-                $value = count($parts) > 1 ? trim($parts[1]) : '';
-            }
+        foreach ($mail->parse()->getAllHeaders() as $header) {
+            $this->addParsedHeader($headers, $header->getName(), $header->getValue());
         }
-        $this->addParsedHeader($headers, $key, $value);
         return $headers;
     }
 
-    private function addParsedHeader(Headers $headers, $key, $rawValue) {
+    private function addParsedHeader(Headers $headers, $key, $value): void {
         if ($key === null) {
             return;
         }
 
         $lkey = strtolower($key);
         if (in_array($lkey, self::REMOVE_HEADERS)) {
-            $this->logger->debug("Skipping header: $key");
+            $this->logger->debug("Skipping header: $lkey ($key)");
             return;
         }
 
-        $value = quoted_printable_decode($rawValue);
         $this->logger->debug("Parsed header: $key: $value");
         switch ($lkey) {
             case 'date':
                 // setlocale(LC_TIME, "en_US");
-                $date = \DateTimeImmutable::createFromFormat(\DateTimeInterface::RFC2822, $value);
-                if ($date === false) {
+                $date = $this->parseDate($value);
+                if ($date === null) {
                     $this->logger->warning("Invalid date '$value' in '$key' header: " . print_r(\DateTimeImmutable::getLastErrors(), true));
-                    $headers->addTextHeader($key, $value);
+                    $headers->addDateHeader($key, new \DateTime());
                 } else {
                     $headers->addDateHeader($key, $date);
                 }
@@ -187,7 +190,7 @@ class ResendService {
             case 'reply-to':
                 $headers->addMailboxListHeader($key, array_map(function ($v) {
                     return quoted_printable_decode($v);
-                }, explode(',', $rawValue)));
+                }, explode(',', $value)));
                 break;
             case 'message-id':
                 $headers->addIdHeader($key, array_map(function ($v) {
@@ -201,6 +204,23 @@ class ResendService {
             default:
                 $headers->addTextHeader($key, $value);
         }
+    }
+
+    private function parseDate($string): ?\DateTimeImmutable {
+        foreach ([
+             \DateTimeInterface::RFC2822,
+             \DateTimeInterface::RFC822,
+             \DateTimeInterface::RFC850,
+             \DateTimeInterface::ISO8601,
+             "Y-m-d H:i:s O",
+             "Y-m-d H:i:s",
+        ] as $format) {
+            $date = \DateTimeImmutable::createFromFormat($format, $string);
+            if ($date !== false) {
+                return $date;
+            }
+        }
+        return null;
     }
 
 }

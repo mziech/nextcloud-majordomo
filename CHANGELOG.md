@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2025-11-23
+- Nextcloud 32 compatibility
+- Replace PHP imap functions with imapengine library, no more IMAP module or c-client library required!
+- Introduced majordomo:idle OCC command to wait for incoming emails
+
 ## [2.1.1] - 2025-06-05
 ### Changed
 - Nextcloud 31 compatibility
