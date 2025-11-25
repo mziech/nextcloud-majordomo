@@ -45,6 +45,10 @@ const path = require("path");
     function findPHPFiles(dir) {
         let files = [];
         for (let ent of fs.readdirSync(dir, {withFileTypes: true})) {
+            if (dir === "." && ent.name === "vendor") {
+                continue
+            }
+
             if (ent.isDirectory()) {
                 files.push(...findPHPFiles(path.join(dir, ent.name)));
             } else if (ent.isFile() && ent.name.endsWith(".php")) {

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
-"POT-Creation-Date: 2024-09-01 23:34+0200\n"
-"PO-Revision-Date: 2024-09-01 23:47+0200\n"
+"POT-Creation-Date: 2025-11-25 22:59+0000\n"
+"PO-Revision-Date: 2025-11-26 00:05+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.7\n"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:324
 msgid "- Please select -"
 msgstr "- Please select -"
 
 #: src/Settings.vue:22
-msgid "(default)"
-msgstr "(default)"
+msgid "(none)"
+msgstr "(none)"
 
 #: src/MailingList.vue:21
 msgid "Access Control"
@@ -38,20 +38,19 @@ msgstr "Acknowledge"
 msgid "Add policy"
 msgstr "Add policy"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:176
 msgid "Additional E-Mail"
 msgstr "Additional E-Mail"
 
-#: src/MailingList.vue:21
-#| msgid "Additional E-Mail"
+#: src/MailingList.vue:182
 msgid "Additional moderator E-Mail"
 msgstr "Additional moderator E-Mail"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:183
 msgid "Admin group"
 msgstr "Admin group"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:184
 msgid "Admin user"
 msgstr "Admin user"
 
@@ -59,7 +58,7 @@ msgstr "Admin user"
 msgid "Administrators"
 msgstr "Administrators"
 
-#: src/MailingList.vue:236
+#: src/MailingList.vue:238
 msgid "An error occurred while loading the mailing list."
 msgstr "An error occurred while loading the mailing list."
 
@@ -92,16 +91,20 @@ msgid "Cancel"
 msgstr "Cancel"
 
 #: src/MailingList.vue:21
+msgid "Choose the kind of membership entry to add"
+msgstr "Choose the kind of membership entry to add"
+
+#: src/MailingList.vue:21
+msgid "Choose the user or group to add or exclude"
+msgstr "Choose the user or group to add or exclude"
+
+#: src/MailingList.vue:21
 msgid "Create Mailinglist"
 msgstr "Create Mailinglist"
 
 #: src/MailingList.vue:21
 msgid "Current list members"
 msgstr "Current list members"
-
-#: src/Settings.vue:22
-msgid "Disable TLS"
-msgstr "Disable STARTTLS"
 
 #: src/MailingList.vue:21
 msgid "E-Mail"
@@ -111,7 +114,7 @@ msgstr "E-Mail"
 msgid "E-Mail address"
 msgstr "E-Mail address"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:175
 msgid "E-Mail of user"
 msgstr "E-Mail of user"
 
@@ -147,15 +150,15 @@ msgstr "Secure connection"
 msgid "Everyone"
 msgstr "Everyone"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:178
 msgid "Except E-Mail of user"
 msgstr "Except E-Mail of user"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:177
 msgid "Except members of group"
 msgstr "Except members of group"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:179
 msgid "Exclude E-Mail"
 msgstr "Exclude E-Mail"
 
@@ -167,18 +170,15 @@ msgstr "Failed to approve bounced message."
 msgid "Failed to load bounced message."
 msgstr "Failed to load bounced message."
 
-#: src/MailingList.vue:266
-#| msgid "Failed to load bounced message."
+#: src/MailingList.vue:279
 msgid "Failed to load groups."
 msgstr "Failed to load groups."
 
-#: src/App.vue:118
-#| msgid "Failed to save mailing list."
+#: src/App.vue:115
 msgid "Failed to load mailing lists."
 msgstr "Failed to load mailing lists."
 
-#: src/MailingList.vue:278
-#| msgid "Failed to load bounced message."
+#: src/MailingList.vue:291
 msgid "Failed to load users."
 msgstr "Failed to load users."
 
@@ -186,21 +186,17 @@ msgstr "Failed to load users."
 msgid "Failed to reject bounced message."
 msgstr "Failed to reject bounced message."
 
-#: src/MailingList.vue:251
+#: src/MailingList.vue:264
 msgid "Failed to save mailing list."
 msgstr "Failed to save mailing list."
 
-#: src/Settings.vue:190
+#: src/Settings.vue:187
 msgid "Failed to store IMAP settings!"
 msgstr "Failed to store IMAP settings!"
 
-#: src/Settings.vue:217
+#: src/Settings.vue:214
 msgid "Failed to test IMAP settings!"
 msgstr "Failed to test IMAP settings!"
-
-#: src/Settings.vue:22
-msgid "Force TLS"
-msgstr "Force STARTTLS"
 
 #: src/Settings.vue:22
 msgid "Global Settings"
@@ -209,6 +205,11 @@ msgstr "Global Settings"
 #: src/Settings.vue:22
 msgid "IMAP Archive folder name"
 msgstr "IMAP Archive folder name"
+
+#: src/Settings.vue:22
+#| msgid "IMAP Errors folder name"
+msgid "IMAP Bounces folder name"
+msgstr "IMAP Bounces folder name"
 
 #: src/Settings.vue:22
 msgid "IMAP Errors folder name"
@@ -226,17 +227,13 @@ msgstr "IMAP Password"
 msgid "IMAP Server Address"
 msgstr "IMAP Server Address"
 
-#: src/Settings.vue:186
+#: src/Settings.vue:183
 msgid "IMAP settings successfully updated"
 msgstr "IMAP settings successfully updated"
 
 #: src/Settings.vue:22
 msgid "IMAP Username"
 msgstr "IMAP Username"
-
-#: src/MailingList.vue:21
-msgid "List administrators"
-msgstr "List administrators"
 
 #: src/MailingList.vue:21
 msgid "List manager email address"
@@ -258,7 +255,7 @@ msgstr "Loading ..."
 msgid "Mail address to approve bounces"
 msgstr "Mail address to approve bounces"
 
-#: src/MailingList.vue:246
+#: src/MailingList.vue:255
 msgid "Mailing list saved."
 msgstr "Mailing list saved."
 
@@ -278,32 +275,25 @@ msgstr "Member needs to be removed"
 msgid "Member Policy"
 msgstr "Member Policy"
 
-#: src/MailingList.vue:21 src/MailingListAccess.vue:14
-#| msgid "Members of group"
+#: src/MailingListAccess.vue:14
 msgid "Members"
 msgstr "Members"
 
-#: src/MailingList.vue:21
+#: src/MailingList.vue:174
 msgid "Members of group"
 msgstr "Members of group"
 
-#: src/MailingList.vue:21
-#| msgid "Members of group"
+#: src/MailingList.vue:180
 msgid "Moderation group"
 msgstr "Moderation group"
 
-#: src/MailingList.vue:21
-#| msgid "E-Mail of user"
+#: src/MailingList.vue:181
 msgid "Moderation user"
 msgstr "Moderation user"
 
-#: src/MailingList.vue:21 src/MailingListAccess.vue:14
+#: src/MailingListAccess.vue:14
 msgid "Moderators"
 msgstr "Moderators"
-
-#: src/Settings.vue:22
-msgid "Never send password in plaintext"
-msgstr "Never send password in plaintext"
 
 #: src/App.vue:21
 msgid "New Mailinglist"
@@ -371,7 +361,12 @@ msgstr "Usage example inside a Procmail configuration"
 
 #: src/Settings.vue:22
 msgid "Use SSL"
-msgstr "Use SSL/TLS"
+msgstr "Use SSL"
+
+#: src/Settings.vue:22
+#| msgid "Use SSL"
+msgid "Use TLS"
+msgstr "Use TLS"
 
 #: src/Bounces.vue:22
 msgid "View"
@@ -396,3 +391,18 @@ msgstr "Write desired changes to list manager"
 #: src/MailingList.vue:21
 msgid "Writing emails to the list"
 msgstr "Writing emails to the list"
+
+#~ msgid "(default)"
+#~ msgstr "(default)"
+
+#~ msgid "Disable TLS"
+#~ msgstr "Disable STARTTLS"
+
+#~ msgid "Force TLS"
+#~ msgstr "Force STARTTLS"
+
+#~ msgid "List administrators"
+#~ msgstr "List administrators"
+
+#~ msgid "Never send password in plaintext"
+#~ msgstr "Never send password in plaintext"

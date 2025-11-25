@@ -67,6 +67,10 @@
         <input id="errors" v-model="settings.imap.errors" @change="makeDirty()"/>
       </p>
       <p class="centered-input">
+        <label for="errors">{{ t('majordomo', 'IMAP Bounces folder name') }}:</label>
+        <input id="errors" v-model="settings.imap.bounces" @change="makeDirty()"/>
+      </p>
+      <p class="centered-input">
         <CheckboxRadioSwitch :checked.sync="settings.imap.resend" class="right" @update:checked="makeDirty()">
           {{ t('majordomo', 'Enable built-in list manager without external Majordomo') }}
           <NcCounterBubble type="highlighted">BETA</NcCounterBubble>

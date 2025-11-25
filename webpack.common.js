@@ -1,9 +1,14 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const webpack = require("webpack");
+const XMLParser = require("fast-xml-parser").XMLParser;
+const fs = require("node:fs");
 
-const packageJson = require('./package.json');
-const appName = packageJson.name;
+const parser = new XMLParser();
+const app = parser.parse(fs.readFileSync(__dirname + "/appinfo/info.xml", "utf-8"))
+const appName = app.info.id;
+const appVersion = app.info.version;
 
 const config = {
 	entry: path.join(__dirname, 'src', 'main.js'),
@@ -36,6 +41,10 @@ const config = {
 	},
 	plugins: [
 		new VueLoaderPlugin(),
+        new webpack.DefinePlugin({
+            appName: JSON.stringify(appName),
+            appVersion: JSON.stringify(appVersion),
+        }),
 		new ESLintPlugin({ extensions: ['js', 'vue'], failOnError: false }),
 	],
 	resolve: {
