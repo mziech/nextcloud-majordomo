@@ -7,13 +7,14 @@ package.json
 .gitignore
 .appignore
 Dockerfile
-src
-img/screenshot*
+./src
+./img/screenshot*
 
-vendor/*/*/composer.json
-vendor/*/*/composer.lock
-vendor/*/*/README.md
-vendor/*/*/tests
-vendor/bin
+composer.json
+composer.lock
+
+./vendor/*/*/README.md
+./vendor/*/*/tests
+./vendor/bin
 
 majordomo.tar.gz
