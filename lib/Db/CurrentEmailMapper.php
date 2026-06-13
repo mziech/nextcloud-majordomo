@@ -60,14 +60,14 @@ class CurrentEmailMapper extends \OCP\AppFramework\Db\QBMapper {
         return $qb->delete("majordomo_who")
             ->andWhere($qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
             ->andWhere($qb->expr()->eq("email", $qb->createNamedParameter(strtolower($email), IQueryBuilder::PARAM_STR)))
-            ->execute();
+            ->executeStatement();
     }
 
     public function deleteByListId($listId) {
         $qb = $this->db->getQueryBuilder();
         return $qb->delete("majordomo_who")
             ->andWhere($qb->expr()->eq("list_id", $qb->createNamedParameter($listId, IQueryBuilder::PARAM_INT)))
-            ->execute();
+            ->executeStatement();
     }
 
 }

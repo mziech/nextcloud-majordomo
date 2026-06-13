@@ -47,38 +47,24 @@
 
 <script>
 
-import Content from '@nextcloud/vue/dist/Components/NcContent.js';
-import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js';
-import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation.js';
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js';
-import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew.js';
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/NcAppNavigationSettings.js';
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js';
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js';
-import AppNavigationIconBullet from '@nextcloud/vue/dist/Components/NcAppNavigationIconBullet.js';
-import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js';
-import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js';
-import ActionRouter from '@nextcloud/vue/dist/Components/NcActionRouter.js';
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js';
-import ActionTextEditable from '@nextcloud/vue/dist/Components/NcActionTextEditable.js';
-import VueRouter from "vue-router";
+import Content from '@nextcloud/vue/components/NcContent';
+import AppContent from '@nextcloud/vue/components/NcAppContent';
+import AppNavigation from '@nextcloud/vue/components/NcAppNavigation';
+import AppNavigationItem from '@nextcloud/vue/components/NcAppNavigationItem';
+import AppNavigationNew from '@nextcloud/vue/components/NcAppNavigationNew';
+import AppNavigationSettings from '@nextcloud/vue/components/NcAppNavigationSettings';
+import ActionButton from '@nextcloud/vue/components/NcActionButton';
+import ActionLink from '@nextcloud/vue/components/NcActionLink';
+import AppNavigationIconBullet from '@nextcloud/vue/components/NcAppNavigationIconBullet';
+import ActionCheckbox from '@nextcloud/vue/components/NcActionCheckbox';
+import ActionInput from '@nextcloud/vue/components/NcActionInput';
+import ActionRouter from '@nextcloud/vue/components/NcActionRouter';
+import ActionText from '@nextcloud/vue/components/NcActionText';
+import ActionTextEditable from '@nextcloud/vue/components/NcActionTextEditable';
 
 import api from "./api";
-import Bounces from "./Bounces";
-import MailingList from "./MailingList";
-import Settings from "./Settings";
-import {linkTo} from "@nextcloud/router";
-
-const router = new VueRouter({
-  mode: 'hash',
-  base: linkTo('majordomo', ''),
-  routes: [
-    {path: "/", component: {template: ""}},
-    {path: "/settings", name: 'settings', component: Settings},
-    {path: "/bounces/:uid?", name: 'bounces', component: Bounces},
-    {path: "/lists/:id", name: 'list', component: MailingList}
-  ]
-});
+import MailingList from "./MailingList.vue";
+import {showError} from "@nextcloud/dialogs";
 
 export default {
   name: 'App',
@@ -112,13 +98,12 @@ export default {
         this.loading = false;
         this.lists = lists;
       }).catch(() => {
-        OC.Notification.showTemporary(t("majordomo", "Failed to load mailing lists."), {type: "error"});
+        showError(t("majordomo", "Failed to load mailing lists."));
       });
     }
   },
   mounted: function () {
     this.load();
   },
-  router
 };
 </script>

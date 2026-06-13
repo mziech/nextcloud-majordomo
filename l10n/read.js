@@ -1,12 +1,12 @@
-const app = require(`${__dirname}/../package.json`).name;
-const { GettextExtractor, JsExtractors } = require('gettext-extractor');
-const { decorateJSParserWithVueSupport } = require('gettext-extractor-vue');
-const child_process = require("child_process");
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import child_process from "child_process";
+import {decorateJSParserWithVueSupport} from "gettext-extractor-vue";
+import {GettextExtractor, JsExtractors} from "gettext-extractor";
 
 (async function() {
-    process.chdir(path.join(__dirname, ".."));
+    process.chdir(path.join(import.meta.dirname, ".."));
+    const app = JSON.parse(fs.readFileSync("package.json", "utf8")).name;
     const extractor = new GettextExtractor();
 
     const jsParser = extractor.createJsParser([
@@ -25,15 +25,9 @@ const path = require("path");
         }),
     ]);
 
-// For vue@2 support please provide vue-template-compiler via `vue2TemplateCompiler`
     const vueParser = decorateJSParserWithVueSupport(jsParser, {
-        vue2TemplateCompiler: require('vue-template-compiler'),
+        vue3TemplateCompiler: require('@vue/compiler-sfc'),
     });
-// For vue@3 support please provide @vue/compiler-sfc via `vue3TemplateCompiler`
-//const vueParser = decorateJSParserWithVueSupport(jsParser, {
-//    vue3TemplateCompiler: require('@vue/compiler-sfc'),
-//});
-
 
     await vueParser.parseFilesGlob("./src/**/*.@(js|vue)");
 

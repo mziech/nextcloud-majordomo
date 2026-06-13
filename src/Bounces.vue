@@ -58,11 +58,12 @@
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js';
-import ActionRouter from "@nextcloud/vue/dist/Components/NcActionRouter.js";
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js';
-import ListItem from '@nextcloud/vue/dist/Components/NcListItem.js';
+import ActionButton from '@nextcloud/vue/components/NcActionButton';
+import ActionRouter from "@nextcloud/vue/components/NcActionRouter";
+import EmptyContent from '@nextcloud/vue/components/NcEmptyContent';
+import ListItem from '@nextcloud/vue/components/NcListItem';
 import api from "./api";
+import {showError, showSuccess} from "@nextcloud/dialogs";
 
 export default {
   components: {
@@ -103,10 +104,10 @@ export default {
       api.post(`/bounces/${uid}/approve`)
           .then(() => {
             this.bounces = this.bounces.filter(bounce => bounce.uid !== uid)
-            OC.Notification.showTemporary(t("majordomo", "Bounced message was approved."));
+            showSuccess(t("majordomo", "Bounced message was approved."));
           })
           .catch(err => {
-            OC.Notification.showTemporary(t("majordomo", "Failed to approve bounced message."), {type: "error"});
+            showError(t("majordomo", "Failed to approve bounced message."));
           })
           .then(() => this.writing = false);
     },
@@ -114,10 +115,10 @@ export default {
       api.post(`/bounces/${uid}/reject`)
         .then(() => {
           this.bounces = this.bounces.filter(bounce => bounce.uid !== uid)
-          OC.Notification.showTemporary(t("majordomo", "Bounced message was rejected."));
+          showSuccess(t("majordomo", "Bounced message was rejected."));
         })
         .catch(err => {
-          OC.Notification.showTemporary(t("majordomo", "Failed to reject bounced message."), {type: "error"});
+          showError(t("majordomo", "Failed to reject bounced message."));
         }).then(() => this.writing = false);
     },
     loadBody(uid) {

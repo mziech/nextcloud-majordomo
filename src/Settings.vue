@@ -38,7 +38,7 @@
         </select>
       </p>
       <p class="centered-input">
-        <CheckboxRadioSwitch :checked.sync="server.novalidatecert" class="right" @update:checked="makeDirty()">
+        <CheckboxRadioSwitch v-model="server.novalidatecert" class="right" @update:checked="makeDirty()">
           {{ t('majordomo', 'Skip SSL/TLS certificate validation') }}
         </CheckboxRadioSwitch>
       </p>
@@ -71,14 +71,14 @@
         <input id="errors" v-model="settings.imap.bounces" @change="makeDirty()"/>
       </p>
       <p class="centered-input">
-        <CheckboxRadioSwitch :checked.sync="settings.imap.resend" class="right" @update:checked="makeDirty()">
+        <CheckboxRadioSwitch v-model="settings.imap.resend" class="right" @update:checked="makeDirty()">
+          <NcChip variant="warning" no-close text="BETA" style="display: inline-block"/>
           {{ t('majordomo', 'Enable built-in list manager without external Majordomo') }}
-          <NcCounterBubble type="highlighted">BETA</NcCounterBubble>
         </CheckboxRadioSwitch>
 
       </p>
       <p class="centered-input">
-        <CheckboxRadioSwitch :checked.sync="settings.webhook.enabled" class="right" @update:checked="maybeGenerateToken()">
+        <CheckboxRadioSwitch v-model="settings.webhook.enabled" class="right" @update:checked="maybeGenerateToken()">
           {{ t('majordomo', 'Enable webhook to process inbound emails') }}
         </CheckboxRadioSwitch>
       </p>
@@ -121,10 +121,11 @@
 </template>
 
 <script>
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js';
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js';
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js';
+import EmptyContent from '@nextcloud/vue/components/NcEmptyContent';
+import CheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch';
+import NcChip from '@nextcloud/vue/components/NcChip';
 import api from "./api";
+import {showError, showSuccess} from "@nextcloud/dialogs";
 
 function extractImapOption(server, option) {
   const pos = server.hostname.indexOf(`/${option}`);
@@ -140,7 +141,7 @@ export default {
   components: {
     EmptyContent,
     CheckboxRadioSwitch,
-    NcCounterBubble,
+    NcChip,
   },
   name: "Settings",
   data() {
@@ -180,11 +181,11 @@ export default {
       this.settings.imap.server = this.server.hostname + this.server.encryption +
           (this.server.novalidatecert ? "/novalidate-cert" : "");
       api.post('/settings', this.settings).then(() => {
-        OC.Notification.showTemporary(t("majordomo", "IMAP settings successfully updated"));
+        showSuccess(t("majordomo", "IMAP settings successfully updated"));
         this.saving = false;
         this.dirty = false;
       }).catch(() => {
-        OC.Notification.showTemporary(t("majordomo", "Failed to store IMAP settings!"), {type: "error"});
+        showError(t("majordomo", "Failed to store IMAP settings!"));
         this.saving = false;
       });
     },
@@ -211,7 +212,7 @@ export default {
         this.testError = result.error;
         this.testing = false;
       }).catch(() => {
-        OC.Notification.showTemporary(t("majordomo", "Failed to test IMAP settings!"), {type: "error"});
+        showError(t("majordomo", "Failed to test IMAP settings!"));
         this.testSuccess = false;
         this.testing = false;
       });

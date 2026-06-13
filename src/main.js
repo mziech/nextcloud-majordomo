@@ -20,22 +20,36 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 import appContext from "./context";
 
 import { translate, translatePlural } from '@nextcloud/l10n';
+import { generateUrl } from '@nextcloud/router'
 
-import App from './App';
+import App from './App.vue';
+import Settings from "./Settings.vue";
+import Bounces from "./Bounces.vue";
+import MailingList from "./MailingList.vue";
 
-Vue.prototype.appContext = appContext;
-Vue.prototype.t = translate;
-Vue.prototype.n = translatePlural;
-Vue.prototype.OC = window.OC;
-Vue.prototype.OCA = window.OCA;
-Vue.use(VueRouter);
+const app = createApp(App);
+app.config.globalProperties.appContext = appContext;
+app.config.globalProperties.t = translate;
+app.config.globalProperties.n = translatePlural;
+app.config.globalProperties.OC = window.OC;
+app.config.globalProperties.OCA = window.OCA;
 
-export default new Vue({
-    el: '#content',
-    render: h => h(App),
+const router = createRouter({
+    history: createWebHistory(generateUrl('/apps/majordomo', '')),
+    routes: [
+        {path: "/", component: {template: ""}},
+        {path: "/settings", name: 'settings', component: Settings},
+        {path: "/bounces/:uid?", name: 'bounces', component: Bounces},
+        {path: "/lists/:id", name: 'list', component: MailingList}
+    ]
 });
+app.use(router);
+
+app.mount("#content");
+
+export default app;

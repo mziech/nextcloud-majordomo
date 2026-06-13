@@ -44,7 +44,7 @@ class RawMailer extends Mailer {
             class_exists('\\Symfony\\Component\\Mailer\\Mailer');
     }
 
-    public function resendRaw(MessageInterface $mail, string $from, array $to, Headers $headers = null) {
+    public function resendRaw(MessageInterface $mail, string $from, array $to, ?Headers $headers = null): void {
         $part = $this->mailToPart($mail->parse());
         $msg = new Message($headers, $part);
         $envelope = new Envelope(Address::create($from), Address::createArray($to));

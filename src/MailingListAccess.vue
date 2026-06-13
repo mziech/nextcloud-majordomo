@@ -1,17 +1,11 @@
-<script>
-export default {
-  name: "MailingListAccess",
-  props: {
-    value: Number
-  },
-  emits: [
-      "input"
-  ]
-};
+<script setup>
+const model = defineModel({
+  type: Number
+});
 </script>
 
 <template>
-  <select :value="value" @input="$emit('input', parseInt($event.target.value))">
+  <select v-model="model">
     <option :value="0">{{ t('majordomo', 'Nobody') }}</option>
     <option :value="1">{{ t('majordomo', 'Administrators') }}</option>
     <option :value="2">{{ t('majordomo', 'Moderators') }}</option>

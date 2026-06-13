@@ -56,9 +56,9 @@
         <p class="centered-input">
           <label for="resendAddress">
             {{ t('majordomo', 'Email address for built-in list manager') }}:
-            <NcCounterBubble type="highlighted">BETA</NcCounterBubble>
           </label>
           <input id="resendAddress" type="email" v-model="list.resendAddress" :disabled="!list.access.canAdmin"/>
+          <NcChip variant="warning" no-close text="BETA" style="display: inline-block"/>
         </p>
         <template v-if="list.access.canAdmin">
           <p class="centered-input">
@@ -78,8 +78,9 @@
             <input id="bounceAddress" type="email" v-model="list.bounceAddress"/>
           </p>
           <p>
-            <input type="checkbox" id="syncActive" class="checkbox" v-model="list.syncActive">
-            <label for="syncActive">{{ t('majordomo', 'Enable automatic synchronization of list members') }}</label><br>
+            <NcCheckboxRadioSwitch v-model="list.syncActive">
+              {{ t('majordomo', 'Enable automatic synchronization of list members') }}
+            </NcCheckboxRadioSwitch>
           </p>
           <h3>{{ t('majordomo', 'Access Control') }}</h3>
           <p class="centered-input">
@@ -120,20 +121,18 @@
       </form>
       <h3  v-if="list.access.canListMembers">{{ t('majordomo', 'Member Policy') }}</h3>
       <div v-if="list.access.canEditMembers">
-        <NcSelect :value="typeOption(addMemberType)"
+        <NcSelect v-model="addMemberType"
                   :options="this.typeOptions"
                   :ariaLabelCombobox="t('majordomo', 'Choose the kind of membership entry to add')"
                   label="displayName"
-                  @input="v => this.addMemberType = v.id"
                   @option:selected="onMemberTypeChange()"/>
-        <span v-if="[...appContext.types.user, ...appContext.types.group].indexOf(addMemberType) >= 0 && availableMembers === null" class="icon-loading-small inlineblock"></span>
-        <NcSelect v-model="addMemberReference"
-                  v-if="[...appContext.types.user, ...appContext.types.group].indexOf(addMemberType) >= 0 && availableMembers !== null"
+        <span v-if="addMemberType != null && [...appContext.types.user, ...appContext.types.group].indexOf(addMemberType.id) >= 0 && availableMembers === null" class="icon-loading-small inlineblock"></span>
+        <NcSelectUsers v-model="addMemberReference"
+                  v-if="addMemberType != null && [...appContext.types.user, ...appContext.types.group].indexOf(addMemberType.id) >= 0 && availableMembers !== null"
                   :ariaLabelCombobox="t('majordomo', 'Choose the user or group to add or exclude')"
-                  :userSelect="true"
                   :options="availableMembers">
-        </NcSelect>
-        <input v-model="addMemberReference" v-else-if="addMemberType !== ''"/>
+        </NcSelectUsers>
+        <input v-model="addMemberReference" v-else-if="addMemberType != null && addMemberType.id !== ''"/>
         <button type="button"
                 v-on:click="addMember()"
                 :disabled="addMemberReference === ''"
@@ -159,16 +158,19 @@
   </div>
 </template>
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList.js';
-import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js';
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js';
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js';
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js';
-import NcSelect from '@nextcloud/vue/dist/Components/NcSelect.js';
+import AppContentList from '@nextcloud/vue/components/NcAppContentList';
+import AppContentDetails from '@nextcloud/vue/components/NcAppContentDetails';
+import Avatar from '@nextcloud/vue/components/NcAvatar';
+import EmptyContent from '@nextcloud/vue/components/NcEmptyContent';
+import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch';
+import NcChip from '@nextcloud/vue/components/NcChip';
+import NcSelect from '@nextcloud/vue/components/NcSelect';
+import NcSelectUsers from '@nextcloud/vue/components/NcSelectUsers';
 import api from "./api";
-import RequestButton from "./RequestButton";
-import MailingListAccess from "./MailingListAccess";
+import RequestButton from "./RequestButton.vue";
+import MailingListAccess from "./MailingListAccess.vue";
 import appContext from "./context";
+import {showError, showSuccess} from "@nextcloud/dialogs";
 
 const TYPES = {
   "GROUP": t('majordomo', 'Members of group'),
@@ -192,13 +194,15 @@ export default {
     AppContentDetails,
     Avatar,
     EmptyContent,
-    NcCounterBubble,
+    NcCheckboxRadioSwitch,
+    NcChip,
     NcSelect,
+    NcSelectUsers,
   },
   data() {
     return {
-      addMemberType: '',
-      addMemberReference: '',
+      addMemberType: this.typeOption(''),
+      addMemberReference: null,
       availableMembers: null,
       availableUsers: null,
       availableGroups: null,
@@ -252,7 +256,7 @@ export default {
       });
 
       api.post(`/lists/${this.$route.params.id}`, this.list).then(list => {
-        OC.Notification.showTemporary(t("majordomo", "Mailing list saved."));
+        showSuccess(t("majordomo", "Mailing list saved."));
         this.$emit("saved");
         this.dirty = false;
         if (this.isNew) {
@@ -261,41 +265,43 @@ export default {
           this.reload();
         }
       }).catch(() => {
-        OC.Notification.showTemporary(t("majordomo", "Failed to save mailing list."), {type: "error"});
+        showError(t("majordomo", "Failed to save mailing list."));
       });
     },
     onMemberTypeChange() {
-      this.addMemberReference = '';
+      this.addMemberReference = null;
       this.availableMembers = null;
-      if (appContext.types.group.indexOf(this.addMemberType) >= 0) {
+      if (this.addMemberType == null || this.addMemberType.id === '') {
+        // nop
+      } else if (appContext.types.group.indexOf(this.addMemberType.id) >= 0) {
         this.availableMembers = this.availableGroups;
         if (this.availableGroups === null) {
           api.get("/search/groups").then(groups => {
             this.availableGroups = groups;
-            if (appContext.types.group.indexOf(this.addMemberType) >= 0) {
+            if (appContext.types.group.indexOf(this.addMemberType.id) >= 0) {
               this.availableMembers = groups;
             }
           }).catch(() => {
-            OC.Notification.showTemporary(t("majordomo", "Failed to load groups."), {type: "error"});
+            showError(t("majordomo", "Failed to load groups."));
           });
         }
-      } else if (appContext.types.user.indexOf(this.addMemberType) >= 0) {
+      } else if (appContext.types.user.indexOf(this.addMemberType.id) >= 0) {
         this.availableMembers = this.availableUsers;
         if (this.availableUsers === null) {
           api.get("/search/users").then(users => {
             this.availableUsers = users;
-            if (appContext.types.user.indexOf(this.addMemberType) >= 0) {
+            if (appContext.types.user.indexOf(this.addMemberType.id) >= 0) {
               this.availableMembers = users;
             }
           }).catch(() => {
-            OC.Notification.showTemporary(t("majordomo", "Failed to load users."), {type: "error"});
+            showError(t("majordomo", "Failed to load users."));
           });
         }
       }
     },
     addMember() {
       const memberToAdd = {
-        type: this.addMemberType,
+        type: this.addMemberType.id,
         reference: typeof this.addMemberReference === 'string' ? this.addMemberReference : this.addMemberReference.id
       };
       this.removeMember(memberToAdd);
@@ -303,7 +309,7 @@ export default {
         ...this.list,
         members: !this.list.members ? [memberToAdd] : [...this.list.members, memberToAdd]
       }
-      this.addMemberReference = '';
+      this.addMemberReference = null;
       this.dirty = true;
     },
     removeMember(memberToRemove) {

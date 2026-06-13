@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: ownCloud Apps 8.0.0\n"
 "Report-Msgid-Bugs-To: marco+nc@ziech.net\n"
 "POT-Creation-Date: 2025-11-25 22:59+0000\n"
-"PO-Revision-Date: 2026-06-13 00:18+0200\n"
+"PO-Revision-Date: 2025-11-26 00:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.9\n"
+"X-Generator: Poedit 3.7\n"
 
 #: src/MailingList.vue:324
 msgid "- Please select -"
@@ -92,11 +92,11 @@ msgstr "Abbrechen"
 
 #: src/MailingList.vue:21
 msgid "Choose the kind of membership entry to add"
-msgstr "Wähle die Art des hinzuzufügenden Mitgliedseintrags"
+msgstr "Wählen Sie die Art des hinzuzufügenden Mitgliedseintrags"
 
 #: src/MailingList.vue:21
 msgid "Choose the user or group to add or exclude"
-msgstr "Wähle den auszuschließenden Benutzer oder die Gruppe"
+msgstr "Wählen Sie den auszuschließenden Benutzer oder die Gruppe"
 
 #: src/MailingList.vue:21
 msgid "Create Mailinglist"
@@ -304,7 +304,7 @@ msgstr "Niemand"
 
 #: src/RequestButton.vue:21
 msgid "Please acknowledge to apply the following pending changes:"
-msgstr "Bitte bestätige, dass folgende Änderungen angewendet werden:"
+msgstr "Bitte bestätigen Sie, dass folgende Änderungen angewendet werden:"
 
 #: src/Settings.vue:22
 msgid "Process incoming mails now"

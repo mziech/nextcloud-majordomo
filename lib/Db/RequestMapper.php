@@ -72,7 +72,7 @@ class RequestMapper extends \OCP\AppFramework\Db\QBMapper {
         $num = $qb->delete("majordomo_requests")
             ->where($qb->expr()
                 ->lt("created", $qb->createNamedParameter($deadline, IQueryBuilder::PARAM_DATE)))
-            ->execute();
+            ->executeStatement();
         if ($num > 0) {
             $this->logger->info("Deleted $num expired Majordomo requests before deadline $deadline");
         }

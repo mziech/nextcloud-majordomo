@@ -30,6 +30,7 @@ use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Controller;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
+use OCP\Util;
 
 class PageController extends Controller {
 	private $userId;
@@ -57,6 +58,8 @@ class PageController extends Controller {
      * @NoAdminRequired
      */
     public function index() {
+        Util::addScript($this->appName, "majordomo-main");
+        Util::addStyle($this->appName, "majordomo-main");
         return new TemplateResponse('majordomo', 'index', [
             "basename" => $this->urlGenerator->linkToRoute($this->appName. ".page.index"),
             "appContext" => $this->appContext(),

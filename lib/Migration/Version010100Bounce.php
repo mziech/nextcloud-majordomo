@@ -92,7 +92,7 @@ class Version010100Bounce extends SimpleMigrationStep {
         $qb_fetch = $this->connection->getQueryBuilder();
         $qb_fetch->select('id', 'listname', 'manager')
             ->from('majordomo_lists');
-        $cursor = $qb_fetch->execute();
+        $cursor = $qb_fetch->executeQuery();
         while ($ml = $cursor->fetch()) {
             if (!empty($ml["listname"]) && str_contains($ml["manager"], '@')) {
                 $bounceAddress = implode('@', [

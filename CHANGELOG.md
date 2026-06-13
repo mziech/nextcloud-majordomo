@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.0-pre1] - 2026-06-14
+### Changed
+- Verified Nextcloud 32-34 compatibility
+- Upgraded to Vue 3 toolchain, replacing webpack with vite
+- Fixed several compatibility issues
+
 ## [2.2.1] - 2025-11-26
 ### Fixed
 - Updated app description to reflect that the imap PHP module is no longer required

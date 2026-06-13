@@ -1,11 +1,11 @@
-const app = require(`${__dirname}/../package.json`).name;
-const fs = require('fs');
-const gettextParser = require("gettext-parser");
+import fs from "fs";
+import gettextParser from "gettext-parser";
 
-process.chdir(__dirname);
+process.chdir(import.meta.dirname);
+const app = JSON.parse(fs.readFileSync("../package.json", "utf8")).name;
 
-for (let ent of fs.readdirSync(__dirname, { withFileTypes: true })) {
-    const filename = `${__dirname}/${ent.name}/${app}.po`;
+for (let ent of fs.readdirSync(import.meta.dirname, { withFileTypes: true })) {
+    const filename = `${import.meta.dirname}/${ent.name}/${app}.po`;
     if (ent.isDirectory() && fs.existsSync(filename)) {
         console.info(`Writing: ${ent.name}`)
         const input = fs.readFileSync(filename);

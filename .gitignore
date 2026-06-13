@@ -1,6 +1,9 @@
 _old
 *~
 /node_modules
-/js/majordomo.js*
+/css/majordomo-main.css
+/css/*.chunk.css
+/js/majordomo-main.mjs
+/js/*.chunk.mjs
 /majordomo.tar.gz
 /vendor/
