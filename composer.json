@@ -6,9 +6,17 @@
     "directorytree/imapengine": "^1.18"
   },
   "replace": {
+    "guzzlehttp/psr7": "*",
     "laravel/serializable-closure": "*",
     "symfony/http-foundation": "*",
     "symfony/mime": "*",
+    "egulias/email-validator": "*",
+    "symfony/polyfill-intl-idn": "*",
+    "symfony/polyfill-intl-normalizer": "*",
+    "symfony/polyfill-php84": "*",
+    "symfony/polyfill-php85": "*",
+    "symfony/translation": "*",
+    "symfony/translation-contracts": "*",
     "doctrine/lexer": "*",
     "psr/clock": "*",
     "psr/container": "*",

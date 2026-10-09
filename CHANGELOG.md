@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.1] - 2026-10-10
+### Fixed
+- Removed Composer dependencies overlapping with Nextcloud's 3rdparty folder. This should fix spurious GuzzleHTTP errors with recent Nextcloud versions.
+- Overall dependency upgrades
+- Verified Nextcloud 33-35 compatibility
+
 ## [2.3.0] - 2026-06-14
 ### Changed
 - Verified Nextcloud 32-34 compatibility

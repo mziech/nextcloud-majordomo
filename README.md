@@ -42,5 +42,14 @@ Or use Docker:
 docker run -it -u $(id -u) --rm -v $HOME/.npm:/.npm -v $(pwd):/work -w /work node:lts sh -c "npm install && npm run watch"
 ```
 
+## Composer
+
+### Checking against duplicate plugins
+
+The following command (executed in `vendor` directory) checks against duplicate dependencies to Nextcloud (located at `../../../nextcloud`) and will output the `replace` configuration to exclude them:
+```shell
+for i in */*; do test -d ../../../nextcloud/3rdparty/$i && echo '"'$i'": "*",'; done
+```
+
 ## Install
 Place this app in `nextcloud/apps/majordomo`

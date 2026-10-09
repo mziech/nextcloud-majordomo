@@ -41,7 +41,7 @@ class Idle extends Command {
             ->setDescription("Wait for new messages and process them");
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output): int {
         try {
             $output->writeln("Processing all existing mails");
             $this->imapLoader->processMails();
